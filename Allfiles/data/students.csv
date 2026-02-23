@@ -1,0 +1,11 @@
+student_id,first_name,last_name,email,enrollment_year,program
+1001,Emma,Watson,emma.watson@lakeside.edu,2022,Computer Science
+1002,Liam,Ahmed,liam.ahmed@lakeside.edu,2023,Data Science
+1003,Sofia,Chen,sofia.chen@lakeside.edu,2021,Mathematics
+1004,James,Okonkwo,james.okonkwo@lakeside.edu,2022,Computer Science
+1005,Aisha,Patel,aisha.patel@lakeside.edu,2023,Data Science
+1006,Noah,Yamamoto,noah.yamamoto@lakeside.edu,2020,Mathematics
+1007,Olivia,Kowalski,olivia.kowalski@lakeside.edu,2021,Computer Science
+1008,Carlos,Reyes,carlos.reyes@lakeside.edu,2022,Data Science
+1009,Mei,Lindqvist,mei.lindqvist@lakeside.edu,2023,Mathematics
+1010,Jake,OBrien,jake.obrien@lakeside.edu,2020,Computer Science
