@@ -3,7 +3,7 @@ lab:
   title: Secure Unity Catalog objects
   module: Secure Unity Catalog objects
   description: 
-  duration: 30 minutes
+  duration: 45 minutes
   level: 300
   islab: true
   primarytopics:
@@ -43,7 +43,7 @@ This lab should take approximately **35–40 minutes** to complete.
 
 You are **expected and encouraged** to use the **Databricks Assistant** at all times during this lab. Every exercise cell in the notebook includes a suggested prompt you can paste directly into the Assistant panel.
 
-To open the Databricks Assistant, click the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or press the keyboard shortcut shown in the toolbar.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or press the keyboard shortcut shown in the toolbar.
 
 > 💡 **Tip:** Do not just copy and paste the Assistant's output blindly. Read it, understand it, and adapt it to the task requirements. The Assistant is a tool to accelerate your thinking, not replace it.
 
@@ -75,10 +75,10 @@ Before starting the exercises, clone the lab repository to your local machine.
 
 ## Import the lab notebook
 
-1. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
+1. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
 2. Navigate to or create a folder where you want to store this lab.
-3. Click the **⋮** (kebab) menu next to the folder, then select **Import**.
-4. Choose **File**, browse to `DP-750/Allfiles/04-secure-unity-catalog-objects.ipynb`, and click **Import**.
+3. Select the **⋮** (kebab) menu next to the folder, then select **Import**.
+4. Choose **File**, browse to `DP-750/Allfiles/04-secure-unity-catalog-objects.ipynb`, and select **Import**.
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
@@ -87,9 +87,9 @@ Before starting the exercises, clone the lab repository to your local machine.
 
 You will grant permissions to a Databricks group in Exercise 1. Create the group now so it is ready when you reach that exercise.
 
-1. In the Databricks workspace, click **your username** (top right) → **Admin Settings**.
-2. Navigate to **Groups** → **Add group**.
-3. Name the group `retail-analysts` and click **Save**.
+1. In the Databricks workspace, select **your username** (top right) → **Settings**.
+2. Navigate to **Identity and access** → **Groups** → select **Manage** → **Add group**.
+3. Name the group `retail-analysts` and select **Save**.
 4. Once the group is created, add your own user account as a member.
 
 > ℹ️ This group represents the regional analyst team at NorthMart Retail. You will grant it access to the lab schema in Exercise 1.
@@ -102,31 +102,31 @@ Exercise 4 requires an Azure Key Vault with a pre-created secret. Complete these
 
 ### Step 1: Create the Key Vault
 
-1. Open the [Azure Portal](https://portal.azure.com) and click **Create a resource**.
-2. Search for **Key Vault** and click **Create**.
+1. Open the [Azure Portal](https://portal.azure.com) and select **Create a resource**.
+2. Search for **Key Vault** and select **Create**.
 3. Configure the Key Vault:
    - **Resource group**: use your lab resource group.
    - **Key vault name**: `kv-northmart-<your-initials>` (must be globally unique).
    - **Region**: the same region as your Databricks workspace.
    - **Pricing tier**: Standard.
 4. On the **Access configuration** tab, set the **Permission model** to **Vault access policy**.
-5. Click **Review + create**, then **Create**.
+5. Select **Review + create**, then **Create**.
 
 ### Step 2: Add an access policy for your user
 
 1. Once the Key Vault is deployed, open it in the portal.
-2. Click **Access policies** → **Create**.
+2. Select **Access policies** → **Create**.
 3. Under **Secret permissions**, select **Get** and **List**.
 4. Under **Principal**, search for and select your own Azure user account.
-5. Click **Create** to save the policy.
+5. Select **Create** to save the policy.
 
 ### Step 3: Add a secret
 
-1. In the Key Vault, click **Secrets** → **Generate/Import**.
+1. In the Key Vault, select **Secrets** → **Generate/Import**.
 2. Set the following:
    - **Name**: `loyalty-api-key`
    - **Value**: `NORTHMART-LOYALTY-2026-SECURE`
-3. Click **Create**.
+3. Select **Create**.
 
 ### Step 4: Note down the Key Vault details
 
@@ -151,7 +151,7 @@ You will need both values when creating the Databricks secret scope in Exercise 
    - **Manage Principal**: `All workspace users`
    - **DNS Name**: paste the Vault URI from Step 4.
    - **Resource ID**: paste the Resource ID from Step 4.
-3. Click **Create**.
+3. Select **Create**.
 
 > ✅ **Expected result:** You should see a confirmation message that the scope was created. The scope is now linked to your Azure Key Vault, and any secrets you add there are accessible from Databricks notebooks.
 
