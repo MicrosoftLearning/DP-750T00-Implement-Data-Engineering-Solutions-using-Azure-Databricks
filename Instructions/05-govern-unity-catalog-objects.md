@@ -2,7 +2,7 @@
 lab:
   title: Govern Unity Catalog objects
   module: Govern Unity Catalog objects
-  description: 
+  description: In this lab, you apply Unity Catalog governance controls to a connected vehicle data platform built on Azure Databricks. You use SQL to tag tables and columns for PII classification, configure Delta Lake retention policies and run VACUUM to purge deleted data, and enable predictive optimization. You then query system tables to trace data lineage programmatically and analyse the audit log to answer compliance questions about who accessed data and when.
   duration: 30 minutes
   level: 300
   islab: true
@@ -44,7 +44,7 @@ This lab should take approximately **30 minutes** to complete.
 
 You are **expected and encouraged** to use the **Databricks Assistant at all times** during this lab. Every exercise cell in the notebook includes a suggested prompt you can paste directly into the Assistant panel.
 
-To open the Databricks Assistant, click the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or press the keyboard shortcut shown in the toolbar.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or press the keyboard shortcut shown in the toolbar.
 
 > 💡 **Tip:** Do not just copy and paste the Assistant's output blindly. Read it, understand it, and adapt it to the task at hand. The Assistant is a tool to accelerate your thinking, not replace it.
 
@@ -69,10 +69,10 @@ Before starting this lab, ensure you have:
     git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
     ```
 
-2. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
+2. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
 3. Navigate to or create a folder where you want to store this lab.
-4. Click the **⋮** (kebab) menu next to the folder, then select **Import**.
-5. Choose **File**, browse to `DP-750/Allfiles/05-govern-unity-catalog-objects.ipynb`, and click **Import**.
+4. Select the **⋮** (kebab) menu next to the folder, then select **Import**.
+5. Choose **File**, browse to `DP-750/Allfiles/05-govern-unity-catalog-objects.ipynb`, and select **Import**.
 6. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
@@ -85,11 +85,11 @@ After completing Exercise 1 in the notebook (which creates your tables), come ba
 
 ### View table lineage
 
-1. In your Azure Databricks workspace, click **Catalog** in the left sidebar to open Catalog Explorer.
+1. In your Azure Databricks workspace, select **Catalog** in the left sidebar to open Catalog Explorer.
 2. Navigate to `automotive_catalog` > `governance_lab`.
 3. Select the `vehicle_telemetry` table.
-4. Click the **Lineage** tab.
-5. Click **See Lineage Graph** to open the interactive lineage visualization.
+4. Select the **Lineage** tab.
+5. Select **See Lineage Graph** to open the interactive lineage visualization.
 
 Observe the upstream and downstream relationships. Notice that the graph shows:
 - Which notebooks or jobs wrote to the table.
@@ -97,13 +97,13 @@ Observe the upstream and downstream relationships. Notice that the graph shows:
 
 ### View column-level lineage
 
-1. Still on the **Lineage** tab, click on the `service_records` table node.
+1. Still on the **Lineage** tab, select the `service_records` table node.
 2. Select a column (for example, `vehicle_id`) to explore which upstream columns it traces back to.
 
 ### View table history
 
 1. Navigate to the `vehicle_telemetry` table in Catalog Explorer.
-2. Click the **History** tab.
+2. Select the **History** tab.
 3. Observe the version history — each row represents one operation (write, update, VACUUM, etc.).
 
 This history can serve as an audit trail for understanding who modified the table and when.
