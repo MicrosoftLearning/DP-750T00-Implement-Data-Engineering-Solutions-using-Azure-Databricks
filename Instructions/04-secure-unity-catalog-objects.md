@@ -2,7 +2,7 @@
 lab:
   title: Secure Unity Catalog objects
   module: Secure Unity Catalog objects
-  description: 
+  description: In this lab, you secure Unity Catalog objects in Azure Databricks by granting fine-grained access control to a Databricks group, applying row filters to restrict customer data by region, and masking PII email addresses using column mask functions. You also create an Azure Key Vault-backed secret scope and retrieve secrets securely inside a notebook, so sensitive credentials are never exposed in code.
   duration: 45 minutes
   level: 300
   islab: true
