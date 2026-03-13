@@ -2,8 +2,8 @@
 lab:
   title: Create and organize objects in Unity Catalog
   module: Create and organize objects in Unity Catalog
-  description: 
-  duration: 30 minutes
+  description: In this lab, you build a complete Unity Catalog namespace for a university data platform — creating a catalog, medallion schemas, managed tables with primary and foreign key constraints, views, a volume, and a reusable SQL function. You practice DDL operations such as adding columns and applying governance tags, and explore how Unity Catalog organizes and governs structured data at every layer of the medallion architecture. By the end, you will have a fully structured, query-ready environment that reflects real-world data engineering practices on Azure Databricks.
+  duration: 45 minutes
   level: 300
   islab: true
   primarytopics:
@@ -37,7 +37,7 @@ This lab should take approximately **45 minutes** to complete.
 
 You are expected and encouraged to use the **Databricks Assistant** at all times during this lab. Every exercise includes suggested prompts you can paste directly into the Assistant panel.
 
-To open the Databricks Assistant, click the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 > 💡 **Tip:** Do not just copy and paste the Assistant's output blindly. Read it, understand it, and adapt it to the specific requirements of each task. The Assistant is a tool to accelerate your thinking, not replace it.
 
@@ -70,48 +70,34 @@ Before starting the exercises, clone the lab repository to your local machine. T
 
 ## Import the lab notebook
 
-1. In the Databricks workspace, click **Workspace** in the left sidebar.
+1. In the Databricks workspace, select **Workspace** in the left sidebar.
 2. Navigate to or create the folder where you want to store your lab notebooks (for example, your home folder).
-3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
-4. Select **File**, browse to `DP-750/Allfiles/03-create-and-organize-objects-in-unity-catalog.ipynb`, and click **Import**.
+3. Select the **⋮** (kebab) menu or right-click the folder, then select **Import**.
+4. Select **File**, browse to `DP-750/Allfiles/03-create-and-organize-objects-in-unity-catalog.ipynb`, and select **Import**.
 5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
 ---
 
 ## Work through the notebook
 
-Open the imported notebook and follow the instructions in each cell to complete Exercises 1–6. When you reach the **Next steps** cell at the end of the notebook, return here and continue with the exercises below.
+Open the imported notebook and follow the instructions in each cell to complete Exercises 1–6. When you reach the **Next steps** cell at the end of the notebook, return here and continue with the exercise below.
 
 ---
 
-## Exercise A (non-notebook): Explore Unity Catalog in the UI
-
-Before writing any code, take a few minutes to explore Unity Catalog through the **Catalog Explorer**.
-
-1. In the left sidebar, click **Catalog**.
-2. Browse the existing catalogs in your metastore. Note how they are organized by name.
-3. Click into a catalog and then a schema to see its tables, views, and volumes.
-4. Click on a table to view its **schema**, **sample data**, and **details** (owner, tags, comments).
-5. Notice the **three-level namespace** at the top of the details pane: `catalog.schema.table`.
-
-> 💡 You will create your own catalog structure in the notebook exercises that follow.
-
----
-
-## Exercise B (non-notebook): Configure an AI/BI Genie Space (optional)
+## Exercise: Configure an AI/BI Genie Space (optional)
 
 This optional task requires a Genie Space, which is configured entirely through the Databricks UI — not in a notebook.
 
 After completing the notebook exercises, you can optionally create a Genie Space to experience natural language querying over your Lakeside University data.
 
-1. In the left sidebar, click **+ New** > **Genie space**.
-2. Name the space **Lakeside University Analytics**.
-3. Under **Data**, add the following tables:
+1. In the left sidebar, select **+ New** > **Genie space**.
+2. Under **Data**, add the following tables:
    - `edu_dev.silver.students`
    - `edu_dev.silver.courses`
    - `edu_dev.silver.enrollments`
    - `edu_dev.silver.vw_student_enrollments`
    - `edu_dev.gold.vw_department_enrollment_stats`
+3. Name the space **Lakeside University Analytics**.
 4. For the `enrollments.grade` column, update the description to: *"Numerical grade on a 0.0–10.0 scale where 8.5+ is an A, 7.0+ is a B, 5.5+ is a C, 4.0+ is a D, and below 4.0 is an F."*
 5. Navigate to the **Chat** tab and ask: *"Which department has the highest average grade?"*
 6. Review the SQL Genie generated and compare it to your `vw_department_enrollment_stats` materialized view.
