@@ -63,7 +63,7 @@ Before writing any code, let's explore the Azure Databricks environment. Getting
 
 The **Databricks Assistant** is an AI-powered pair programmer built directly into Azure Databricks. It can generate code, explain errors, suggest improvements, and answer questions — all without leaving the user interface. You are expected and encouraged to use it throughout this lab and all future labs.
 
-1. From the Azure Databricks home page, click the **Databricks Assistant** icon (✨) in the top-right corner of the page to open the Assistant panel.
+1. From the Azure Databricks home page, click the **Databricks Assistant** icon (![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg)) in the top-right corner of the page to open the Assistant panel.
 
 2. Type the following prompt and observe the response:
 

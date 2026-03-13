@@ -24,7 +24,7 @@ This lab should take approximately **20 minutes** to complete.
 
 You are expected and encouraged to use the **Databricks Assistant** for every exercise. The Assistant can help you write code, explain concepts, suggest fixes, and answer questions directly within the Databricks workspace.
 
-> **How to open the Assistant:** Click the ✨ icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
+> **How to open the Assistant:** Click the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
 
 Every task in the notebook includes a suggested prompt you can paste directly into the Assistant. Use it — that is the point!
 
