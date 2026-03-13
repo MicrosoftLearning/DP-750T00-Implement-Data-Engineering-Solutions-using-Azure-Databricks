@@ -1,6 +1,13 @@
 ---
 lab:
-    title: 'Select and Configure Compute in Azure Databricks'
+  title: Select and Configure Compute in Azure Databricks
+  module: Select and Configure Compute in Azure Databricks
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 # Select and Configure Compute in Azure Databricks
@@ -16,7 +23,7 @@ By the end of this lab, you will have:
 - Installed libraries notebook-scoped using `%pip install` and verified the installation.
 - Generated and analyzed synthetic patient data using an installed library.
 
-This lab should take approximately **20 minutes** to complete.
+This lab should take approximately **30 minutes** to complete.
 
 ---
 
@@ -72,12 +79,12 @@ HealthBridge's data engineering team needs a shared cluster for interactive deve
 2. Click **Create compute**.
 3. In the cluster creation form, set the following:
 
-    | Setting | Value |
-    |---|---|
+    | Setting          | Value              |
+    | ---------------- | ------------------ |
     | **Cluster name** | `healthbridge-dev` |
-    | **Policy** | Unrestricted |
-    | **Cluster mode** | Multi node |
-    | **Access mode** | Shared |
+    | **Policy**       | Unrestricted       |
+    | **Cluster mode** | Multi node         |
+    | **Access mode**  | Shared             |
 
 4. Do **not** click Create yet — continue with the settings below.
 
@@ -103,7 +110,7 @@ Still on the cluster creation form:
 
 6. Click **Create compute**.
 
-Wait for the cluster to reach a **Running** state before proceeding.
+Wait for the cluster to reach a **Running** state before proceeding. This might take several minutes.
 
 ---
 
@@ -118,10 +125,10 @@ Your team uses the `faker` library to generate synthetic patient datasets for pi
 3. Click **Install new**.
 4. Set the following:
 
-    | Setting | Value |
-    |---|---|
-    | **Library source** | PyPI |
-    | **Package** | `faker==37.1.0` |
+    | Setting            | Value           |
+    | ------------------ | --------------- |
+    | **Library source** | PyPI            |
+    | **Package**        | `faker==40.8.0` |
 
     > **Why pin a version?** In a healthcare data engineering context, reproducibility is critical. Pinning the exact version of `faker` ensures that every team member and every pipeline run uses the same library, preventing unexpected behavior from upstream version changes.
 

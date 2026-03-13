@@ -1,3 +1,15 @@
+---
+lab:
+  title: Ingest data into Unity Catalog
+  module: Ingest data into Unity Catalog
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
+---
+
 # Lab: Ingest Data into Unity Catalog — Solaris Energy
 
 ## Scenario

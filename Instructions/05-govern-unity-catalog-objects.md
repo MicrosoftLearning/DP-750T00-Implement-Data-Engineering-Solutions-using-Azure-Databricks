@@ -1,6 +1,13 @@
 ---
 lab:
-    title: 'Govern Unity Catalog Objects'
+  title: Govern Unity Catalog objects
+  module: Govern Unity Catalog objects
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 # Govern Unity Catalog Objects

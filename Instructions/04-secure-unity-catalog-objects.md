@@ -1,6 +1,13 @@
 ---
 lab:
-    title: 'Secure Unity Catalog Objects'
+  title: Secure Unity Catalog objects
+  module: Secure Unity Catalog objects
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 # Secure Unity Catalog Objects

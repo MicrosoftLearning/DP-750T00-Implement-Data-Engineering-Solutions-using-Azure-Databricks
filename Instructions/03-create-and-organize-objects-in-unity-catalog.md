@@ -1,6 +1,13 @@
 ---
 lab:
-    title: 'Create and Organize Objects in Unity Catalog'
+  title: Create and organize objects in Unity Catalog
+  module: Create and organize objects in Unity Catalog
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 # Create and Organize Objects in Unity Catalog

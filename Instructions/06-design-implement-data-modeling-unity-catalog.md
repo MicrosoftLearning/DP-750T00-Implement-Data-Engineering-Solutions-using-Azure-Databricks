@@ -1,6 +1,13 @@
 ---
 lab:
-    title: 'Design and Implement a Data Model in Unity Catalog'
+  title: Design and implement data modeling with Azure Databricks
+  module: Design and implement data modeling with Azure Databricks
+  description: 
+  duration: 30 minutes
+  level: 300
+  islab: true
+  primarytopics:
+    - Azure Databricks
 ---
 
 # Design and Implement a Data Model in Unity Catalog
