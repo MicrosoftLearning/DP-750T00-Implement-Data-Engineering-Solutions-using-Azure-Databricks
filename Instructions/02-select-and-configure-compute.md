@@ -2,7 +2,7 @@
 lab:
   title: Select and Configure Compute in Azure Databricks
   module: Select and Configure Compute in Azure Databricks
-  description: 
+  description: In this lab, you create and configure an all-purpose cluster in Azure Databricks, install libraries both cluster-scoped and notebook-scoped, and use the faker library to generate and analyze synthetic patient admission records with PySpark. 
   duration: 30 minutes
   level: 300
   islab: true
@@ -31,7 +31,7 @@ This lab should take approximately **30 minutes** to complete.
 
 You are expected and encouraged to use the **Databricks Assistant** for every exercise. The Assistant can help you write code, explain concepts, suggest fixes, and answer questions directly within the Databricks workspace.
 
-> **How to open the Assistant:** Click the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
+> **How to open the Assistant:** Select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
 
 Every task in the notebook includes a suggested prompt you can paste directly into the Assistant. Use it — that is the point!
 
@@ -57,13 +57,13 @@ Before starting the exercises, clone the lab repository and import the notebook 
     git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
     ```
 
-2. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
+2. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
 
 3. Navigate to or create a folder where you want to store the lab (for example, your personal home folder).
 
-4. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
+4. Select the **⋮** (kebab) menu next to the folder or right-click the folder, then select **Import**.
 
-5. Choose **File**, browse to `DP-750/Allfiles/02-select-and-configure-compute.ipynb`, and click **Import**.
+5. Choose **File**, browse to `DP-750/Allfiles/02-select-and-configure-compute.ipynb`, and select **Import**.
 
 6. Open the imported notebook. You will attach it to **Serverless** compute in a later step.
 
@@ -75,9 +75,10 @@ HealthBridge's data engineering team needs a shared cluster for interactive deve
 
 ### Task 1.1: Create a new all-purpose cluster
 
-1. In the left sidebar, click **Compute**.
-2. Click **Create compute**.
-3. In the cluster creation form, set the following:
+1. In the left sidebar, select **Compute**.
+2. Select **Create compute**.
+3. Set the **Simple form** dropdown to **OFF**.
+4. In the cluster creation form, set the following:
 
     | Setting          | Value              |
     | ---------------- | ------------------ |
@@ -86,13 +87,13 @@ HealthBridge's data engineering team needs a shared cluster for interactive deve
     | **Cluster mode** | Multi node         |
     | **Access mode**  | Shared             |
 
-4. Do **not** click Create yet — continue with the settings below.
+5. Do **not** select Create yet — continue with the settings below.
 
 ### Task 1.2: Configure performance and runtime settings
 
 Still on the cluster creation form:
 
-1. Under **Databricks Runtime version**, select the **latest LTS (Long Term Support)** version that includes **Photon** (look for the ⚡ Photon label).
+1. Under **Databricks Runtime version**, select the **latest LTS (Long Term Support)** version.
 
     > **Tip:** LTS versions are recommended for shared team clusters because they receive extended support and are more stable than non-LTS versions.
 
@@ -108,7 +109,7 @@ Still on the cluster creation form:
 
 5. Scroll up to confirm that **Photon Acceleration** is **enabled**.
 
-6. Click **Create compute**.
+6. Select **Create compute**.
 
 Wait for the cluster to reach a **Running** state before proceeding. This might take several minutes.
 
@@ -118,11 +119,13 @@ Wait for the cluster to reach a **Running** state before proceeding. This might 
 
 Your team uses the `faker` library to generate synthetic patient datasets for pipeline testing. You need to make this library available to all notebooks that run on the `healthbridge-dev` cluster.
 
+[faker](https://faker.readthedocs.io/) is a Python library that generates realistic fake data — such as names, addresses, phone numbers, dates, and more — for use in testing, prototyping, and seeding databases. It supports many locales and data categories, making it easy to produce large volumes of plausible synthetic data without using real personal information.
+
 ### Task 2.1: Install faker as a cluster-scoped library
 
-1. In the **Compute** page, click on your `healthbridge-dev` cluster.
-2. Click the **Libraries** tab.
-3. Click **Install new**.
+1. In the **Compute** page, select your `healthbridge-dev` cluster.
+2. Select the **Libraries** tab.
+3. Select **Install new**.
 4. Set the following:
 
     | Setting            | Value           |
@@ -132,7 +135,7 @@ Your team uses the `faker` library to generate synthetic patient datasets for pi
 
     > **Why pin a version?** In a healthcare data engineering context, reproducibility is critical. Pinning the exact version of `faker` ensures that every team member and every pipeline run uses the same library, preventing unexpected behavior from upstream version changes.
 
-5. Click **Install**.
+5. Select **Install**.
 
 6. Wait for the library status to show **Installed** on the Libraries tab.
 
@@ -144,9 +147,9 @@ Your team uses the `faker` library to generate synthetic patient datasets for pi
 
 Now that you have explored cluster configuration and library installation, the `healthbridge-dev` cluster is no longer needed for the remaining exercises. To avoid unnecessary compute costs, stop or delete it before continuing.
 
-1. In the left sidebar, click **Compute**.
+1. In the left sidebar, select **Compute**.
 2. Select the `healthbridge-dev` cluster.
-3. Click **Terminate** to stop the cluster, or click the **⋮** menu and select **Delete** to remove it entirely.
+3. Select **Terminate** to stop the cluster, or select the **⋮** menu and select **Delete** to remove it entirely.
 
     > **Note:** Since the remaining exercises run on **Serverless** compute, you can safely delete the cluster. Deleting it prevents it from being accidentally restarted and incurring further costs.
 
