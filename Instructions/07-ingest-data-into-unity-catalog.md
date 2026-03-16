@@ -2,8 +2,8 @@
 lab:
   title: Ingest data into Unity Catalog
   module: Ingest data into Unity Catalog
-  description: 
-  duration: 30 minutes
+  description: In this lab, you practise the core data ingestion techniques available in Azure Databricks. You load CSV files from a Unity Catalog managed volume into Delta tables using PySpark DataFrames, SQL COPY INTO, and CREATE TABLE AS SELECT. You also configure Auto Loader to automatically detect and process new files from cloud storage, demonstrating exactly-once ingestion for continuously arriving data.
+  duration: 45 minutes
   level: 300
   islab: true
   primarytopics:
