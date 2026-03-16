@@ -2,7 +2,7 @@
 lab:
   title: Implement and Manage Data Quality Constraints in Unity Catalog
   module: Implement and manage data quality constraints in Unity Catalog
-  description: In this lab, you build a Lakeflow Spark Declarative Pipeline for ClearCover Insurance that enforces data quality constraints on raw claims data. You implement nullability and range checks using pipeline expectations, validate data types with try_cast, and handle schema drift using Auto Loader's rescued data column. You then create and run the pipeline in the Databricks UI and monitor data quality metrics.
+  description: In this lab, you build a Lakeflow Spark Declarative Pipeline for ClearCover Insurance that enforces data quality constraints on raw claims data. You implement nullability and range checks using pipeline expectations, validate data types with col().cast(), and handle schema drift using Auto Loader's rescued data column. You then create and run the pipeline in the Databricks UI and monitor data quality metrics.
   duration: 45 minutes
   level: 300
   islab: true
@@ -25,7 +25,7 @@ You work through the following exercises:
 | Exercise 1 | Set up the ClearCover Insurance Data Platform (notebook) |
 | Exercise 2 | Explore data quality issues in Catalog Explorer          |
 | Exercise 3 | Implement nullability and status validation              |
-| Exercise 4 | Add data type checks using `try_cast`                    |
+| Exercise 4 | Add data type checks using `col().cast()`                |
 | Exercise 5 | Handle schema drift with rescued data                    |
 | Exercise 6 | Create, run, and monitor the pipeline                    |
 
@@ -47,7 +47,7 @@ Throughout every exercise in this lab, you are **expected and encouraged to use 
 
 ---
 
-## Importing the Setup Notebook and Pipeline File
+## Importing the Setup Notebook
 
 ### Step 1: Clone the repository
 
@@ -64,12 +64,6 @@ git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineer
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **File**, browse to `DP-750/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.ipynb`, and click **Import**.
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
-
-### Step 3: Import the pipeline file
-
-1. In the same workspace folder, click the **⋮** menu again and select **Import**.
-2. Choose **File**, browse to `DP-750/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog`, and click **Import**.
-3. The file appears in your workspace as a Python source file — open it now and keep it open throughout the exercises.
 
 ---
 
@@ -130,86 +124,70 @@ These columns are intentionally strings in the bronze layer. The pipeline exerci
 
 ## Exercise 3: Nullability and Status Validation
 
-Open `09-implement-manage-data-quality-constraints-unity-catalog` in your workspace. You will add pipeline expectations to the `claims_validated()` function.
+### Task 3.0: Create the ETL pipeline and import the pipeline file
 
-### Task 3.1: Drop records with a missing claim ID
+Before writing any pipeline code, you need to create a Lakeflow Spark Declarative Pipeline in Databricks and import the starter pipeline file.
 
-A `claim_id` is the primary identifier for every claim record. Any row without a `claim_id` is unusable and must be dropped before it reaches the silver layer.
+**Create the pipeline:**
 
-Add an `@dp.expect_or_drop` decorator to `claims_validated()`:
+1. In the Databricks workspace left sidebar, click **Jobs & Pipelines**.
+2. Click **Create ETL pipeline** (start with an **Empty file**, Python).
+3. Configure the pipeline with the following settings:
 
-```
-expectation name: valid_claim_id
-condition:        claim_id IS NOT NULL
-```
+   | Setting        | Value                                |
+   | -------------- | ------------------------------------ |
+   | Pipeline name  | `ClearCover Claims Quality Pipeline` |
+   | Pipeline mode  | **Triggered**                        |
+   | Target catalog | `insurance_lab`, schemae **silver**  |
+   | Compute        | **Serverless**                       |
 
-Place the decorator **directly above** the `def claims_validated():` line, below the `@dp.table(...)` decorator.
+4. Click **Create** — do **not** add source code yet.
+
+**Import the pipeline file:**
+
+1. Select the **transformations** folder and select the **⋮** (kebab) menu or right-click the folder, then select **Import**.
+2. Choose **File**, browse to `DP-750/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`, and click **Import**.
+3. The file appears in your workspace as a Python source file — open it and keep it open throughout exercises 3–5.
+
+With the pipeline configured, you will now edit the pipeline file to add data quality constraints.
+
+### Task 3.1: Add nullability and status expectations to `claims_validated()`
+
+Open `09-implement-manage-data-quality-constraints-unity-catalog.py` and add the following expectations to the `claims_validated()` function. Place all decorators between `@dp.table(...)` and `def claims_validated():`.
+
+| Expectation name    | Condition                                 | Action        |
+| ------------------- | ----------------------------------------- | ------------- |
+| `valid_claim_id`    | `claim_id IS NOT NULL`                    | Drop          |
+| `valid_customer_id` | `customer_id IS NOT NULL`                 | Drop          |
+| `valid_status`      | `status IN ('OPEN', 'PENDING', 'CLOSED')` | Warn (keep)   |
+| `valid_coverage`    | `coverage_amount > 0`                     | Fail pipeline |
+
+Use `@dp.expect_or_drop` to drop violating rows, `@dp.expect` to warn without dropping, and `@dp.expect_or_fail` to stop the pipeline on a violation.
 
 > 🤖 **Ask the Databricks Assistant:**
-> *"Show me how to add an `expect_or_drop` decorator to a Lakeflow Spark Declarative Pipelines Python function to drop rows where a column is NULL"*
-
-### Task 3.2: Drop records with a missing customer ID
-
-`customer_id` links a claim to a policyholder. Records without it cannot be processed.
-
-Add a second `@dp.expect_or_drop` decorator:
-
-```
-expectation name: valid_customer_id
-condition:        customer_id IS NOT NULL
-```
-
-### Task 3.3: Warn on non-standard status values
-
-ClearCover's downstream systems accept only three status values: `OPEN`, `PENDING`, and `CLOSED`. Records with other values are suspicious but should not be discarded yet — keep them and flag them for review.
-
-Add an `@dp.expect` (warn) decorator:
-
-```
-expectation name: valid_status
-condition:        status IN ('OPEN', 'PENDING', 'CLOSED')
-```
-
-> 💡 **Hint:** `@dp.expect` is the warn action. Violating rows are kept and written to the target table, but pipeline metrics show how many violations occurred.
-
-### Task 3.4: Fail the pipeline on invalid coverage amounts
-
-A `coverage_amount` of zero or less indicates upstream data corruption. This is a critical error — the pipeline must stop immediately.
-
-Add an `@dp.expect_or_fail` decorator:
-
-```
-expectation name: valid_coverage
-condition:        coverage_amount > 0
-```
-
-> 💡 **Hint:** `@dp.expect_or_fail` atomically rolls back the pipeline update if any record violates the condition. Use it only for conditions that signal serious upstream problems.
-
-After completing all four tasks, the top of your `claims_validated()` function should have four expectation decorators stacked above it.
+> *"Show me how to use `expect_or_drop`, `expect`, and `expect_or_fail` decorators in a Lakeflow Spark Declarative Pipelines Python function"*
 
 ---
 
 ## Exercise 4: Data Type Checks
 
-The `claim_date` and `claim_amount` columns arrive as strings. When `try_cast` cannot parse a value, it returns `NULL` instead of raising an error. You can use that behaviour to identify and drop invalid records.
+The `claim_date` and `claim_amount` columns arrive as strings. When `col().cast()` cannot parse a value, it returns `NULL` instead of raising an error. You can use that behaviour to identify and drop invalid records.
 
-### Task 4.1: Apply try_cast inside claims_validated()
+### Task 4.1: Apply col().cast() inside claims_validated()
 
 Inside the `claims_validated()` function body, **before the `return` statement**, add two `withColumn` calls:
 
-1. Convert `claim_date` from STRING to DATE using `try_cast`
-2. Convert `claim_amount` from STRING to DECIMAL(12,2) using `try_cast`
+1. Convert `claim_date` from STRING to DATE using `col('claim_date').cast('date')`
+2. Convert `claim_amount` from STRING to DECIMAL(12,2) using `col('claim_amount').cast('decimal(12,2)')`
 
 The transformed columns replace the originals, so downstream expectations and consumers see typed values.
 
 > 🤖 **Ask the Databricks Assistant:**
-> *"In PySpark, use `withColumn` and `try_cast` to convert a streaming dataframe column from STRING to DATE type, and another column from STRING to DECIMAL(12,2). Show me the full withColumn syntax."*
-
-> 💡 **Hint:** Import `try_cast` and `col` from `pyspark.sql.functions` — they are already imported at the top of the pipeline file.
+> *"In PySpark, use `withColumn` and `col().cast()` to convert a streaming dataframe column from STRING to DATE type, and another column from STRING to DECIMAL(12,2). Show me the full withColumn syntax."*
 
 ### Task 4.2: Drop records with unparseable dates
 
-After the `try_cast` in step 4.1, any row where `claim_date` is still NULL had an invalid original value. Add an `@dp.expect_or_drop` decorator to drop these rows:
+After the cast in task 4.1, any row where `claim_date` is still NULL had an invalid original value. Add an `@dp.expect_or_drop` decorator to drop these rows:
 
 ```
 expectation name: valid_claim_date
@@ -237,7 +215,7 @@ condition:        claim_amount >= 0
 > 💡 **Hint:** Place all expectation decorators between `@dp.table(...)` and `def claims_validated():`. Their order does not affect the result — all expectations are evaluated on each row.
 
 > 🤖 **Ask the Databricks Assistant:**
-> *"I'm using Lakeflow Spark Declarative Pipelines in Python. After applying try_cast to convert a column from STRING to DATE, which expectation condition do I use to drop rows where the cast failed?"*
+> *"I'm using Lakeflow Spark Declarative Pipelines in Python. After applying col().cast() to convert a column from STRING to DATE, which expectation condition do I use to drop rows where the cast failed?"*
 
 ---
 
@@ -247,7 +225,7 @@ ClearCover receives claims files from several partner brokers. Occasionally a br
 
 ### Task 5.1: Implement Auto Loader with rescue schema evolution mode
 
-Complete the `claims_rescued()` function in `09-implement-manage-data-quality-constraints-unity-catalog`.
+Complete the `claims_rescued()` function in `09-implement-manage-data-quality-constraints-unity-catalog.py`.
 
 Use `spark.readStream` with Auto Loader (`cloudFiles` format) to read CSV files from:
 
@@ -281,7 +259,7 @@ With the pipeline code complete, use the Databricks UI to create and run a Lakef
 
 ### Task 6.1: Save your pipeline file
 
-Make sure you have saved all changes to `09-implement-manage-data-quality-constraints-unity-catalog` in the workspace editor before continuing.
+Make sure you have saved all changes to `09-implement-manage-data-quality-constraints-unity-catalog.py` in the workspace editor before continuing.
 
 ### Task 6.2: Create the pipeline
 
@@ -289,13 +267,13 @@ Make sure you have saved all changes to `09-implement-manage-data-quality-constr
 2. Click **Create pipeline**.
 3. Configure the pipeline with the following settings:
 
-   | Setting        | Value                                                                 |
-   | -------------- | --------------------------------------------------------------------- |
-   | Pipeline name  | `ClearCover Claims Quality Pipeline`                                  |
-   | Pipeline mode  | **Triggered**                                                         |
-   | Source code    | Browse to your imported `09-implement-manage-data-quality-constraints-unity-catalog` workspace file |
-   | Target catalog | `insurance_lab`                                                       |
-   | Compute        | **Serverless**                                                        |
+   | Setting        | Value                                                                                                  |
+   | -------------- | ------------------------------------------------------------------------------------------------------ |
+   | Pipeline name  | `ClearCover Claims Quality Pipeline`                                                                   |
+   | Pipeline mode  | **Triggered**                                                                                          |
+   | Source code    | Browse to your imported `09-implement-manage-data-quality-constraints-unity-catalog.py` workspace file |
+   | Target catalog | `insurance_lab`                                                                                        |
+   | Compute        | **Serverless**                                                                                         |
 
 4. Click **Create**.
 

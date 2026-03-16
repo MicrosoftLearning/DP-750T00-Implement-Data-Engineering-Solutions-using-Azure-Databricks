@@ -3,7 +3,7 @@
 # INSTRUCTOR ANSWER KEY
 # ==============================================================
 
-import databricks.sdk.pipelines as dp
+from pyspark import pipelines as dp
 from pyspark.sql.functions import try_cast, col, count, sum as spark_sum
 
 
@@ -11,7 +11,7 @@ from pyspark.sql.functions import try_cast, col, count, sum as spark_sum
 # Exercise 3 + 4: Nullability, Status, and Data Type Validation
 # --------------------------------------------------------------
 
-@dp.table(schema_name='silver', name='claims_validated')
+@dp.table(name='silver.claims_validated')
 @dp.expect_or_drop('valid_claim_id',      'claim_id IS NOT NULL')
 @dp.expect_or_drop('valid_customer_id',   'customer_id IS NOT NULL')
 @dp.expect(        'valid_status',        "status IN ('OPEN', 'PENDING', 'CLOSED')")
@@ -33,7 +33,7 @@ def claims_validated():
 # Exercise 5: Schema Drift — Rescued Data
 # --------------------------------------------------------------
 
-@dp.table(schema_name='silver', name='claims_rescued')
+@dp.table(name='silver.claims_rescued')
 def claims_rescued():
     '''Silver: raw claims loaded via Auto Loader with rescue schema evolution.'''
     return (
@@ -53,7 +53,7 @@ def claims_rescued():
 # Gold: Claims Summary
 # --------------------------------------------------------------
 
-@dp.table(schema_name='gold', name='claims_summary')
+@dp.table(name='gold.claims_summary')
 def claims_summary():
     '''Gold: aggregate claim counts and total amounts per type and status.'''
     return (
