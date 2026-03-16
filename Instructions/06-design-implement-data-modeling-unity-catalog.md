@@ -2,8 +2,8 @@
 lab:
   title: Design and implement data modeling with Azure Databricks
   module: Design and implement data modeling with Azure Databricks
-  description: 
-  duration: 30 minutes
+  description: In this lab, you design and implement a Delta Lake data model in Unity Catalog for a retail banking scenario, building a customer dimension with SCD Type 2 history tracking and a transaction fact table with liquid clustering. You apply Change Data Feed to build a queryable FCA compliance audit trail and use Delta Lake time travel to inspect and restore previous table versions.
+  duration: 45 minutes
   level: 300
   islab: true
   primarytopics:
