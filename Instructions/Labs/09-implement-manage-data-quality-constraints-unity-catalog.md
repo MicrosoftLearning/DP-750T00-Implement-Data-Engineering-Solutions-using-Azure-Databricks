@@ -4,6 +4,7 @@ lab:
   title: Implement and Manage Data Quality Constraints in Unity Catalog
   module: Implement and manage data quality constraints in Unity Catalog
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-manage-data-quality-constraints-unity-catalog/
+  notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.ipynb
   description: In this lab, you build a Lakeflow Spark Declarative Pipeline for ClearCover Insurance that enforces data quality constraints on raw claims data. You implement nullability and range checks using pipeline expectations, validate data types with col().cast(), and handle schema drift using Auto Loader's rescued data column. You then create and run the pipeline in the Databricks UI and monitor data quality metrics.
   duration: 45 minutes
   level: 300

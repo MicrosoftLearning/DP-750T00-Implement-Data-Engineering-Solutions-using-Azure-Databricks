@@ -4,6 +4,7 @@ lab:
   title: Explore Azure Databricks
   module: Explore Azure Databricks
   module-url: https://learn.microsoft.com/training/modules/explore-azure-databricks/
+  notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/01-explore-azure-databricks.ipynb
   description: In this lab, you explore the Azure Databricks workspace UI, upload a sample dataset to a Unity Catalog volume, and work with notebook features including Python, SQL magic commands, and Markdown. You use the Databricks Assistant throughout to generate and refine code in the context of CityMoves Transit, a fictional public transportation authority.
   duration: 30 minutes
   level: 200

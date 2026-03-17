@@ -4,6 +4,7 @@ lab:
   title: Cleanse, transform, and load data into Unity Catalog
   module: Cleanse, transform, and load data into Unity Catalog
   module-url: https://learn.microsoft.com/training/wwl-databricks/cleanse-transform-load-data-into-unity-catalog/
+  notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/08-cleanse-transform-load-data-into-unity-catalog.ipynb
   description: In this lab, you clean and reshape raw real estate data in Azure Databricks. You choose the right data types for prices and timestamps, remove duplicate listings and fill missing values using PySpark, and combine data across tables with inner and left joins. You also use SQL PIVOT and UNPIVOT to restructure market statistics for trend analysis.
   duration: 45 minutes
   level: 300

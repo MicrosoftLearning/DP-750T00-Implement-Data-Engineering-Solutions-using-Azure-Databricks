@@ -4,6 +4,7 @@ lab:
   title: Implement Development Lifecycle Processes with Azure Databricks
   module: Implement Development Lifecycle Processes in Azure Databricks
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
+  notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks.ipynb
   description: In this lab, you implement a testing strategy for a data transformation pipeline using pytest, then package and deploy the pipeline as a Databricks Asset Bundle using the Databricks CLI.
   duration: 45 minutes
   level: 300
