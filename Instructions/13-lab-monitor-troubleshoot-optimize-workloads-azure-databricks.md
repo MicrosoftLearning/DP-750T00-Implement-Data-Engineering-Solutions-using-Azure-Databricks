@@ -48,6 +48,36 @@ Use it to:
 
 ---
 
+## Create a compute cluster
+
+This lab requires a **classic compute cluster** (not Serverless). Some Spark configuration options used to disable and re-enable Adaptive Query Execution — such as `spark.databricks.optimizer.adaptive.enabled` — are only available on classic clusters.
+
+> ⚠️ **Photon must be disabled.** Photon is Databricks' vectorized query engine. When enabled, it optimises shuffle and skew handling automatically, which masks the performance problems this lab is designed to demonstrate. You will not see skewed task distributions or high shuffle metrics in the Spark UI if Photon is active.
+
+1. In your Databricks workspace, click **Compute** in the left sidebar.
+2. Click **Create compute**.
+3. Configure the cluster with the following minimal settings:
+
+   | Setting | Value |
+   |---------|-------|
+   | **Cluster name** | `perf-lab` |
+   | **Policy** | Unrestricted |
+   | **Single node** | Enabled |
+   | **Access mode** | Single user |
+   | **Databricks Runtime** | Latest LTS (non-ML) — **make sure to pick a non-Photon runtime** |
+   | **Node type** | Choose the smallest available (e.g. `Standard_DS3_v2` or equivalent) |
+   | **Auto-terminate** | 30 minutes |
+
+4. Expand **Advanced options**, then click the **Spark** tab. Add the following line to the **Spark config** box to explicitly disable Photon:
+
+   ```
+   spark.databricks.photon.enabled false
+   ```
+
+5. Click **Create compute** and wait for the cluster to reach the **Running** state before continuing.
+
+---
+
 ## Import the notebook
 
 1. Open a terminal and clone the repository:
@@ -60,7 +90,7 @@ Use it to:
 3. Navigate to or create a folder where you want to store the lab.
 4. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 5. Choose **File**, browse to `DP-750/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks.ipynb`, and click **Import**.
-6. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
+6. Open the imported notebook and, in the compute selector at the top, select the **`perf-lab`** cluster you created above.
 
 ---
 
@@ -70,7 +100,7 @@ After running the cells in **Exercise 2** of the notebook, return here and follo
 
 ### Open the Spark UI
 
-1. At the top of the open notebook, locate the compute selector (it shows *Serverless*). Click it to expand the connection panel, then select **View Spark UI**. The Spark UI opens in a new browser tab.
+1. In your Databricks workspace, click **Compute** in the left sidebar, then click the **`perf-lab`** cluster. On the cluster detail page, click the **Spark UI** tab. The Spark UI opens in a new browser tab.
 2. You land on the **Jobs** page, which lists all Spark jobs triggered during this session.
 
 ### Identify the skewed aggregation job
