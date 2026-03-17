@@ -1,0 +1,11 @@
+route_id,route_name,origin,destination,distance_km,avg_duration_min,vehicle_type
+R001,City Express,Central Station,Airport Terminal,45,62,Train
+R002,Harbor Line,Downtown,SeaPort,12,18,Bus
+R003,Mountain Pass,City Center,Highland Village,78,105,Train
+R004,Coastal Route,Harbor Bay,Sunset Cove,34,47,Bus
+R005,Metro North,South Terminal,North Junction,28,35,Tram
+R006,Eastern Corridor,West Plaza,East Industrial Park,22,30,Bus
+R007,Airport Shuttle,Airport Terminal,Business District,15,20,Bus
+R008,Riverside Express,North Bridge,South Docklands,50,68,Train
+R009,University Line,Central Station,Campus Gate,8,12,Tram
+R010,Night Owl,City Center,Suburbs Belt,40,55,Bus

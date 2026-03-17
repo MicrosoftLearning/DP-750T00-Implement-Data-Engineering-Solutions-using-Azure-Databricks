@@ -1,0 +1,21 @@
+event_id,turbine_id,site_id,event_timestamp,event_type,severity,description,resolved
+EVT001,T-NL-001,WIND_NL_001,2025-06-01 02:14:00,Alert,Medium,Vibration level 18% above baseline threshold,true
+EVT002,T-NL-002,WIND_NL_001,2025-06-01 03:47:00,Fault,High,Gearbox oil temperature exceeded 85°C,true
+EVT003,T-NL-003,WIND_NL_001,2025-06-01 07:30:00,Inspection,Low,Scheduled 6-month rotor blade inspection,true
+EVT004,T-NL-004,WIND_NL_001,2025-06-01 09:12:00,Alert,Low,Wind speed sensor calibration drift detected,false
+EVT005,T-NL-005,WIND_NL_001,2025-06-01 11:55:00,Maintenance,Medium,Yaw motor lubrication service,true
+EVT006,T-DK-001,WIND_DK_001,2025-06-01 01:05:00,Alert,Critical,Blade pitch control failure — emergency stop activated,true
+EVT007,T-DK-002,WIND_DK_001,2025-06-01 04:22:00,Fault,Medium,Power converter overload — output capped at 60%,false
+EVT008,T-DK-003,WIND_DK_001,2025-06-01 06:45:00,Inspection,Low,Annual safety and compliance inspection,true
+EVT009,T-DK-004,WIND_DK_001,2025-06-01 10:33:00,Maintenance,Low,Tower bolt torque check completed,true
+EVT010,T-DK-005,WIND_DK_001,2025-06-01 14:18:00,Alert,Medium,Ice accretion detected on blades — de-icing initiated,true
+EVT011,T-NL-001,WIND_NL_001,2025-06-02 05:30:00,Maintenance,Low,Hydraulic fluid top-up completed,true
+EVT012,T-NL-002,WIND_NL_001,2025-06-02 08:00:00,Alert,High,Generator winding temperature 12°C above limit,false
+EVT013,T-NL-003,WIND_NL_001,2025-06-02 09:45:00,Fault,Medium,Anemometer replaced after sensor malfunction,true
+EVT014,T-NL-004,WIND_NL_001,2025-06-02 12:10:00,Inspection,Low,Control system firmware update applied,true
+EVT015,T-NL-005,WIND_NL_001,2025-06-02 15:22:00,Alert,Low,Brake pad wear indicator triggered,false
+EVT016,T-DK-001,WIND_DK_001,2025-06-02 03:18:00,Maintenance,Medium,Main bearing grease replenishment,true
+EVT017,T-DK-002,WIND_DK_001,2025-06-02 07:55:00,Alert,High,Pitch battery backup low — replacement scheduled,false
+EVT018,T-DK-003,WIND_DK_001,2025-06-02 10:40:00,Fault,Critical,Transformer fault — turbine offline for 4 hours,true
+EVT019,T-DK-004,WIND_DK_001,2025-06-02 13:15:00,Inspection,Low,Cooling system filters cleaned,true
+EVT020,T-DK-005,WIND_DK_001,2025-06-02 16:50:00,Maintenance,Medium,Slip ring inspection and cleaning completed,true

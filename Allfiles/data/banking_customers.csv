@@ -1,0 +1,9 @@
+customer_id,full_name,email,city,segment,account_type
+C-1001,Emma Hartley,emma.hartley@northbank.com,London,Retail,Savings
+C-1002,James Weston,james.weston@northbank.com,Manchester,Retail,Current
+C-1003,Sophia Chen,sophia.chen@northbank.com,Edinburgh,Premium,Savings
+C-1004,Oliver Banks,oliver.banks@northbank.com,Birmingham,Retail,Current
+C-1005,Aisha Patel,aisha.patel@northbank.com,London,Business,Business
+C-1006,Liam Murray,liam.murray@northbank.com,Leeds,Retail,Savings
+C-1007,Charlotte Wright,charlotte.wright@northbank.com,Bristol,Premium,Current
+C-1008,Noah Thompson,noah.thompson@northbank.com,Glasgow,Retail,Savings

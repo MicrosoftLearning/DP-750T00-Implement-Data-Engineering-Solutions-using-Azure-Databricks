@@ -1,0 +1,4 @@
+sale_id,property_id,sale_price,sale_date,days_on_market
+1,PROP-005,315000.00,2024-03-15,38
+2,PROP-011,192000.00,2024-04-20,43
+3,PROP-016,172500.00,2024-04-30,35
