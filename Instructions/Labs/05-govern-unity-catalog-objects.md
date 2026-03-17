@@ -3,6 +3,7 @@ lab:
   index: 05
   title: Govern Unity Catalog objects
   module: Govern Unity Catalog objects
+  module-url: https://learn.microsoft.com/training/wwl-databricks/govern-unity-catalog-objects/
   description: In this lab, you apply Unity Catalog governance controls to a connected vehicle data platform built on Azure Databricks. You use SQL to tag tables and columns for PII classification, configure Delta Lake retention policies and run VACUUM to purge deleted data, and enable predictive optimization. You then query system tables to trace data lineage programmatically and analyse the audit log to answer compliance questions about who accessed data and when.
   duration: 30 minutes
   level: 300

@@ -3,6 +3,7 @@ lab:
   index: 11
   title: Implement Lakeflow Jobs with Azure Databricks
   module: Implement Lakeflow Jobs
+  module-url: https://learn.microsoft.com/training/wwl-databricks/implement-lakeflow-jobs/
   description: In this lab, you configure and automate a CDR data pipeline for TelConnect using Lakeflow Jobs. You run a pre-built parameterized notebook that processes Call Detail Records through bronze, silver, and gold layers, then configure a Lakeflow Job in the Azure Databricks UI with task dependencies, a job parameter, scheduled and event-based triggers, failure notifications, and retry policies.
   duration: 45 minutes
   level: 300

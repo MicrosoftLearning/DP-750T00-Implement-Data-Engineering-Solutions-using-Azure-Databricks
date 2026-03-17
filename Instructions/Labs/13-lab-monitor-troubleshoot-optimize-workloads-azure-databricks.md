@@ -3,6 +3,7 @@ lab:
   index: 13
   title: Diagnose and Fix Spark Performance Issues
   module: Monitor, Troubleshoot, and Optimize Workloads in Azure Databricks
+  module-url: https://learn.microsoft.com/training/wwl-databricks/monitor-troubleshoot-optimize-workloads-azure-databricks/
   description: In this lab, you generate synthetic workloads with intentional data skew and excessive shuffle, use the Spark UI to diagnose the performance problems, and apply targeted fixes using broadcast joins, Adaptive Query Execution, and shuffle reduction techniques.
   duration: 45 minutes
   level: 300

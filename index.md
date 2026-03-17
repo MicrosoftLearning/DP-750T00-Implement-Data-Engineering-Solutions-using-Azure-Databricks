@@ -15,4 +15,6 @@ This page lists exercises associated with DP-750 (*Implement data engineering so
 - Lab {{ activity.lab.index}}: [{{ activity.lab.title }}]({{ site.github.url }}{{ activity.url }})  
   
   {{ activity.lab.description }}
+
+  To learn more, visit [this]({{ activity.lab.module-url }}) learn module.
 {% endfor %}
