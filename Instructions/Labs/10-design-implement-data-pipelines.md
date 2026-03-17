@@ -30,7 +30,7 @@ In this lab you design and implement that pipeline end-to-end. You will:
 
 You are expected and encouraged to use the **Databricks Assistant** for every exercise. Use it to get suggestions, explain errors, generate boilerplate, and explore APIs.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 > **Example prompt:** *"Help me write a PySpark statement that deduplicates a DataFrame on the booking_id column and filters out rows where rate_per_night is less than or equal to zero."*
 
@@ -52,7 +52,7 @@ To open the Databricks Assistant, select the ![assistant-icon](https://raw.githu
 2. Navigate to or create a folder where you want to store the lab.
 3. Click the **⋮** (kebab menu) or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/10-design-implement-data-pipelines.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/10-design-implement-data-pipelines.ipynb`
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ### Work through the notebook exercises

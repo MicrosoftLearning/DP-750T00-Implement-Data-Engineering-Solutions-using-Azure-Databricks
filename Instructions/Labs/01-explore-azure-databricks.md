@@ -56,7 +56,7 @@ Before writing any code, let's explore the Azure Databricks environment. Getting
 
 The **Databricks Assistant** is an AI-powered pair programmer built directly into Azure Databricks. It can generate code, explain errors, suggest improvements, and answer questions — all without leaving the user interface. You are expected and encouraged to use it throughout this lab and all future labs.
 
-1. From the Azure Databricks home page, click the **Databricks Assistant** icon (![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg)) in the top-right corner of the page to open the Assistant panel.
+1. From the Azure Databricks home page, click the **Databricks Assistant** icon (![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg)) in the top-right corner of the page to open the Assistant panel.
 
 2. Type the following prompt and observe the response:
 
@@ -86,7 +86,7 @@ Now upload the data file:
 6. In the data upload interface, select **Upload files**.
 
 7. Download the file from the following URL, then click **Browse** to select it:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/data/routes.csv`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/data/routes.csv`
 
 8. When prompted for a destination, select the volume you just created: `main` > `default` > `lab_data`.
 
@@ -107,7 +107,7 @@ Now that the data file is uploaded, import the lab notebook into your Databricks
 3. Click the **⋮** (kebab) menu next to the folder, or right-click it, then select **Import**.
 
 4. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/01-explore-azure-databricks.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/01-explore-azure-databricks.ipynb`
 
 5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless** compute.
 

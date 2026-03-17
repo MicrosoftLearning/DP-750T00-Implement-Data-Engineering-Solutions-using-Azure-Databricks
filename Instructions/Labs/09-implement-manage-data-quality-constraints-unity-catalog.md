@@ -35,7 +35,7 @@ You work through the following exercises:
 
 Throughout every exercise in this lab, you are **expected and encouraged to use the Databricks Assistant**. Every exercise includes a suggested prompt to get you started. The Assistant is your pair programmer — use it to generate code, understand errors, and explore alternatives.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 ---
 
 ## Prerequisites
@@ -52,7 +52,7 @@ To open the Databricks Assistant, select the ![assistant-icon](https://raw.githu
 2. Navigate to or create a folder where you want to store the lab.
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.ipynb`
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
@@ -137,7 +137,7 @@ Before writing any pipeline code, you need to create a Lakeflow Spark Declarativ
 
 1. Select the **transformations** folder and select the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 2. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
 3. The file appears in your workspace as a Python source file — open it and keep it open throughout exercises 3–5.
 
 With the pipeline configured, you will now edit the pipeline file to add data quality constraints.

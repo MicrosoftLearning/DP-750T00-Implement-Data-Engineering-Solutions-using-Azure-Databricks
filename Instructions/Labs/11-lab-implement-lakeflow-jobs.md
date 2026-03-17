@@ -33,7 +33,7 @@ Today's task is to automate that pipeline using **Lakeflow Jobs**. You will:
 
 You are expected and encouraged to use the **Databricks Assistant** for every coding exercise. Use it for suggestions, error explanations, boilerplate generation, and API exploration.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 ---
 
@@ -55,7 +55,7 @@ The notebook contains five exercises that build the Bronze → Silver → Gold p
 2. Navigate to or create a folder where you want to store the lab.
 3. Click the **⋮** (kebab menu) or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/11-implement-lakeflow-jobs.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/11-implement-lakeflow-jobs.ipynb`
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ### Run the notebook

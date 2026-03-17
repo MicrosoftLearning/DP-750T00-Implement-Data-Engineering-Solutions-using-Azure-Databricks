@@ -31,7 +31,7 @@ This lab should take approximately **30 minutes** to complete.
 
 You are expected and encouraged to use the **Databricks Assistant** for every exercise. The Assistant can help you write code, explain concepts, suggest fixes, and answer questions directly within the Databricks workspace.
 
-> **How to open the Assistant:** Select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
+> **How to open the Assistant:** Select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
 
 Every task in the notebook includes a suggested prompt you can paste directly into the Assistant. Use it — that is the point!
 
@@ -56,7 +56,7 @@ Before starting this lab, ensure you have:
 3. Select the **⋮** (kebab) menu next to the folder or right-click the folder, then select **Import**.
 
 4. Choose **URL**, enter the following URL, and select **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/02-select-and-configure-compute.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/02-select-and-configure-compute.ipynb`
 
 5. Open the imported notebook. You will attach it to **Serverless** compute in a later step.
 

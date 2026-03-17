@@ -37,7 +37,7 @@ This lab should take approximately **45 minutes** to complete.
 
 You are expected and encouraged to use the **Databricks Assistant** at all times during this lab. Every exercise includes suggested prompts you can paste directly into the Assistant panel.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 > 💡 **Tip:** Do not just copy and paste the Assistant's output blindly. Read it, understand it, and adapt it to the specific requirements of each task. The Assistant is a tool to accelerate your thinking, not replace it.
 
@@ -60,7 +60,7 @@ Before starting this lab, ensure you have:
 2. Navigate to or create the folder where you want to store your lab notebooks (for example, your home folder).
 3. Select the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Select **URL**, enter the following URL, and select **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/03-create-and-organize-objects-in-unity-catalog.ipynb`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/03-create-and-organize-objects-in-unity-catalog.ipynb`
 5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
 ---
