@@ -1,7 +1,7 @@
 ---
 lab:
   index: 11
-  title: Implement Lakeflow Jobs with Azure Databricks
+  title: Implement Lakeflow Jobs
   module: Implement Lakeflow Jobs
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-lakeflow-jobs/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/11-implement-lakeflow-jobs.ipynb

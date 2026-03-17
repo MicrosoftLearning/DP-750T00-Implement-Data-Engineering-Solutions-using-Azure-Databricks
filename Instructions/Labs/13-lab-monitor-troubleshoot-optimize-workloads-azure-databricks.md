@@ -1,7 +1,7 @@
 ---
 lab:
   index: 13
-  title: Diagnose and Fix Spark Performance Issues
+  title: Monitor, Troubleshoot, and Optimize Workloads in Azure Databricks
   module: Monitor, Troubleshoot, and Optimize Workloads in Azure Databricks
   module-url: https://learn.microsoft.com/training/wwl-databricks/monitor-troubleshoot-optimize-workloads-azure-databricks/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks.ipynb

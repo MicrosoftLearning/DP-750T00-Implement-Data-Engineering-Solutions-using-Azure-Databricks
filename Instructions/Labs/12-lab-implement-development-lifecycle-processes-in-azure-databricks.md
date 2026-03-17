@@ -1,7 +1,7 @@
 ---
 lab:
   index: 12
-  title: Implement Development Lifecycle Processes with Azure Databricks
+  title: Implement Development Lifecycle Processes in Azure Databricks
   module: Implement Development Lifecycle Processes in Azure Databricks
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks.ipynb
