@@ -30,7 +30,9 @@ In this lab you deliberately reproduce both problems so you can observe exactly 
 
 ## 🤖 Use the Databricks Assistant throughout this lab
 
-You are **expected and encouraged** to use the **Databricks Assistant** for every task in the notebook. Open it via the chat icon in the top-right corner of the notebook editor or click the **Assistant** button in the sidebar.
+You are **expected and encouraged** to use the **Databricks Assistant** for every task in the notebook. 
+
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 Use it to:
 - Understand Spark configuration options (AQE, shuffle partitions, broadcast threshold)
@@ -80,17 +82,12 @@ This lab requires a **classic compute cluster** (not Serverless). Some Spark con
 
 ## Import the notebook
 
-1. Open a terminal and clone the repository:
-
-   ```bash
-   git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-   ```
-
-2. In your Databricks workspace, click **Workspace** in the left sidebar.
-3. Navigate to or create a folder where you want to store the lab.
-4. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
-5. Choose **File**, browse to `DP-750/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks.ipynb`, and click **Import**.
-6. Open the imported notebook and, in the compute selector at the top, select the **`perf-lab`** cluster you created above.
+1. In your Databricks workspace, click **Workspace** in the left sidebar.
+2. Navigate to or create a folder where you want to store the lab.
+3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
+4. Choose **URL**, enter the following URL, and click **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks.ipynb`
+5. Open the imported notebook and, in the compute selector at the top, select the **`perf-lab`** cluster you created above.
 
 ---
 

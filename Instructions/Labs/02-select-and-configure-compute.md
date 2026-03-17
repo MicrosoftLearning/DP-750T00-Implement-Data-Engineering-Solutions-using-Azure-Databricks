@@ -47,25 +47,18 @@ Before starting this lab, ensure you have:
 
 ---
 
-## Clone the lab repository and import the notebook
+## Import the notebook
 
-Before starting the exercises, clone the lab repository and import the notebook into your Databricks workspace.
+1. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
 
-1. Open a terminal and run:
+2. Navigate to or create a folder where you want to store the lab (for example, your personal home folder).
 
-    ```bash
-    git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-    ```
+3. Select the **⋮** (kebab) menu next to the folder or right-click the folder, then select **Import**.
 
-2. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
+4. Choose **URL**, enter the following URL, and select **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/02-select-and-configure-compute.ipynb`
 
-3. Navigate to or create a folder where you want to store the lab (for example, your personal home folder).
-
-4. Select the **⋮** (kebab) menu next to the folder or right-click the folder, then select **Import**.
-
-5. Choose **File**, browse to `DP-750/Allfiles/02-select-and-configure-compute.ipynb`, and select **Import**.
-
-6. Open the imported notebook. You will attach it to **Serverless** compute in a later step.
+5. Open the imported notebook. You will attach it to **Serverless** compute in a later step.
 
 ---
 

@@ -65,17 +65,12 @@ Before starting this lab, ensure you have:
 
 ## Import the lab notebook
 
-1. Open a terminal and clone the repository:
-
-    ```bash
-    git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-    ```
-
-2. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
-3. Navigate to or create a folder where you want to store this lab.
-4. Click the **⋮** (kebab) menu next to the folder, then select **Import**.
-5. Choose **File**, browse to `DP-750/Allfiles/06-design-implement-data-modeling-unity-catalog.ipynb`, and click **Import**.
-6. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
+1. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
+2. Navigate to or create a folder where you want to store this lab.
+3. Click the **⋮** (kebab) menu next to the folder, then select **Import**.
+4. Choose **URL**, enter the following URL, and click **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/06-design-implement-data-modeling-unity-catalog.ipynb`
+5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
 

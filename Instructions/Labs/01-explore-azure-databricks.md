@@ -34,20 +34,6 @@ Before starting this lab, ensure you have:
 
 ---
 
-## Clone the lab repository
-
-Before starting the exercises, clone the lab repository to your local machine. This gives you access to all lab files, including the notebook and data files.
-
-1. Open a terminal and run:
-
-    ```bash
-    git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-    ```
-
-    The repository will be cloned to a folder called `DP-750` in your current directory.
-
----
-
 ## Exercise 1: Navigate the Azure Databricks Workspace UI
 
 Before writing any code, let's explore the Azure Databricks environment. Getting comfortable with the UI will help you work more efficiently throughout this course.
@@ -99,8 +85,8 @@ Now upload the data file:
 
 6. In the data upload interface, select **Upload files**.
 
-7. Click **Browse** and navigate to the cloned repository folder. Select the file at:
-   `DP-750/Allfiles/data/routes.csv`
+7. Download the file from the following URL, then click **Browse** to select it:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/data/routes.csv`
 
 8. When prompted for a destination, select the volume you just created: `main` > `default` > `lab_data`.
 
@@ -120,9 +106,8 @@ Now that the data file is uploaded, import the lab notebook into your Databricks
 
 3. Click the **⋮** (kebab) menu next to the folder, or right-click it, then select **Import**.
 
-4. Choose **File**, browse to:
-   `DP-750/Allfiles/01-explore-azure-databricks.ipynb`
-   and click **Import**.
+4. Choose **URL**, enter the following URL, and click **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/01-explore-azure-databricks.ipynb`
 
 5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
