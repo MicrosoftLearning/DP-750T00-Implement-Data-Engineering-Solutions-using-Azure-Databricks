@@ -1,5 +1,6 @@
 ---
 lab:
+  index: 02
   title: Select and Configure Compute in Azure Databricks
   module: Select and Configure Compute in Azure Databricks
   description: In this lab, you create and configure an all-purpose cluster in Azure Databricks, install libraries both cluster-scoped and notebook-scoped, and use the faker library to generate and analyze synthetic patient admission records with PySpark. 

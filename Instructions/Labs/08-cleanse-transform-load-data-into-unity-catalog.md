@@ -1,5 +1,6 @@
 ---
 lab:
+  index: 08
   title: Cleanse, transform, and load data into Unity Catalog
   module: Cleanse, transform, and load data into Unity Catalog
   description: In this lab, you clean and reshape raw real estate data in Azure Databricks. You choose the right data types for prices and timestamps, remove duplicate listings and fill missing values using PySpark, and combine data across tables with inner and left joins. You also use SQL PIVOT and UNPIVOT to restructure market statistics for trend analysis.

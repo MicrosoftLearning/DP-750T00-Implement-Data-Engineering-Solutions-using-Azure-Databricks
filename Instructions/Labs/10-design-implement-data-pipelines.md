@@ -1,5 +1,6 @@
 ---
 lab:
+  index: 10
   title: Design and implement data pipelines with Azure Databricks
   module: Design and implement data pipelines with Azure Databricks
   description: In this lab, you build a medallion architecture pipeline (Bronze → Silver → Gold) for GlobStay hotel booking data, applying cleaning rules such as deduplication, null filtering, and date validation before producing Gold-layer aggregations for property and channel performance. You implement error handling and parameterize notebooks for job orchestration. You then configure a Lakeflow Job in the Azure Databricks UI with sequential task dependencies, retry policies, failure notifications, and an If/else condition task for data quality routing.

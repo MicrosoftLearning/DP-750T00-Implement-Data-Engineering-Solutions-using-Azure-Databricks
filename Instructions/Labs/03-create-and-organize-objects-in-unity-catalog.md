@@ -1,5 +1,6 @@
 ---
 lab:
+  index: 03
   title: Create and organize objects in Unity Catalog
   module: Create and organize objects in Unity Catalog
   description: In this lab, you build a complete Unity Catalog namespace for a university data platform — creating a catalog, medallion schemas, managed tables with primary and foreign key constraints, views, a volume, and a reusable SQL function. You practice DDL operations such as adding columns and applying governance tags, and explore how Unity Catalog organizes and governs structured data at every layer of the medallion architecture. By the end, you will have a fully structured, query-ready environment that reflects real-world data engineering practices on Azure Databricks.
