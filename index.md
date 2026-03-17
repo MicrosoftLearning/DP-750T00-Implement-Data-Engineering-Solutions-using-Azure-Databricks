@@ -12,7 +12,7 @@ This page lists exercises associated with DP-750 (*Implement data engineering so
 
 {% assign labs = site.pages | where_exp:"page", "page.url contains '/Instructions/Labs'" %}
 {% for activity in labs  %}
-- Lab {{ activity.lab.index}}: [{{ activity.lab.title }}]({{ site.github.url }}{{ activity.url }})  
+- **Lab {{ activity.lab.index}}: [{{ activity.lab.title }}]({{ site.github.url }}{{ activity.url }})**  
   
   {{ activity.lab.description }}
 
