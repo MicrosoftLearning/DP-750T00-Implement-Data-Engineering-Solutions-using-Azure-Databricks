@@ -35,7 +35,7 @@ You work through the following exercises:
 
 Throughout every exercise in this lab, you are **expected and encouraged to use the Databricks Assistant**. Every notebook cell includes a suggested prompt to get you started. The Assistant is your pair programmer — use it to generate code, explain error messages, explore alternatives, and validate your approach.
 
-**How to open the Databricks Assistant:** Click the **✦ Assistant** icon in the right toolbar of your notebook, or press `Alt+Shift+Space`.
+To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 ---
 
@@ -48,20 +48,16 @@ Throughout every exercise in this lab, you are **expected and encouraged to use 
 
 ## Importing the Notebook
 
-1. Open a terminal and clone the repository:
-   ```bash
-   git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-   ```
+1. In the Databricks workspace, click **Workspace** in the left sidebar.
 
-2. In the Databricks workspace, click **Workspace** in the left sidebar.
+2. Navigate to or create a folder where you want to store the lab.
 
-3. Navigate to or create a folder where you want to store the lab.
+3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 
-4. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
+4. Choose **URL**, enter the following URL, and click **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/08-cleanse-transform-load-data-into-unity-catalog.ipynb`
 
-5. Choose **File**, browse to `DP-750/Allfiles/08-cleanse-transform-load-data-into-unity-catalog.ipynb`, and click **Import**.
-
-6. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
+5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
 

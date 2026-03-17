@@ -61,24 +61,13 @@ Before starting this lab, ensure you have:
 
 ---
 
-## Clone the lab repository
-
-Before starting the exercises, clone the lab repository to your local machine.
-
-1. Open a terminal and run:
-
-    ```bash
-    git clone https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks.git DP-750
-    ```
-
----
-
 ## Import the lab notebook
 
 1. In your Azure Databricks workspace, select **Workspace** in the left sidebar.
 2. Navigate to or create a folder where you want to store this lab.
 3. Select the **⋮** (kebab) menu next to the folder, then select **Import**.
-4. Choose **File**, browse to `DP-750/Allfiles/04-secure-unity-catalog-objects.ipynb`, and select **Import**.
+4. Choose **URL**, enter the following URL, and select **Import**:
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/master/Allfiles/04-secure-unity-catalog-objects.ipynb`
 5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
