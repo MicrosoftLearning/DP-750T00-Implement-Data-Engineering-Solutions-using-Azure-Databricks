@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Workspaces
+** Purpose
+***_ Secure collaborative environment
+***_ Central hub for Databricks assets
+** Assets Managed
+***_ Notebooks
+***_ Clusters & Jobs
+***_ Libraries & Dashboards
+***_ Experiments
+** Organization
+***_ Folder structure for projects/teams
+***_ Permission levels for access control
+** Collaboration
+***_ Multiple users simultaneously
+***_ Data engineers, analysts, scientists
+** Integrations
+***_ Unity Catalog (data governance)
+***_ Azure Resource Group (infrastructure)
+***_ REST APIs for automation
+@endmindmap

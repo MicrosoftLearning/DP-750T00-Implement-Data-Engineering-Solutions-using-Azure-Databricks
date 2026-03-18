@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Lakeflow Jobs
+** Purpose
+***_ Workflow automation
+***_ Orchestration of data tasks
+***_ Production-grade workloads
+** Job Structure
+*** Tasks
+****_ Run a notebook
+****_ Execute Spark job
+****_ Call external code
+****_ Multiple tasks per job
+** Trigger Modes
+***_ Schedule (e.g., nightly)
+***_ Event-driven
+***_ Manual trigger
+** Use Cases
+***_ ETL pipelines
+***_ ML model training
+***_ Dashboard refreshes
+***_ Consistent, repeatable runs
+@endmindmap

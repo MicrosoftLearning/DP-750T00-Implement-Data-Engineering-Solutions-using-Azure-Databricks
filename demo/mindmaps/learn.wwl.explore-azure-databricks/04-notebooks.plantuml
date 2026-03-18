@@ -1,0 +1,48 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Notebooks
+** Content Types
+*** Code Cells
+****_ Runnable code
+****_ Python, R, Scala, SQL
+*** Markdown Cells
+****_ Text and graphics
+****_ Documentation
+** Multi-Language
+***_ Magic commands to switch language
+***_ Mix languages in one notebook
+** Use Cases
+***_ Exploratory data analysis
+***_ Data visualization
+***_ ML experiments
+***_ Data pipelines
+** Collaboration
+***_ Multiple users edit simultaneously
+***_ Comments and annotations
+***_ Real-time sharing
+** Lifecycle
+***_ Version control
+***_ Schedule as jobs
+***_ Export for sharing
+@endmindmap

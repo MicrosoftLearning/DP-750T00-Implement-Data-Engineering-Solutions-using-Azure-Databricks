@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* MLflow
+** Purpose
+***_ End-to-end ML lifecycle platform
+***_ Open-source, integrated in Databricks
+** Core Capabilities
+*** Experiment Tracking
+****_ Log parameters & metrics
+****_ Compare runs
+*** Model Management
+****_ Register and version models
+****_ Promote models to production
+*** Deployment
+****_ Serve models as endpoints
+** Generative AI
+***_ Supports gen AI workflows
+***_ Evaluate and improve AI agents
+@endmindmap

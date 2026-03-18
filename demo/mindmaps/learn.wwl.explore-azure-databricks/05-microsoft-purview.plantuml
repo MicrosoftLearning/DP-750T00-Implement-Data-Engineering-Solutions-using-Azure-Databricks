@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Microsoft Purview
+** What it is
+***_ Enterprise data governance service
+***_ Cross-platform: on-prem, multi-cloud, SaaS
+** Core Features
+***_ Data discovery
+***_ Data classification
+***_ Lineage tracking
+***_ Access governance
+** Databricks Integration
+*** Scanning
+****_ Scan public & private networks
+****_ Scan entire Unity Catalog metastore
+****_ Or scan selective catalogs
+****_ On-demand or scheduled scans
+*** Metadata Extraction
+****_ Metastore, catalogs, schemas
+****_ Tables, views, columns
+*** Classification
+****_ Built-in classification rules
+****_ Custom user-defined rules
+****_ Identifies sensitive data
+*** Lineage
+****_ How data is transformed & moved
+****_ Across systems and processes
+** Also Supports
+***_ Workspace-level Hive metastore
+@endmindmap

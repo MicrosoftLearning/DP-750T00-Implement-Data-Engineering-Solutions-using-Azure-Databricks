@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Delta Lake
+** What it is
+***_ Open-source storage framework
+***_ Adds transactions to data lakes
+***_ Runs on Azure Data Lake Storage
+** Key Features
+*** ACID Transactions
+****_ Atomicity, Consistency
+****_ Isolation, Durability
+*** Scalable Metadata
+****_ Billions of files without perf loss
+*** Data Versioning
+****_ Time travel queries
+****_ Rollback to previous states
+*** Unified Processing
+****_ Same table: batch + streaming
+** Delta Tables
+***_ Default table format in Azure Databricks
+***_ SQL queries & DataFrame API
+***_ All new data stored with guarantees
+@endmindmap

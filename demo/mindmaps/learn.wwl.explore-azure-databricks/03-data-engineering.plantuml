@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Data Engineering
+** Environment
+***_ Collaborative integrated workspace
+***_ Apache Spark big data processing
+***_ Data lakehouse architecture
+** Languages
+***_ Python
+***_ R
+***_ Scala
+***_ SQL
+** Capabilities
+*** Data Exploration
+****_ Explore & visualize data
+*** Data Pipelines
+****_ Build & run ETL workflows
+*** Collaboration
+****_ Data scientists & engineers together
+@endmindmap

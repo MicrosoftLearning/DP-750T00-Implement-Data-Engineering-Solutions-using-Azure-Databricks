@@ -1,0 +1,46 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Databricks\nAssistant
+** What it is
+***_ AI-powered pair programmer
+***_ Works in notebooks, dashboards, files
+** Capabilities
+*** Code Assistance
+****_ Generate code
+****_ Explain code
+****_ Fix errors
+*** Data Exploration
+****_ Filter and analyze data
+****_ Natural language prompts
+*** Visualizations
+****_ Create data visualizations
+*** Job Diagnostics
+****_ Diagnose job issues
+** Personalization
+***_ Uses Unity Catalog metadata
+***_ Understands your tables & columns
+***_ Uses AI-generated descriptions
+** Documentation
+***_ Surfaces relevant Databricks docs
+@endmindmap

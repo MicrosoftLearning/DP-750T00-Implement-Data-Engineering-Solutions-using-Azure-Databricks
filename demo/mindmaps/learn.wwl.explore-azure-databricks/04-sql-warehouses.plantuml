@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* SQL Warehouses
+** What they are
+***_ Scalable compute for SQL queries
+***_ Decoupled from storage
+** Serverless
+***_ Instant, elastic compute
+***_ Fast startup & autoscaling
+***_ Managed by Databricks
+***_ Cost-efficient, no idle costs
+** Pro
+***_ More customizable
+***_ ~4 min startup time
+***_ Consistent, predictable workloads
+** Classic
+***_ Runs in your Azure subscription
+***_ Legacy option
+***_ Specific governance requirements
+@endmindmap

@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* SQL Workload
+** Target Users
+***_ Data analysts
+***_ Business users
+** Tools
+***_ SQL Editor
+***_ Dashboards
+***_ Visualization tools
+** Use Cases
+***_ Ad-hoc queries
+***_ Reports from large datasets
+***_ Auto visualization
+** Requirements
+***_ Premium tier only
+***_ Uses SQL Warehouses as compute
+@endmindmap

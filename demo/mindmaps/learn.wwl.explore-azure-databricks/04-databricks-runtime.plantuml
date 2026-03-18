@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #091f2c
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+:depth(2) {
+    BackgroundColor #f4364c
+    LineColor #f4364c
+    LineThickness 3.0
+    FontColor #ffffff
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Databricks Runtime
+** What it is
+***_ Customized Apache Spark builds
+***_ Performance improvements
+***_ Additional libraries included
+** Specialized Versions
+***_ General data processing
+***_ Machine Learning runtime
+***_ Graph processing
+***_ Genomics
+** Version Management
+***_ Multiple versions available
+***_ Long-Term Support (LTS) releases
+***_ Specifies Spark version & dates
+** Lifecycle Stages
+***_ Legacy: available, not recommended
+***_ Deprecated: marked for removal
+***_ End of Support: no more patches
+***_ End of Life: retired, unavailable
+** Maintenance Updates
+***_ Apply by restarting cluster
+@endmindmap
