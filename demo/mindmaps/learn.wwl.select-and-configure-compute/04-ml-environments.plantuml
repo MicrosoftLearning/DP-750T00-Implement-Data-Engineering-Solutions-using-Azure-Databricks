@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* ML Environments
+** Databricks Runtime ML
+***_ Pre-installed ML libraries
+***_ GPU drivers + CUDA
+***_ TensorFlow, PyTorch, etc.
+***_ Reduces setup time
+** Hardware for ML
+*** Single-node for experimentation
+****_ Minimal shuffle overhead
+****_ Good starting point
+*** GPU instances for deep learning
+****_ Image recognition, NLP, neural nets
+****_ 10-100x faster than CPU
+****_ Disable Photon when using GPU
+** Typical ML workflow
+***_ Start single-node for experiments
+***_ Scale to GPU for model training
+***_ Use Databricks Runtime ML always
+@endmindmap

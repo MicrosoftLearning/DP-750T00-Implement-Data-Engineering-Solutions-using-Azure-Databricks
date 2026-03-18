@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Libraries from Repositories
+** PyPI (Python)
+***_ Enter package name
+***_ Pin exact version for production
+***_ e.g. pymssql==2.3.9
+** Maven (Java/Scala)
+***_ Format: groupId:artifactId:version
+***_ e.g. com.microsoft.sqlserver:mssql-jdbc:13.2.1.jre11
+***_ Can exclude transitive dependencies
+** CRAN (R)
+***_ Always installs latest version
+***_ Pin versions via files instead
+** Standard access mode
+***_ Maven/JAR requires allowlist approval
+***_ Security control on shared compute
+@endmindmap

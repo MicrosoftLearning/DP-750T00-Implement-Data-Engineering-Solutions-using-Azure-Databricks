@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Configuring Permissions
+** Done in workspace UI
+***_ Not Azure portal
+***_ Sidebar > Compute > Permissions
+** Add users or groups
+***_ Search by name or email
+***_ Set permission level
+** Changes take effect immediately
+***_ No cluster restart needed
+** Use groups over individuals
+***_ Simplifies management
+***_ Add/remove via group membership
+***_ Avoids manual cleanup
+@endmindmap

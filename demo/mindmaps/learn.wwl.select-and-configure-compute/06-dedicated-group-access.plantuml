@@ -1,0 +1,49 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Dedicated Group Access Mode
+** Assigns compute to single user/group
+** Permission scoping
+***_ User's permissions reduce to group's
+***_ Prevents privilege escalation
+***_ Enables secure group collaboration
+** Supports
+***_ Databricks Runtime ML
+***_ RDD APIs
+***_ R language
+** Requirements
+***_ Unity Catalog enabled
+***_ Databricks Runtime 15.4+
+***_ Group needs CAN MANAGE on workspace folder
+** Data object ownership
+***_ Objects owned by group, not individual
+***_ e.g. CREATE SCHEMA owned by group
+** Setup
+*** Create compute
+****_ Access mode: Dedicated
+***_ Assign group in "Single user or group"
+*** Create group folder
+****_ /Workspace/Groups/<groupName>
+****_ Grant CAN MANAGE to group
+@endmindmap

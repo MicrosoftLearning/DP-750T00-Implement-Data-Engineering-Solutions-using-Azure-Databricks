@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Serverless Compute
+** What it is
+***_ Managed by Databricks
+***_ Runs in Databricks' Azure subscription
+***_ No VMs in your subscription
+** Startup
+***_ 2-6 seconds
+***_ Auto-scales up/down
+** Available for
+***_ Notebooks
+***_ Jobs
+***_ Pipelines
+***_ SQL Warehouses
+** Ideal for
+***_ Exploratory analysis
+***_ ETL pipelines
+***_ BI workloads
+***_ Latency-sensitive scenarios
+** Versionless runtime
+***_ Auto-upgraded by Databricks
+***_ Always latest features
+** Limitations
+***_ No RDD APIs
+***_ No R language
+***_ No JAR libraries in notebooks
+***_ No custom Spark configs
+@endmindmap

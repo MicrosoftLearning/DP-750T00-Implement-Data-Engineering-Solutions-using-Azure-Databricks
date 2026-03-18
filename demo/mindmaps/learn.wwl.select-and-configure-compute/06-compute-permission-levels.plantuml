@@ -1,0 +1,49 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Compute Permission Levels
+** NO PERMISSIONS
+***_ Cannot see or use compute
+***_ Default state
+** CAN ATTACH TO
+***_ Attach notebooks
+***_ View Spark UI
+***_ View compute metrics
+***_ Cannot start/stop/restart
+** CAN RESTART
+***_ Everything in CAN ATTACH TO
+***_ Can terminate, start, restart
+***_ Cannot change configuration
+** CAN MANAGE
+***_ Full control
+***_ Edit configuration
+***_ Attach libraries
+***_ Resize cluster
+***_ Modify others' permissions
+***_ Workspace admins get this automatically
+** Driver log access
+***_ Default: CAN MANAGE only
+***_ Logs may contain secrets
+***_ Configurable via Spark property
+@endmindmap

@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Databricks Runtime & Spark Version
+** Runtime includes
+***_ Apache Spark
+***_ Databricks optimizations
+***_ Preloaded packages
+** Spark version tied to runtime
+***_ Choosing runtime = choosing Spark version
+** All-purpose compute
+***_ Latest runtime for new features
+***_ Better compatibility
+** Job compute
+*** LTS versions preferred
+****_ Extended compatibility
+****_ Test thoroughly before upgrading
+****_ Prevents disruption to production
+** Upgrading
+***_ Test on dev environment first
+***_ Then apply to production compute
+@endmindmap

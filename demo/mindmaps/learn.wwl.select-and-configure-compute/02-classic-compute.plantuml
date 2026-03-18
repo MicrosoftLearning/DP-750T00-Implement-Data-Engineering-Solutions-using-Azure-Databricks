@@ -1,0 +1,50 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Classic Compute
+** Runs in your Azure subscription
+** Access Modes
+*** Standard
+****_ Multiple users share cluster
+****_ Lakeguard isolation between users
+****_ Cost-efficient pooling
+*** Dedicated
+****_ Single user or group
+****_ Full machine-level privileges
+****_ Required for RDD, GPU, R, custom containers
+** Cluster Modes
+*** Multi-node
+****_ Driver + worker nodes
+****_ Horizontal scaling
+****_ Production workloads
+*** Single-node
+****_ Driver only, no workers
+****_ Small datasets, ML experimentation
+****_ Can't scale horizontally
+** Startup time
+***_ 3-7 minutes
+** Runtime management
+***_ You select and manage Databricks Runtime version
+***_ Manual upgrade (e.g. 13.3 LTS → 14.3 LTS)
+@endmindmap

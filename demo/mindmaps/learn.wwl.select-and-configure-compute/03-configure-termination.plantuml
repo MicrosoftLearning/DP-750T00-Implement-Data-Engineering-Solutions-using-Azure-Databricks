@@ -1,0 +1,47 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Termination Settings
+** Auto-termination
+***_ Specify inactivity period (minutes)
+***_ Cluster terminates when idle
+***_ Config remains for restart
+** Interactive workloads
+***_ 45-min timeout typical
+***_ Allows time between queries
+** Job compute
+***_ Auto-terminates after job completes
+***_ Starts automatically for next run
+** Spot instances
+*** Worker nodes
+****_ Cost-effective (use spot)
+****_ Spark handles failures
+*** Driver node
+****_ Always on-demand
+****_ Driver failure = cluster failure
+** Decommissioning
+***_ Migrates data before termination
+***_ Reduces task failures
+***_ Recommended with spot instances
+@endmindmap
