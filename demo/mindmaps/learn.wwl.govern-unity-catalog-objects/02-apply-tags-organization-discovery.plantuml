@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Apply Tags for\nOrganization & Discovery
+** Standard Tags
+***_ Key-value pairs
+***_ ALTER ... SET TAGS
+***_ UNSET TAGS to remove
+** Governed Tags
+***_ Defined at account level
+***_ Restricted allowed values
+***_ Lock icon in Catalog Explorer
+** System Tags
+***_ Predefined by Azure Databricks
+***_ Data classification, ownership
+** Constraints
+***_ Max 50 tags per object
+***_ Max 1,000 column tags per table
+***_ Keys: 255 chars, Values: 1000 chars
+***_ Keys are case-sensitive
+@endmindmap

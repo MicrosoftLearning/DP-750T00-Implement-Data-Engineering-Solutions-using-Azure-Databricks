@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Parquet Storage
+** Columnar Layout
+***_ Data stored per column, not per row
+***_ Column pruning: read only needed columns
+***_ Better compression for similar values
+** Row Groups
+***_ Data divided into row groups
+***_ Each group has column chunks
+***_ Column statistics (min/max, null count)
+** Optimizations
+***_ Column pruning → less I/O
+***_ Predicate pushdown → skip row groups
+***_ Ideal for analytical workloads
+@endmindmap

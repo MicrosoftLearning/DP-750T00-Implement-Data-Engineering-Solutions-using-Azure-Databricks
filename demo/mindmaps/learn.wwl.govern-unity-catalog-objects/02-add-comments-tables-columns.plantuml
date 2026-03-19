@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Add Comments\nto Tables & Columns
+** COMMENT ON
+***_ Add to tables, columns, schemas
+***_ Markdown formatting supported
+** CREATE TABLE
+***_ Inline COMMENT on column definition
+** ALTER TABLE
+***_ ALTER COLUMN ... COMMENT
+** AI-generated
+***_ Catalog Explorer → AI generate
+***_ Review before accepting
+***_ Not for PII classification
+** Required permissions
+***_ Ownership OR MODIFY + SELECT
+***_ USE CATALOG + USE SCHEMA
+@endmindmap

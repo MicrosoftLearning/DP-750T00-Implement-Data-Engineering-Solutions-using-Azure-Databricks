@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Verify Deployed\nResources
+** Summary Command
+***_ databricks bundle summary
+** Output
+***_ Resource names listed
+***_ Direct URLs to workspace
+***_ Jobs and pipelines info
+** Open in Browser
+***_ databricks bundle open <resource>
+***_ Opens Databricks UI directly
+** Verify
+***_ Dev: names have [dev user] prefix
+***_ Pipelines in correct state
+***_ Schedules paused in dev mode
+@endmindmap

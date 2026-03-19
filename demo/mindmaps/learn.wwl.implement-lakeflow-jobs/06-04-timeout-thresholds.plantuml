@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Timeout\nThresholds
+** Purpose
+***_ Terminate hung tasks
+***_ Prevent resource waste
+***_ Allow clean retry or failure
+** Configuration
+***_ Task > Metric thresholds
+***_ Metric: Run duration
+***_ Warning: notification threshold
+***_ Timeout: termination threshold
+** Warning vs Timeout
+***_ Warning: alert but continue
+***_ Timeout: terminate task
+** After Timeout
+***_ Status: "Timed Out"
+***_ Counts as failed attempt
+***_ Triggers retry if attempts remain
+***_ Dependent tasks affected
+@endmindmap

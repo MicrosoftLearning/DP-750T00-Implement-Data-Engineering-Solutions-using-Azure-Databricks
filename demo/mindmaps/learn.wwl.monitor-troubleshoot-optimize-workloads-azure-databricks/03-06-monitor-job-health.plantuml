@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Proactive Job\nHealth Monitoring
+** Notifications
+***_ Email alerts
+***_ Slack webhooks
+***_ Custom webhooks
+***_ Know issues immediately
+** Run History Review
+***_ Matrix view patterns
+***_ Frequent failures = attention needed
+***_ Identify task-level trends
+** System Tables
+***_ system.lakeflow schema
+***_ Analyze job performance
+***_ Cross-workspace visibility
+***_ Identify trends early
+** Proactive vs Reactive
+***_ Reactive: investigate after failure
+***_ Proactive: prevent impact
+***_ Combined approach: reliable pipelines
+@endmindmap

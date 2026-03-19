@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Task Relationships\nin a Job
+** DAG Structure
+***_ Directed Acyclic Graph
+***_ Visual execution map
+***_ Tasks as nodes
+** Dependency Conditions
+*** All succeeded
+****_ All upstream tasks completed
+*** None failed
+****_ Even if some skipped
+*** All done
+****_ Regardless of outcome
+*** At least one failed
+****_ Trigger error handling
+** Use Cases
+***_ Sequential ordering
+***_ Failure propagation control
+***_ Cleanup task configuration
+@endmindmap

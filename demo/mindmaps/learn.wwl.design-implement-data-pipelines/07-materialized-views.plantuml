@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Materialized Views\nfor Transformations
+** What They Are
+***_ Cached query results
+***_ Auto-synced with upstream changes
+***_ Better for aggregations & joins
+** When to Use
+***_ Aggregations (sums, averages)
+***_ Complex joins
+***_ Updates & deletes in source
+** SQL Syntax
+***_ CREATE OR REPLACE MATERIALIZED VIEW
+***_ Standard SELECT with joins/aggs
+** Python Syntax
+***_ @dp.materialized_view decorator
+***_ Returns regular DataFrame
+** vs Streaming Tables
+***_ Streaming: append-only, low-latency
+***_ Materialized: complex queries, updates
+@endmindmap

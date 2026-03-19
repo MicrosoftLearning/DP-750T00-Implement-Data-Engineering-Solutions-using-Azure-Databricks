@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Understand\nDenormalization
+++ Why Denormalize?
++++ Normalized = multiple joins
+++++_ Slower for analytics
++++ Denormalized = fewer joins
+++++_ Faster query performance
++++ Fewer joins at query time
+++ How
++++ Flatten related tables
+++++_ Combine fact + dimension tables
+++++_ CREATE TABLE AS SELECT with JOINs
+-- Medallion Architecture
+---_ Bronze/Silver: normalized
+---_ Gold: denormalized for analytics
+---_ BI tools, star schemas, data marts
+-- Tradeoffs
+---_ More storage
+---_ Need to refresh when source changes
+@endmindmap

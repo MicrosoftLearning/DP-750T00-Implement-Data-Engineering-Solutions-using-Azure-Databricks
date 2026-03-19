@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Understand\nIngestion Pipelines
+++ Lakeflow Connect
++++_ Managed connectors
++++_ Graphical UI or declarative config
+++ Pipeline Components
++++_ Connection (credentials + endpoint)
++++_ Ingestion definition (tables/objects)
++++_ Pipeline schedule
+++ Database Connectors
++++_ Creates ingestion gateway
++++_ Extracts change data (CDC)
++++_ SQL Server, PostgreSQL, etc.
+-- SaaS Connectors
+---_ Salesforce, SharePoint, etc.
+---_ No separate gateway needed
+-- Destination
+---_ Unity Catalog streaming tables
+---_ Catalog + schema in target
+@endmindmap

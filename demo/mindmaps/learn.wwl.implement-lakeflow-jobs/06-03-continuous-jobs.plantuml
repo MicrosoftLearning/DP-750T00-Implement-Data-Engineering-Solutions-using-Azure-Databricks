@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Continuous Jobs\n(Always-On)
+** Configuration
+***_ Trigger type: Continuous
+***_ Task retry mode: On failure / Never
+** Exponential Backoff
+***_ Activates after consecutive failures
+***_ Wait period increases with failures
+***_ Max wait set by system
+***_ Resets after successful run
+** Task Retry Mode
+***_ On failure: retry task before new run
+***_ Never: only retry at job level
+** Monitoring
+***_ Job details panel
+***_ Consecutive failure count
+***_ Success threshold period
+***_ Time to next retry
+** Note
+***_ No task dependencies in continuous mode
+@endmindmap

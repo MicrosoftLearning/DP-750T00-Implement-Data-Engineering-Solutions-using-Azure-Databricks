@@ -1,0 +1,49 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Investigate\nShuffle Issues
+** What is Shuffle
+***_ Data moves between nodes
+***_ During joins, aggregations
+***_ Serialize → disk → network
+***_ Expensive operation
+** Identify in Spark UI
+***_ Shuffle Read column
+***_ Shuffle Write column
+***_ Large values = excessive movement
+***_ DAG: Exchange nodes
+** Reduce Shuffle
+***_ Filter data early
+***_ Use broadcast joins (<30MB)
+***_ AQE auto-converts when possible
+***_ Avoid unnecessary repartition()
+** Broadcast Joins
+***_ One small table in memory
+***_ No shuffle required
+***_ AQE detects at runtime
+** Colocation
+***_ Bucket/partition similarly
+***_ Tables joined on same key
+***_ Minimize cross-node transfer
+@endmindmap

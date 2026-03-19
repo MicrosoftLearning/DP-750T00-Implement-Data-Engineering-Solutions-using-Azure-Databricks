@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Restart Clusters\nEnvironmental Issues
+** When to Restart
+***_ Resource exhaustion
+***_ Malfunctioning executors
+***_ Stale container images
+** Before Restarting
+***_ Check Event log tab
+***_ Instance acquisition failures
+***_ Spot instance reclamation
+***_ Executor terminations
+** Restart via UI
+***_ Compute page
+***_ Select cluster → Restart
+** Restart via CLI
+***_ databricks clusters restart
+***_ Need cluster ID
+***_ databricks clusters list
+** Important Notes
+***_ Terminates running jobs
+***_ Resets Spark UI history
+***_ Save diagnostics first
+***_ Schedule streaming restarts
+** After Restart
+***_ Validate fix
+***_ Monitor next job run
+***_ Check execution times
+@endmindmap

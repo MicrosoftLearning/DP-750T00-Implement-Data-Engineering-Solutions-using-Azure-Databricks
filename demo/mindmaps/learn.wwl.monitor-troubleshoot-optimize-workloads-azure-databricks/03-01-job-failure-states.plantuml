@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Job Failure\nStates
+** Failed
+***_ Leaf task(s) failed
+***_ Immediate attention
+** Succeeded with Failures
+***_ Some tasks failed
+***_ All leaf tasks succeeded
+** Skipped
+***_ Max concurrent runs exceeded
+***_ Scheduling conflict
+** Timed Out
+***_ Exceeded max duration
+***_ Configure run timeout
+** Canceled
+***_ User or automation stopped
+***_ Deliberate intervention
+** Leaf Tasks
+***_ No downstream dependencies
+***_ Determine overall run status
+@endmindmap

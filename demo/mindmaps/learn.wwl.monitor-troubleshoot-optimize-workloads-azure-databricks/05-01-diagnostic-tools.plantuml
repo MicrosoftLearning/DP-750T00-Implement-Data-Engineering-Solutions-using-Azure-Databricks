@@ -1,0 +1,47 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Diagnostic Tools\nfor Performance
+** DAG
+***_ Visualizes execution plan
+***_ Shows data flow
+***_ Identifies bottlenecks
+***_ Sequence of operations
+** Spark UI
+***_ Cluster → Spark UI
+***_ Jobs, stages, tasks
+***_ Resource consumption
+***_ Timeline views
+***_ Task distributions
+** Query Profile
+***_ SQL warehouse workloads
+***_ Query History → profile
+***_ Time spent per operator
+***_ Rows processed
+***_ Memory per operator
+** Investigation Order
+***_ Start with DAG (overview)
+***_ Drill with Spark UI / profile
+***_ Identify where time is spent
+@endmindmap

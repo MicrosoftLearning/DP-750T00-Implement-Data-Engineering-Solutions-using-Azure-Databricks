@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Choose the Right\nSharing Protocol
+** Databricks-to-Databricks
+***_ Recipient has UC-enabled workspace
+***_ Platform-managed authentication
+***_ Share via sharing identifier
+***_ Tables, views, volumes, notebooks, models
+** Open sharing
+***_ Any platform (non-Databricks)
+***_ Bearer tokens or OIDC
+***_ Manual token lifecycle management
+***_ Tables only
+** Decision factors
+***_ Recipient platform type
+***_ Token management capability
+***_ Asset types to share
+***_ Performance requirements
+** Mixed recipients
+***_ Create multiple recipient objects
+***_ One per access pattern
+@endmindmap

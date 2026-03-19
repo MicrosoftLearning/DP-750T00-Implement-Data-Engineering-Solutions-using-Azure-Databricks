@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Log Delivery to\nExternal Systems
+** Azure Log Analytics
+***_ Near-real-time (~15 min latency)
+***_ KQL querying
+***_ Custom dashboards
+***_ Interactive investigations
+** Azure Storage accounts
+***_ Low-cost archival
+***_ Infrequent access
+***_ Long-term compliance retention
+** Azure Event Hubs
+***_ Real-time streaming
+***_ SIEM platform integration
+***_ Event-driven architectures
+** Configuration
+***_ Azure portal diagnostic settings
+***_ Account-level configuration
+***_15 min ingestion latency in thresholds
+@endmindmap

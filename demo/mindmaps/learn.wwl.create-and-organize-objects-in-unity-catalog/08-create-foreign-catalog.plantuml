@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Create a Foreign Catalog\nUsing the Connection
+** Required privileges
+***_ CREATE CATALOG on metastore
+***_ Own connection OR CREATE FOREIGN CATALOG
+** CREATE FOREIGN CATALOG ... USING CONNECTION
+***_ Specify external database name in OPTIONS
+** Metadata synchronization
+***_ Auto-refresh on each interaction
+***_ Keeps schema current
+** Manual refresh
+***_ REFRESH FOREIGN CATALOG / SCHEMA / TABLE
+***_ Use Lakeflow Jobs on a schedule
+** Catalog Explorer
+***_ Create catalog > Foreign catalog type
+@endmindmap

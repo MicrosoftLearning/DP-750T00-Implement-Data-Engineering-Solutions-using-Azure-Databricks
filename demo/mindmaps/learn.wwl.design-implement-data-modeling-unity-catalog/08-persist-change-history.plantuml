@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Persist Change\nHistory Long-Term
+** Delta Log Limitations
+***_ Default 30-day retention
+***_ VACUUM removes older files
+** Long-Term Patterns
+***_ Write CDF to separate history table
+***_ Append-only history archive
+***_ Include metadata (source file, load time)
+** History Table Design
+***_ All original columns
+***_ _change_type, _commit_timestamp
+***_ Partition by date for efficiency
+** Compliance
+***_ Immutable history (no updates/deletes)
+***_ Documented retention policies
+@endmindmap

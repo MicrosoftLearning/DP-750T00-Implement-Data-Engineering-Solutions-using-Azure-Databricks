@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* View Data Lineage\nusing Catalog Explorer
+** Navigation
+***_ Catalog → table → Lineage tab
+***_ See Lineage Graph button
+***_ Interactive visualization
+** Graph features
+***_ Tables as nodes, arrows = data flow
+***_ Expand upstream/downstream (+)
+***_ Connection details panel
+** Column-level lineage
+***_ Select column to trace
+***_ Upstream contributing columns
+***_ Downstream derived columns
+** Job & Dashboard lineage
+***_ Jobs tab → Downstream
+***_ Dashboards tab
+***_ Impact analysis before schema changes
+@endmindmap

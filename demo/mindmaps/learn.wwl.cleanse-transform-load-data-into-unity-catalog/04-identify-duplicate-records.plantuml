@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Identify\nDuplicate Records
+++ SQL Approaches
++++ GROUP BY + HAVING
+++++_ Count occurrences
+++++_ HAVING COUNT(*) > 1
++++ QUALIFY with Window Function
+++++_ COUNT(*) OVER (PARTITION BY ...)
+++++_ Returns actual duplicate rows
+-- PySpark Approaches
+--- Window Functions
+----_ count().over(window_spec)
+----_ filter("row_count > 1")
+--- exceptAll()
+----_ Original df minus deduplicated
+----_ Preserves duplicate structure
+----_ Unlike except() which gives distinct
+-- Causes of Duplicates
+---_ Data integration issues
+---_ Repeated ingestion
+---_ Concurrent write operations
+@endmindmap

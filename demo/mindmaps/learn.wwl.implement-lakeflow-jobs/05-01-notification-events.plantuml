@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Notification\nEvents
+** Start
+***_ Job run begins
+***_ Confirms scheduled job started
+** Success
+***_ Job completes successfully
+***_ Trigger downstream processes
+** Failure
+***_ Job terminates with error
+***_ Initiate incident response
+** Duration Warning
+***_ Run exceeds threshold
+***_ Performance degradation alert
+** Streaming Backlog
+***_ Backlog exceeds threshold 10 min
+***_ Streaming job health indicator
+** Note
+***_ "Succeeded with failures" = success
+***_ Configure Success for partial failures
+@endmindmap

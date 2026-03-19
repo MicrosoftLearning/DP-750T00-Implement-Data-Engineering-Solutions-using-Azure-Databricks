@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Add Notebook\nTask to Job
+** What It Is
+***_ Runs a notebook as a job step
+***_ Specify notebook path
+***_ Configure compute & parameters
+** DAG Representation
+***_ Each task = node in DAG
+***_ Visual execution flow
+***_ Shows dependencies visually
+** Typical Pipeline
+***_ Ingestion notebook
+***_ Transformation notebook
+***_ Load to final table notebook
+** Key Point
+***_ Without dependencies = chaos
+***_ Dependencies = correct order
+@endmindmap

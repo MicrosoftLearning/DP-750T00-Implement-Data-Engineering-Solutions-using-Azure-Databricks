@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Apache Hive\nQuery Lifecycle
+++ Step 1: Submission
++++_ User / service sends query
++++_ Cluster / SQL endpoint
+++ Step 2: Access Check
++++_ Table ACLs evaluated
+++ Step 3: Location Lookup
++++_ Hive metastore queried
++++_ Table metadata retrieved
+++ Step 4: Path Returned
++++_ Storage URI returned
++++_ e.g. abfss://...
+++ Step 5: Data Request
++++_ Authenticate to storage
++++_ SP, passthrough, instance profile
+++ Step 6: Data Returned
++++_ Storage sends raw data
+++ Step 7: Policy Enforcement
++++_ Cluster applies last-mile filtering
+++ Step 8: Result Delivery
++++_ Result back to principal
+-- Differences vs UC
+---_ No centralized fine-grained governance
+---_ Manual service accounts & secrets
+---_ Mount points or passthrough needed
+---_ Less integrated audit logging
+@endmindmap

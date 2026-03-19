@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Transform Data\nfor Consumption
+** Purpose
+***_ Apply business logic
+***_ Shape data for consumers
+***_ Gold layer in medallion arch
+** Patterns
+*** Joining
+****_ Combine datasets
+****_ Create unified views
+*** Aggregation
+****_ Daily totals
+****_ Monthly averages
+*** Denormalization
+****_ Flatten hierarchies
+****_ Optimize query performance
+*** Business Logic
+****_ Calculations & categorizations
+****_ Derived metrics
+@endmindmap

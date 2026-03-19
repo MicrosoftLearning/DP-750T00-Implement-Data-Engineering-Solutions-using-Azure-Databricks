@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Access Files\nin Volumes
+** Standard path format
+***_ /Volumes/<catalog>/<schema>/<volume>/<path>
+***_ POSIX-style path
+** Works with
+***_ Apache Spark
+***_ pandas
+***_ SQL queries
+***_ dbutils.fs commands
+** No cloud credentials needed
+***_ Unity Catalog handles authentication
+** External volumes: also accessible via
+***_ abfss:// cloud storage URI
+***_ Governed by volume permissions
+** File operations (dbutils.fs)
+***_ ls: list files
+***_ cp: copy files
+@endmindmap

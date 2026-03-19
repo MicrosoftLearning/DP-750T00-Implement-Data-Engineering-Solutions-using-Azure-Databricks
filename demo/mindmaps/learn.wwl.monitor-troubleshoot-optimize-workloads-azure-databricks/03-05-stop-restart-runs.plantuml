@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Stop & Restart\nJob Runs
+** Stop Active Run
+***_ Runs tab → stop button
+***_ Cancel specific run
+***_ Cancel runs (multiple)
+***_ Cancel all queued runs
+** When to Stop
+***_ Excessive resource use
+***_ Processing incorrect data
+***_ Immediate intervention needed
+** Restart Continuous Jobs
+***_ Exponential backoff state
+***_ Shows consecutive failures
+***_ Shows next retry time
+***_ Restart run button
+** Restart Effect
+***_ Cancels active run
+***_ Resets retry period
+***_ Starts new run immediately
+@endmindmap

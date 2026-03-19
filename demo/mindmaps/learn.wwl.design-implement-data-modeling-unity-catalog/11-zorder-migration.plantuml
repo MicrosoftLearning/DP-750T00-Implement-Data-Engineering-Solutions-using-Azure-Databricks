@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Z-Ordering to\nLiquid Clustering Migration
+** Z-Order Legacy Technique
+***_ OPTIMIZE ... ZORDER BY (cols)
+***_ Applied during OPTIMIZE only
+***_ Transaction-level concurrency
+***_ Changing keys = full rewrite
+** Liquid Clustering Advantages
+***_ Incremental optimization
+***_ Row-level concurrency
+***_ Flexible key changes
+** Migration Steps
+***_ Enable CLUSTER BY on unpartitioned table
+***_ Run OPTIMIZE to begin new clustering
+***_ Run OPTIMIZE FULL to rewrite existing data
+@endmindmap

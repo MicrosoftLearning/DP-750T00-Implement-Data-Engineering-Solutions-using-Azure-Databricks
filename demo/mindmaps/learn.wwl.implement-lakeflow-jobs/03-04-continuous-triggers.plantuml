@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Continuous\nTriggers
+** Behavior
+***_ Starts new run after previous ends
+***_ Runs even after failure
+***_ Perpetual execution cycle
+** Use Cases
+***_ Streaming data processing
+***_ Monitoring systems
+***_ High-volume ETL
+** Cost Consideration
+***_ Continuously consumes compute
+***_ Use serverless to optimize
+** Lifecycle
+***_ Resume: waits for active run to end
+***_ Pause: stops new runs
+@endmindmap

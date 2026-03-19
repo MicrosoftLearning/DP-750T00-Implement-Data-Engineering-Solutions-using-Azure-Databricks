@@ -1,0 +1,48 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Track Costs\nBudgets & Tables
+** Budgets
+***_ Financial targets
+***_ Email notifications
+***_ Filter by team/project
+***_ Account admin required
+** system.billing.usage
+***_ Detailed usage data
+***_ Databricks Units (DBUs)
+***_ Custom tags support
+** system.compute.clusters
+***_ Owner / cluster info
+***_ Join with billing.usage
+** Tags
+***_ Propagate to billing records
+***_ Cost chargeback
+***_ Apply at cluster/workspace
+***_ Cannot add retroactively
+** Useful Queries
+***_ Daily DBU consumption
+***_ Jobs with most DBUs
+***_ Cost by cluster owner
+***_ Usage by custom tag
+@endmindmap

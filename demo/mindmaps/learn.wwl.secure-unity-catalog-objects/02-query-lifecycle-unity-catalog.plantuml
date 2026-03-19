@@ -1,0 +1,53 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Query Lifecycle\nUnity Catalog
+++ Step 1: Submission
++++_ User / Service Principal
++++_ All-purpose / Job cluster\nor SQL warehouse
+++ Step 2: Validation
++++_ UC checks permissions
++++_ Audit log recorded
++++_ Denied? Blocked + logged
+++ Step 3: Cloud Credentials
++++_ Per object referenced
++++_ Managed tables → metastore
++++_ External tables → ext. location
+++ Step 4: Scoped Tokens
++++_ Temp access token generated
++++_ Secure access URL provided
+++ Step 5: Storage Access
++++_ Cluster uses token + URL
++++_ abfss:// ADLS Gen2
+
+++ Step 6: Data Transfer
++++_ Storage returns data to compute
+++ Step 7: Fine-grained Filtering
++++_ Row-level filtering
+++++_ Per-user row visibility
++++_ Column masking
+++++_ Sensitive fields redacted
+++ Step 8: Result
++++_ Filtered result to caller
+@endmindmap

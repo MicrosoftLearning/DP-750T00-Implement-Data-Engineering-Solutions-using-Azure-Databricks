@@ -1,0 +1,49 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Schema Management\nBest Practices
+** Documentation
+***_ Store schemas in version control
+***_ Track alongside pipeline code
+***_ Clear reference for change impact
+** Alerting
+***_ Notify on schema drift detection
+***_ Even when handled automatically
+***_ Understand evolving data patterns
+** Naming Conventions
+***_ Standardize column names
+***_ Reduce case-sensitivity issues
+***_ Predictable schema validation
+** Testing
+***_ Test schema handling in dev
+***_ Edge cases with test data
+***_ Verify before production deploy
+** Tradeoffs
+*** Strict enforcement
+****_ Catches problems early
+****_ Higher maintenance
+*** Flexible evolution
+****_ Less operational overhead
+****_ Risk of unexpected changes
+@endmindmap

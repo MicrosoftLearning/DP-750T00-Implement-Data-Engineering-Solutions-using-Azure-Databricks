@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Liquid Clustering\nas Alternative
+** Advantages over Partitioning
+***_ Change strategy without rewriting data
+***_ Supports up to 4 clustering keys
+***_ Works for tables < 1 TB too
+** When to Prefer Liquid Clustering
+***_ Query patterns uncertain / evolving
+***_ Table < 1 TB not needing partitioning
+***_ Multiple filter columns
+** Migration Path
+***_ Add CLUSTER BY to unpartitioned table
+***_ Run OPTIMIZE to apply
+***_ Use CLUSTER BY AUTO for self-tuning
+@endmindmap

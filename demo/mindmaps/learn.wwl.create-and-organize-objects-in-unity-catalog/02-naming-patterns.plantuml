@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Naming Patterns\nfor Data Organization
+** Use lowercase with underscores
+***_ customer_data, sales_summary
+***_ Avoid camelCase / PascalCase
+** Be descriptive but concise
+***_ sales_summary_gold ✓
+***_ sales_final_report_v1_updated ✗
+** Medallion architecture
+***_ bronze = raw data
+***_ silver = cleaned data
+***_ gold = aggregated data
+** Prefix specialized objects
+***_ vw_ for views
+***_ tmp_ for staging tables
+** Catalog naming strategy
+***_ Domain-based: sales_data, finance_data
+***_ Environment-based: dev, test, prod
+@endmindmap

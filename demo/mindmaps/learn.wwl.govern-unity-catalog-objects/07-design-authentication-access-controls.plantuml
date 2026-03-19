@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Authentication &\nAccess Controls
+** Open sharing: tokens
+***_ Set token expiration
+***_ Metastore-level default lifetime
+***_ Enable Delta Sharing externally
+** OIDC Federation
+***_ Short-lived OAuth tokens
+***_ Recipient's identity provider JWT
+***_ Eliminates long-lived credentials
+** IP access lists
+***_ Assign to open sharing recipients
+***_ IP addresses or CIDR ranges
+***_ Max 100 IP/CIDR values per recipient
+***_ Unlisted IP → access denied + logged
+** Least privilege
+***_ CREATE SHARE, CREATE RECIPIENT
+***_ USE SHARE, SET SHARE PERMISSION
+***_ USE RECIPIENT
+***_ Assign to groups not individuals
+@endmindmap

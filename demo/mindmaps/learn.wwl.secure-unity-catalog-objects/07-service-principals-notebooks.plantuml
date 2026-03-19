@@ -1,0 +1,37 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Service Principals\nin Notebooks
+++ Pattern
++++_ Legacy / non-UC storage
++++_ Direct Spark config in notebook
+++ Steps
++++_ Get client secret from dbutils.secrets.get()
++++_ Set fs.azure.account.auth.type → OAuth
++++_ Set token provider class
++++_ Set client ID, secret, endpoint
+++ Read data
++++_ spark.read... abfss:// URIs
++++_ OAuth 2.0 client credentials flow
+@endmindmap

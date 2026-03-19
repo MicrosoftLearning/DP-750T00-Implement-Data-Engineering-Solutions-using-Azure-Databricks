@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Query Logs\nwith KQL
+** Access
+***_ Azure portal
+***_ Log Analytics workspace
+***_ Logs sidebar item
+** Basic Query Structure
+***_ Table name
+***_ | where (filter)
+***_ | project (select columns)
+***_ | order by
+***_ | take (limit)
+** Investigate Job Failures
+***_ where Response contains "error"
+***_ | summarize by OperationName
+***_ | bin(TimeGenerated, 1h)
+***_ Spot systemic issues
+** Track Cluster Usage
+***_ summarize by OperationName
+***_ Count event types
+** Monitor Unity Catalog
+***_ Filter getTable / selectFromTable
+***_ Track data access
+** Query Tips
+***_ Save to Query explorer
+***_ Organize in folders
+***_ Share with team
+@endmindmap

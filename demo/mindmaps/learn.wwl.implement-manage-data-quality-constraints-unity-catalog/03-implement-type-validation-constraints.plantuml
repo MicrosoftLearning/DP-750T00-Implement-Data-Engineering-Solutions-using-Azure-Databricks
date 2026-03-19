@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Type Validation\nConstraints
+** CHECK Constraints
+***_ Custom validation rules
+***_ Enforced on insert/update
+***_ ALTER TABLE ADD CONSTRAINT
+** Pattern Matching
+***_ REGEXP for format checks
+***_ Validate numeric strings
+***_ Email/phone formats
+** Date Validation
+***_ try_cast() in constraint
+***_ Rejects invalid date strings
+***_ Event date validation
+** Important
+***_ Existing rows validated on ALTER
+***_ Plan for large table migrations
+***_ Constraint can be dropped if needed
+@endmindmap

@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Common Pitfalls
+++ Duplicating tables per audience
++++_ Sync challenges
++++_ Governance complexity
+++ Multiple nearly identical views
++++_ Instead of generalizable logic
++++_ Harder to audit
+++ Logic in wrong place
++++_ Complex transformations in masking functions
++++_ Business logic belongs upstream
+++ Unsecured masking functions
++++_ Functions can be bypassed
++++_ Must secure the functions themselves
+++ Over-masking
++++_ Removes legitimate analytical access
++++_ Balance security with usability
+@endmindmap

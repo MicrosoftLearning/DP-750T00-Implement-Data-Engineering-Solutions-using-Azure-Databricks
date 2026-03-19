@@ -1,0 +1,36 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Dynamic Views\n(Implementation)
+++ CREATE VIEW syntax
++++_ SELECT with CASE for masking
++++_ WHERE with CASE for row filter
++++_ is_account_group_member() checks
+++ Granting access
++++_ GRANT SELECT ON VIEW vw_customers\nTO account users
+++ Characteristics
++++_ Base table unchanged
++++_ Multiple views for different groups
++++_ Automatic security per user context
+@endmindmap

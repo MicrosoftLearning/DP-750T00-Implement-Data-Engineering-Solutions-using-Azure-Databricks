@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Job-level\nError Handling
+** Retry Policies
+***_ Retry count (1-3 typical)
+***_ Retry interval
+***_ Exponential backoff (continuous jobs)
+** Timeouts
+***_ Expected duration → warning
+***_ Maximum duration → terminate
+** Notifications
+***_ Email, Slack, Teams
+***_ PagerDuty, webhooks
+***_ On start/success/failure/duration
+***_ Mute until last retry
+** Conditional Task Flows
+***_ All succeeded → continue
+***_ At least one failed → error handler
+***_ All done → cleanup logic
+@endmindmap

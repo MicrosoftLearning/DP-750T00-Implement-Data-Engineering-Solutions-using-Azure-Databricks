@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Type Selection\nBest Practices
+++ Match type to data range
++++ Don't over-provision
+++++_ BIGINT vs INT vs TINYINT
+++++_ Extra bytes × millions of rows
+++ Consider nullability
++++ Document constraints
+++++_ Add NOT NULL where needed
+++ Validate on ingestion
++++ Cast early in pipeline
+++++_ CAST(raw_id AS INT)
+++++_ Catch mismatches early
+-- Explicit Casts
+---_ Make intentions clear
+---_ Avoid silent data loss
+---_ Helps during testing
+-- Types as Documentation
+---_ Serve as pipeline validation
+---_ Errors caught early
+@endmindmap

@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Accessing External\nStorage
+++ External locations
++++_ Storage credential + path
++++_ abfss:// protocol
++++_ Grants on external location
+++ Benefits
++++_ Multiple locations per credential
++++_ Different access for different datasets
++++_ Read-only credentials supported
+++ Workspace binding
++++_ Restrict to specific workspaces
++++_ Prod/dev environment separation
++++_ Bind at credential or location level
+-- Access pattern
+---_ CREATE EXTERNAL TABLE ... LOCATION
+---_ SELECT from external table
+---_ MI authenticates transparently
+@endmindmap

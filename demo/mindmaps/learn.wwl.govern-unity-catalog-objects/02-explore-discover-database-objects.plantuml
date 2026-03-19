@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Explore & Discover\nDatabase Objects
+** Catalog Explorer
+***_ Columns, Sample Data, Details
+***_ History tab (Delta tables)
+***_ Insights: queries & users (30 days)
+***_ View relationships (ERD)
+** SQL Commands
+***_ SHOW CATALOGS / SCHEMAS / TABLES
+***_ DESCRIBE TABLE EXTENDED
+***_ SHOW COLUMNS / TBLPROPERTIES
+***_ Pattern matching with LIKE
+** Tag Search
+***_ Workspace search bar
+***_ Search by tag key or value
+***_ Requires BROWSE privilege
+** AI/BI Integration
+***_ AI/BI Genie natural language search
+***_ Metadata improves AI accuracy
+@endmindmap

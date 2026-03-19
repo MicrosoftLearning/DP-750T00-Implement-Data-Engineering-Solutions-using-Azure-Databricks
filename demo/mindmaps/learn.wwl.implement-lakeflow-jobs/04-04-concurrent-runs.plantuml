@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Concurrent\nRun Control
+** Problem
+***_ Run takes longer than interval
+***_ Next run starts before previous ends
+***_ Risk: data corruption / duplicates
+** Max Concurrent Runs
+***_ Default: multiple allowed
+***_ Set to 1 for non-overlapping jobs
+** Queue Behavior
+*** Queue the run
+****_ Waits for a slot
+****_ No triggers missed
+*** Cancel the run
+****_ Immediately discarded
+****_ Stale triggers not valuable
+*** Skip the run
+****_ Similar to cancel
+****_ Occasional misses acceptable
+@endmindmap

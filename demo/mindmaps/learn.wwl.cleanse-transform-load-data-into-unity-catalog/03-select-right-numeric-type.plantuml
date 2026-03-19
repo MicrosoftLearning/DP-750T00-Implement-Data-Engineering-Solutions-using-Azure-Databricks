@@ -1,0 +1,51 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Select the Right\nNumeric Type
+++ Whole Numbers
++++ TINYINT
+++++_ -128 to 127, 1 byte
+++++_ Status codes
++++ SMALLINT
+++++_ -32k to 32k, 2 bytes
+++++_ Year values
++++ INT
+++++_ ±2.1 billion, 4 bytes
+++++_ IDs and counts
++++ BIGINT
+++++_ ±9.2 quintillion, 8 bytes
+++++_ Large IDs, row counts
+-- Decimal Numbers
+--- DECIMAL(p,s)
+----_ Exact precision
+----_ Financial data
+----_ p = total digits, s = after decimal
+--- FLOAT / DOUBLE
+----_ Approximate
+----_ Scientific calculations
+----_ Rounding errors possible
+-- Key Rule
+---_ Use DECIMAL for money
+---_ Floating point ≠ exact base-10
+@endmindmap

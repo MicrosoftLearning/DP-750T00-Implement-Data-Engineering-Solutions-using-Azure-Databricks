@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Create Streaming Tables\nfor Ingestion
+++ SQL Definition
++++_ CREATE OR REFRESH STREAMING TABLE
++++_ AS SELECT * FROM STREAM read_files(...)
++++_ STREAM keyword = incremental processing
+++ Python Definition
++++_ @dp.table decorator
++++_ spark.readStream.format("cloudFiles")
++++_ Returns streaming DataFrame
+-- read_files() with STREAM
+---_ Auto Loader enabled automatically
+---_ format => 'json' / 'csv' / etc.
+---_ Pipeline manages checkpoints
+-- Default Flow
+---_ Created automatically with table definition
+---_ No explicit flow definition needed
+---_ For complex scenarios: explicit flows
+@endmindmap

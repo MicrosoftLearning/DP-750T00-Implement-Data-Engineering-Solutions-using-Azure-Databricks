@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Create Procedures\nfor Multi-step Operations
+** SQL stored procedures
+***_ Sequences of SQL statements
+***_ Variables, control flow, error handling
+** CREATE PROCEDURE statement
+***_ Requires Runtime 17.0+
+***_ Currently in preview
+** Parameter types
+***_ IN: input parameters
+***_ OUT: output parameters
+***_ INOUT: both
+** SQL SECURITY INVOKER
+***_ Runs with caller's permissions
+** Execute with CALL statement
+***_ CALL catalog.schema.procedure(args)
+@endmindmap

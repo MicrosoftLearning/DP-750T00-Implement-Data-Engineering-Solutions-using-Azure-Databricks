@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Create Job\n& Add Tasks
+** Steps
+***_ Jobs & Pipelines > Create > Job
+***_ Enter descriptive name
+***_ Set task name & type
+***_ Configure task-specific options
+** Task Config by Type
+*** Notebook
+****_ Notebook path
+****_ Parameters
+*** Python Script
+****_ Script path
+****_ CLI arguments
+*** SQL
+****_ Query/file
+****_ SQL warehouse
+*** Pipeline
+****_ Existing pipeline selection
+@endmindmap

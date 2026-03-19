@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Connections and\nForeign Catalogs
+** Connection
+***_ Stores technical details to reach external DB
+***_ JDBC URL, host, port, credentials
+***_ Created once, reused for multiple catalogs
+***_ Supported: PostgreSQL, MySQL, Snowflake, BigQuery
+** Foreign catalog
+***_ Mirrors external database in Unity Catalog
+***_ References a connection
+***_ Specifies which external database to mirror
+***_ Uses catalog.schema.table naming
+** Key separation
+***_ Connection = how to connect
+***_ Foreign catalog = what to expose
+@endmindmap

@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Ingestion Tool\nLandscape
+** Managed (Low Code)
+***_ Lakeflow Connect
+***_ Turnkey connectors
+***_ Auto schema evolution
+** Semi-Managed
+***_ Auto Loader
+***_ COPY INTO
+** Custom / Code-First
+***_ Spark Structured Streaming
+***_ JDBC/ODBC notebooks
+** Orchestration
+***_ Azure Data Factory
+***_ Broader Azure ecosystem
+** Selection Factors
+***_ Source type
+***_ Latency requirements
+***_ Maintenance overhead
+***_ Team skills
+@endmindmap

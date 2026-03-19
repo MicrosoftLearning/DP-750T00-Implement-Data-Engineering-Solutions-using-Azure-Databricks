@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Error Handling\nBest Practices
+** Fail Fast
+***_ Stop on data integrity issues
+***_ Avoid corrupt data downstream
+** Meaningful Logging
+***_ Timestamps & record counts
+***_ Error classifications
+***_ No sensitive data exposure
+** Recovery Planning
+***_ Idempotent operations
+***_ Only re-run failed tasks
+***_ Repair job support
+** Monitor Trends
+***_ Track quality metrics over time
+***_ Detect upstream system changes
+** Test Failures
+***_ Deliberately introduce failures
+***_ Validate error handling works
+@endmindmap

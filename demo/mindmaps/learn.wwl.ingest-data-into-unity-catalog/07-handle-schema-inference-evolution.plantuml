@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Handle Schema Inference\nand Evolution
+++ Schema Inference
++++_ cloudFiles.inferColumnTypes: auto-detect types
++++_ Default: all columns as string (safe)
++++_ Samples files to determine types
+++ Schema Evolution Modes
++++_ addNewColumns: fail, add cols, restart
++++_ rescue: capture new cols in _rescued_data
++++_ failOnNewColumns: fail until schema updated
++++_ none: ignore new columns
+-- Rescued Data Column
+---_ _rescued_data: captures mismatched data
+---_ Prevents data loss on schema mismatch
+---_ Rename with rescuedDataColumn option
+-- Schema Hints
+---_ Override inferred types for specific columns
+---_ cloudFiles.schemaHints option
+---_ e.g. "order_date DATE, amount DECIMAL(10,2)"
+@endmindmap

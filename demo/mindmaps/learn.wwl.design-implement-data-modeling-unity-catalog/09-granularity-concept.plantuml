@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Granularity\n(Grain)
+** Definition
+***_ Level of detail per row
+***_ What each row represents
+** Fact Table Grain
+***_ Determined by combination of dimension keys
+***_ "One row per order line item"
+** Dimension Table Grain
+***_ One row per entity (current state)
+***_ One row per entity per version (SCD Type 2)
+***_ One row per entity per time period
+** Critical Rule
+***_ Once aggregated, detail is lost forever
+***_ Always document grain explicitly
+@endmindmap

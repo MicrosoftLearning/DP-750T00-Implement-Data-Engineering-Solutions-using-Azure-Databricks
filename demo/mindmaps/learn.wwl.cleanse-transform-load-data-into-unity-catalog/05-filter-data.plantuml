@@ -1,0 +1,46 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Filter Data to\nSelect Relevant Rows
+++ PySpark
++++ filter() / where()
+++++_ Identical, use for readability
++++ col() function
+++++_ Reference column names
++++ Multiple conditions
+++++_ & for AND
+++++_ | for OR
+++++_ Wrap each in parentheses
+++ Null Filtering
++++ isNull() / isNotNull()
+++++_ Don't use != None
+++++_ Null comparisons return null
+-- SQL
+--- WHERE clause
+----_ AND / OR conditions
+--- IS NULL / IS NOT NULL
+----_ Correct null handling
+-- spark.sql()
+---_ Mix SQL in PySpark pipelines
+@endmindmap

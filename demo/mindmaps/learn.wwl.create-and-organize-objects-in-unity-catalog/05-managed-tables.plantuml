@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Create\nManaged Tables
+** Default table type in Unity Catalog
+***_ Databricks manages metadata + data files
+** Delta Lake format by default
+***_ ACID transactions
+***_ Time travel
+***_ Schema enforcement
+** Using SQL
+***_ CREATE TABLE with column definitions
+***_ USE CATALOG / USE SCHEMA for context
+** Advanced features
+***_ Constraints: enforce data quality rules
+***_ Generated columns: auto-computed values
+** Lifecycle management
+***_ Drop table = delete metadata + data files
+@endmindmap

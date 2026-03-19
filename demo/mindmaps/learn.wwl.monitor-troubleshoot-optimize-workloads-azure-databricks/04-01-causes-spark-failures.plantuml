@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Common Causes\nSpark Job Failures
+** Code Errors
+***_ Syntax errors
+***_ Incorrect transformations
+***_ Schema mismatches
+***_ Data quality issues
+***_ Error points directly to code
+** Resource Bottlenecks
+***_ Out-of-memory (OOM)
+***_ Slow shuffle operations
+***_ Repeated task failures
+***_ Requires config tuning
+** Environmental Issues
+***_ Cluster startup failures
+***_ Network problems
+***_ External source unavailable
+***_ Spot instance reclamation
+***_ Account quota limits
+@endmindmap

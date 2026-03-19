@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Ingestion Tool\nDecision Framework
+** Enterprise App / DB Source?
+***_ Yes → Lakeflow Connect Managed
+** Files in Cloud Storage?
+***_ Ongoing → Auto Loader
+***_ One-time → COPY INTO
+** Real-time / Kafka?
+***_ Lakeflow Connect Standard
+***_ or Structured Streaming
+** Unsupported DB / Custom Logic?
+***_ JDBC/ODBC Notebook
+** Azure Ecosystem Orchestration?
+***_ Azure Data Factory
+@endmindmap

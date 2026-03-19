@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Simple\nSchedule
+** How It Works
+***_ Trigger type: Scheduled
+***_ Schedule type: Simple
+***_ Specify number + time unit
+** Time Units
+***_ Minutes
+***_ Hours
+***_ Days
+***_ Weeks
+** Limitations
+***_ First run time: auto-assigned
+***_ Minimum interval: 10 seconds
+** When to Use
+***_ Consistent recurring intervals
+***_ No specific time requirement
+@endmindmap

@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Error Handling\nStrategies
+** Drop Invalid Records
+***_ expect_or_drop in pipelines
+***_ Filter missing required columns
+***_ Tracks drop metrics
+** Fail on Critical Violations
+***_ ON VIOLATION FAIL UPDATE
+***_ Stops pipeline immediately
+***_ Prevents bad data propagation
+***_ For structural integrity issues
+** Quarantine Pattern
+***_ Route bad records to separate table
+***_ Valid records continue to silver
+***_ Invalid records to quarantine table
+***_ Investigate without blocking flow
+** Benefits
+***_ Data quality enforced
+***_ No silent failures
+***_ Auditable error records
+***_ Operational flexibility
+@endmindmap

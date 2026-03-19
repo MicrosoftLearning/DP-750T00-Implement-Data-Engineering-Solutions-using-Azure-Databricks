@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Azure Storage\nLifecycle Policies
+** Purpose
+***_ Complement Delta Lake retention
+***_ Transition to cooler tiers
+***_ Auto-delete old blobs
+** Tiers
+***_ Cool: accessible, higher access cost
+***_ Archive: offline, requires restore
+** Challenges with Delta
+***_ File rewrite resets creation time
+***_ Archived files fail queries
+***_ OPTIMIZE/MERGE delay archival
+** Strategies
+***_ Partition data by date
+***_ Set delta.timeUntilArchived property
+***_ Create views to restrict access
+***_ OPTIMIZE/VACUUM with predicates
+@endmindmap

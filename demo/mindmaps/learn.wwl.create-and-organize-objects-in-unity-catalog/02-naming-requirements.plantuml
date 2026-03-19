@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Unity Catalog\nNaming Requirements
+** Object names
+***_ Max 255 characters
+***_ Stored in lowercase
+***_ Case-insensitive matching
+** Prohibited characters
+***_ Periods (.)
+***_ Spaces
+***_ Forward slashes (/)
+***_ ASCII control characters
+** Allowed
+***_ Hyphens (with backticks)
+***_ Special chars via backticks
+** Column names
+***_ Casing preserved
+***_ Case-insensitive queries
+***_ Backticks for special chars
+@endmindmap

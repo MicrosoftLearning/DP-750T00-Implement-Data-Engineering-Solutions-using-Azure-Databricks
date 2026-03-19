@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Task Execution\nPatterns
+** Serial Execution
+***_ Tasks run sequentially
+***_ Safer for dependent data
+***_ Slower overall
+** Parallel Execution
+***_ Independent tasks run simultaneously
+***_ Reduces total job duration
+***_ Requires more compute
+** Compute Sharing
+*** Shared Compute
+****_ Same cluster for related tasks
+****_ Reduces startup latency
+****_ Shared memory/CPU
+*** Dedicated Clusters
+****_ Isolated resources
+****_ For resource-intensive tasks
+** Balance
+***_ Parallelism vs. compute capacity
+***_ Workspace concurrency limits
+@endmindmap

@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Streaming Tables\nfor Ingestion
+** What They Are
+***_ Delta table optimized for append
+***_ Each record processed exactly once
+***_ Ideal for append-only sources
+** Sources
+***_ Cloud storage (Auto Loader)
+***_ Message queues
+***_ JSON / CSV / Parquet files
+** SQL Syntax
+***_ CREATE OR REFRESH STREAMING TABLE
+***_ STREAM read_files(...)
+***_ Only new files processed
+** Python Syntax
+***_ @dp.table decorator
+***_ spark.readStream
+***_ Returns streaming DataFrame
+@endmindmap

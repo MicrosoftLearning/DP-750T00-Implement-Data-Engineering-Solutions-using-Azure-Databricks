@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Auto\nLoader
+** How it Works
+***_ Tracks processed files via checkpoint
+***_ Directory listing or file notification
+***_ Exactly-once processing
+** Capabilities
+***_ Schema inference & evolution
+***_ Handles billions of files
+***_ Supports JSON, CSV, Parquet, Avro...
+** Use Cases
+***_ Log files arriving in cloud storage
+***_ Data landing zones
+***_ Ongoing incremental file ingestion
+** Integration
+***_ Works with Lakeflow Pipelines
+***_ Works with Structured Streaming
+@endmindmap

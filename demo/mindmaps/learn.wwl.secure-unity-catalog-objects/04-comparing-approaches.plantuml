@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Comparing Approaches
+++ Row & Column Security
++++_ Fewer objects (table + functions)
++++_ Enforcement at source
++++_ Supports read/write patterns
++++_ Limited to single table
+++ Dynamic Views
++++_ More objects to manage
++++_ Multi-table composition
++++_ Read-only (typically)
++++_ Decoupled from storage design
+-- Key trade-off
+---_ Simplicity vs. abstraction
+---_ Default: Row & Column Security
+---_ Exception: multi-table or strict isolation
+@endmindmap

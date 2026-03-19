@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* SCD Type 2\nTable Design
+** Required Columns
+***_ Surrogate key (IDENTITY)
+***_ Natural/business key
+***_ Business attributes
+***_ valid_from TIMESTAMP
+***_ valid_to TIMESTAMP
+***_ is_current BOOLEAN
+** Delta Features
+***_ GENERATED ALWAYS AS IDENTITY
+***_ enableChangeDataFeed = true
+** Valid To Convention
+***_ Current row: 9999-12-31
+***_ Expired row: actual end date
+@endmindmap

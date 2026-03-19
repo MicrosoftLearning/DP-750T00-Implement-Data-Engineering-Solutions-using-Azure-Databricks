@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Understand\nGoverned Tags
+** vs. Standard Tags
+***_ Predefined keys & allowed values
+***_ Only authorized users can assign
+***_ Lock icon in Catalog Explorer
+** Creating
+***_ Catalog → Governance → Governed Tags
+***_ Define key + allowed values
+***_ Optional description
+** Assigning
+***_ ALTER ... SET TAGS
+***_ Catalog, schema, table, column
+** Inheritance
+***_ Catalog → Schema (inherits to all objects)
+***_ Column tags NOT inherited
+** Foundation for ABAC
+***_ Tags drive policy enforcement
+***_ New tables auto-inherit policies via tags
+@endmindmap

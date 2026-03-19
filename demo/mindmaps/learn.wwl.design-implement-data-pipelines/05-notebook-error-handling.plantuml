@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Error Handling\nin Notebooks
+** Try-Except Blocks
+***_ Catch PySparkException
+***_ getErrorClass() for specific errors
+***_ Re-raise unexpected errors
+** Retry Logic
+***_ Implement exponential backoff
+***_ Max retries configuration
+***_ Base delay between attempts
+** Signal to Jobs
+***_ dbutils.notebook.exit()
+***_ Communicate SUCCESS/FAILED
+***_ Pass result messages
+***_ Enable conditional downstream logic
+@endmindmap

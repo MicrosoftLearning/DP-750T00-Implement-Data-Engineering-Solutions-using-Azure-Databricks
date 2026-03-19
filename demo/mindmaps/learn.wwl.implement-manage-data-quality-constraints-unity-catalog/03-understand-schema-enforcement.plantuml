@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Schema\nEnforcement
+** What it is
+***_ Delta Lake built-in validation
+***_ Compares incoming vs target types
+***_ Applied on every write
+** Rules
+***_ Columns must exist in table
+***_ Types must match or be castable
+***_ Safe casts attempted automatically
+** Behavior
+*** Success
+****_ '100' cast to INT succeeds
+****_ Compatible types promoted
+*** Failure
+****_ 'fifty' to INT fails
+****_ Write operation rejected
+** First Line of Defense
+***_ Catches type mismatches early
+***_ No extra code required
+***_ Use explicit casting for more control
+@endmindmap

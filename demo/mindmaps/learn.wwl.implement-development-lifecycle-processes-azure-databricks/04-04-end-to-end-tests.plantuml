@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* End-to-End Tests
+** Purpose
+***_ Simulate complete workflows
+***_ Validate entire pipeline output
+** Test Pattern
+***_ Setup test inputs
+***_ Execute full pipeline
+***_ Verify final output/counts
+***_ Cleanup test data
+** Characteristics
+***_ Realistic business scenarios
+***_ Longer execution time
+** Scheduling
+***_ Run during off-peak hours
+***_ Part of deployment pipeline
+***_ Not on every code change
+@endmindmap

@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Query Lineage\nProgrammatically
+** System tables
+***_ system.access.table_lineage
+***_ system.access.column_lineage
+** table_lineage
+***_ Read and write events
+***_ source/target table full names
+***_ event_date, event_id
+** column_lineage
+***_ Column-level dependencies
+***_ Tracks transformations
+** Databricks Assistant
+***_ /getTableLineages command
+***_ /getTableInsights command
+***_ Natural language exploration
+** Use cases
+***_ Most accessed tables report
+***_ Downstream consumer discovery
+***_ Impact analysis queries
+@endmindmap

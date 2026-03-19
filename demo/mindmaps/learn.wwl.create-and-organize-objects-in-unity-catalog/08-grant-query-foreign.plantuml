@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Grant Access &\nQuery Foreign Data
+** Same Unity Catalog permission model
+***_ GRANT USE CATALOG
+***_ GRANT USE SCHEMA
+***_ GRANT SELECT on tables
+** Granular control
+***_ Expose some tables, restrict others
+***_ Even from same external database
+** Query with standard SQL
+***_ SELECT from catalog.schema.table
+***_ Azure Databricks translates for target DB
+** Query execution
+***_ Pushdown to external DB when possible
+***_ External DB performs aggregations/filters
+***_ Monitor for large result set memory issues
+@endmindmap

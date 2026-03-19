@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Configure\nManaged Storage
+** Recommended: specify MANAGED LOCATION
+***_ Points to ADLS Gen2 container
+***_ Requires CREATE MANAGED STORAGE privilege
+** Physical data isolation
+***_ Data files per catalog path
+***_ Safe deletion after 8-day retention
+** Compliance requirements
+***_ Specific storage accounts or regions
+***_ Regulatory obligation support
+** Without catalog storage
+***_ Falls back to metastore default
+***_ Must specify if no metastore default
+** SQL syntax
+***_ CREATE CATALOG ... MANAGED LOCATION '...'
+@endmindmap

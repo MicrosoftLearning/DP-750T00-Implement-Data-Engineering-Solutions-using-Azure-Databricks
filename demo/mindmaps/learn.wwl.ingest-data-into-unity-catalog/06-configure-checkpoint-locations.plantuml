@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Configure\nCheckpoint Locations
+++ What is a Checkpoint?
++++_ Stores offset / progress info
++++_ Enables restart without reprocessing
++++_ Guarantees exactly-once semantics
+++ Requirements
++++_ Each query needs unique checkpoint path
++++_ Sharing checkpoints causes errors
++++_ Store in durable location (ADLS)
+-- Best Practices
+---_ Use Azure Data Lake Storage
+---_ Avoid lifecycle policies that delete files
+---_ Keep small but treat as critical
+-- Configuration
+---_ checkpointLocation option in writeStream
+---_ Set before starting any streaming query
+---_ Verify on restart: resumes from last commit
+@endmindmap

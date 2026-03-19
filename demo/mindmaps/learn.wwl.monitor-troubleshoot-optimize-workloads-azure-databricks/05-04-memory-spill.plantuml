@@ -1,0 +1,50 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Investigate\nMemory Spill
+** What is Spill
+***_ Memory insufficient
+***_ Intermediate data → disk
+***_ Significantly slows jobs
+***_ During shuffle/aggregation
+** Identify in Spark UI
+***_ Stage page
+***_ Shuffle Spill (Memory)
+***_ Shuffle Spill (Disk)
+***_ Any non-zero = memory pressure
+** Resolve: Increase Partitions
+***_ Reduce data per partition
+***_ Set to "auto"
+***_ spark.sql.shuffle.partitions
+** Resolve: Add Memory
+***_ Higher memory:core ratio
+***_ More worker nodes
+** Resolve: Optimize Data
+***_ Select only needed columns
+***_ Filter early in pipeline
+***_ Less data per stage
+** Skew and Spill
+***_ Often occur together
+***_ Fix skew → spill resolves
+@endmindmap

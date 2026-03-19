@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Monitor Sharing Activity\nthrough Audit Logs
+** Captured events
+***_ createShare, createRecipient
+***_ grantOnShare, revokeOnShare
+***_ Recipient data access
+** Audit queries
+***_ service_name = 'unityCatalog'
+***_ Track share/recipient creation
+***_ Monitor recipient data access
+** Key fields
+***_ action_name
+***_ request_params.recipient_name
+***_ request_params.share_name
+***_ user_identity.email
+** Use cases
+***_ Compliance reporting
+***_ Unauthorized access detection
+***_ Sharing activity dashboards
+@endmindmap

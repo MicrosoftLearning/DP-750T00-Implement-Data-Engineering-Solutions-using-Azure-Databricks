@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Create Functions\nfor Reusable Logic
+** Types
+***_ Scalar: returns single value
+***_ Table-valued: returns result set
+***_ Temporary: session-only
+** Languages
+***_ SQL functions
+***_ Python functions (requires pro/serverless warehouse)
+** Benefits
+***_ Governed objects in Unity Catalog
+***_ Shared across teams and workspaces
+***_ Catalog tracks ownership & usage
+** SQL scalar example
+***_ RETURNS DOUBLE RETURN price * (1 - rate)
+** Python example
+***_ LANGUAGE PYTHON AS $$...$$
+@endmindmap

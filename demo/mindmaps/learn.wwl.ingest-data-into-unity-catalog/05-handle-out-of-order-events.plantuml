@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Handle\nOut-of-Order Events
+++ The Problem
++++_ Distributed systems delay events
++++_ Older update arrives after newer one
++++_ Risk: incorrect final state
+++ AUTO CDC Solution
++++_ Compares sequence values on arrival
++++_ Higher sequence = more recent
++++_ Late-arriving older records ignored
+-- No Manual Logic Needed
+---_ No custom merge / timestamp checks
+---_ No version comparison code
+---_ Built-in to AUTO CDC API
+-- Guarantee
+---_ Destination always reflects correct state
+---_ Idempotent processing
+---_ Sequence column drives ordering
+@endmindmap

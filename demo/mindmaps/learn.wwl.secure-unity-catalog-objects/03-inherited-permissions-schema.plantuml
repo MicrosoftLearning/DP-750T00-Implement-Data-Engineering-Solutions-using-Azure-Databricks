@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Inherited Permissions\nFrom Schema
+++ Required grants
++++_ USE CATALOG on catalog
++++_ USE SCHEMA + SELECT on schema
+++ Effect
++++_ SELECT on all tables in schema
++++_ Includes future tables
+++ Characteristics
++++_ Less admin overhead
++++_ Less restrictive than explicit
++++_ Scoped to that schema
+-- GRANT syntax
+---_ GRANT SELECT ON SCHEMA ...
+---_ All current + future tables
+@endmindmap

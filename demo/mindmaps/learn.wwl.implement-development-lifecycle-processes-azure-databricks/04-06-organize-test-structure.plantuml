@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Test Structure
+** Folder Layout
+***_ /tests/unit/
+***_ /tests/integration/
+***_ /tests/e2e/
+** Code Organization
+***_ Functions in .py files
+***_ Not inside notebooks
+***_ Import into notebooks as needed
+** Running Tests
+***_ Dedicated test notebook
+***_ requirements.txt for dependencies
+***_ pytest.main() invocation
+** Why .py Files?
+***_ Better code reuse
+***_ Easier to test
+***_ Version control friendly
+@endmindmap

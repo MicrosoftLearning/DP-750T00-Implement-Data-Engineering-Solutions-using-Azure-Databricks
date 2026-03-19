@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Table Update\nTriggers
+** Supported Tables
+***_ Delta & Iceberg managed tables
+***_ External Delta tables
+***_ Materialized views
+***_ Streaming tables
+***_ Views on supported tables
+** Multiple Table Behavior
+***_ Any table updated: run immediately
+***_ All tables updated: wait for all
+** Timing Options
+***_ Min time between triggers
+***_ Wait after last change (batching)
+** Dynamic Parameters
+***_ updated_tables list
+***_ commit_timestamp
+***_ table version number
+** Tip
+***_ Enable file events on external location
+@endmindmap

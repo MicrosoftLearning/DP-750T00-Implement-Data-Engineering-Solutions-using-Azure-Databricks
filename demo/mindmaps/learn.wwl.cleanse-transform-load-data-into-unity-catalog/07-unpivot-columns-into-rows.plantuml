@@ -1,0 +1,44 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Unpivot Columns\ninto Rows
+++ What is Unpivoting?
++++ Wide format → Long format
+++++_ Columns become rows
+++++_ Reverse of pivoting
+++ SQL UNPIVOT Clause
++++ Specify value column name
++++ Specify name column
++++ List columns to unpivot
+++++_ ... FOR month IN (jan, feb, mar)
++++ INCLUDE NULLS option
+++++_ Default excludes nulls
++++ Custom aliases for column names
+-- Use Cases
+---_ Normalize wide data
+---_ Prepare for aggregation
+---_ ML pipeline input format
+-- Requires
+---_ Databricks Runtime 12.2 LTS+
+@endmindmap

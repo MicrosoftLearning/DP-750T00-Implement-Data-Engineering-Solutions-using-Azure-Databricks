@@ -1,0 +1,47 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Explicit Type\nCasting
+** cast()
+***_ Strict conversion
+***_ Raises error on failure
+***_ Use for strict validation
+***_ Stops processing on invalid data
+** try_cast()
+***_ Returns NULL on failure
+***_ No error raised
+***_ Identify invalid values
+***_ Filter / flag / quarantine
+** Use Cases
+*** cast
+****_ Known-clean data
+****_ Critical type conversions
+*** try_cast
+****_ Unknown/dirty data
+****_ Validation & reporting
+****_ Quarantine patterns
+** Pattern
+***_ try_cast in WHERE to filter valid
+***_ Route invalids to quarantine
+@endmindmap

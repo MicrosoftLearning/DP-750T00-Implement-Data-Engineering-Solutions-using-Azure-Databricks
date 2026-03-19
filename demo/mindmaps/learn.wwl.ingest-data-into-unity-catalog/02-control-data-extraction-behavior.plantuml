@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Control Data\nExtraction Behavior
+++ Extraction Patterns
++++_ Snapshot (full reload)
++++_ Incremental (CDC-based)
+++ Change Data Capture
++++_ Gateway tracks inserts/updates/deletes
++++_ Only changed records processed
++++_ Requires CDC enabled on source
+-- SCD Types
+---_ SCD Type 1: overwrite current state
+---_ SCD Type 2: preserve history
+---_ __START_AT / __END_AT columns (SCD2)
+-- Full Refresh
+---_ Clears & reloads destination
+---_ Minimize downtime (swap on completion)
+---_ Schedule via full refresh window
+@endmindmap

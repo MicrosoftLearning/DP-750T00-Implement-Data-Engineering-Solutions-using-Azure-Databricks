@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Extraction\nTypes
+** Full Extraction
+***_ Reads entire dataset each run
+***_ Good for small volumes
+***_ No change tracking needed
+***_ Rebuild tables periodically
+** Incremental Extraction
+***_ Only new/changed records
+***_ Needs change indicator (timestamp/version)
+***_ State management required
+***_ Handles late-arriving records
+** Streaming Extraction
+***_ Near real-time capture
+***_ Continuous processing
+***_ Seconds/minutes latency
+***_ Always-on infrastructure
+@endmindmap

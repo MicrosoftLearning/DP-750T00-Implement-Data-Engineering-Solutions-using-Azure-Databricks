@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Temporal vs\nSCD Type 2
+** SCD Type 2
+***_ Business/analytical purpose
+***_ Track customer/product/entity changes
+***_ Attribute sales to historical location
+***_ Explicit business-meaningful versions
+** Temporal (History) Tables
+***_ Technical/operational purpose
+***_ Debug data ingestion issues
+***_ Compliance & audit trails
+***_ Reproduce reports from past
+***_ Track load times / source files
+** Both Use Validity Dates
+***_ SCD Type 2: business validity
+***_ Temporal: technical timestamps
+@endmindmap

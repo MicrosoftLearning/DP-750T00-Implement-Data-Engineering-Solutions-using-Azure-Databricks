@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Managed Tables
+** Unity Catalog Controls
+***_ Table metadata
+***_ Underlying data files
+***_ Storage location (auto-assigned)
+** Exclusive Features
+***_ Predictive optimization
+***_ Automatic liquid clustering
+***_ Metadata caching
+***_ Auto file cleanup (8 days after DROP)
+***_ UNDROP TABLE support
+** Supported Formats
+***_ Delta Lake
+***_ Apache Iceberg
+** Recommended Default
+***_ Best governance + performance
+@endmindmap

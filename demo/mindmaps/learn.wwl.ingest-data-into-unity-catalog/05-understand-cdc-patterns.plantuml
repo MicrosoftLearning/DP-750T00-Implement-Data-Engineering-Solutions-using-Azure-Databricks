@@ -1,0 +1,42 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
++ Understand CDC\nIngestion Patterns
+++ What is CDC?
++++_ Capture only changes: INSERTs, UPDATEs, DELETEs
++++_ No full table reloads
++++_ Incremental processing
+++ CDC Record Structure
++++_ Data columns: field values
++++_ Operation type: INSERT / UPDATE / DELETE
++++_ Sequence column: timestamp or sequence number
+-- Benefits
+---_ Reduced latency (minutes vs hours)
+---_ Lower compute & storage costs
+---_ Minimal impact on source database
+-- vs. Full Reload
+---_ Full reload: re-reads entire table
+---_ CDC: processes only what changed
+---_ CDC preferred for high-volume sources
+@endmindmap

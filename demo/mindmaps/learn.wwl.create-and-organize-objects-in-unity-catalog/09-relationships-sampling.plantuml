@@ -1,0 +1,40 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Data Relationships\nand Value Sampling
+** Table relationships
+***_ Unity Catalog foreign keys used auto
+***_ Define joins in knowledge store if missing
+***_ Specify Many-to-one, one-to-many etc.
+** Value sampling
+***_ Collects example values from columns
+***_ Matches user prompts to real data values
+***_ "California" → state code "CA"
+** Value dictionaries
+***_ For categorical columns
+***_ Status codes, categories, regions
+***_ Up to 1,024 values per column
+***_ Up to 120 columns in space
+***_ Refresh as data changes
+@endmindmap

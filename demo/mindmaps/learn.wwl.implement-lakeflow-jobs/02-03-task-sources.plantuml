@@ -1,0 +1,39 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Task\nSources
+** Workspace
+***_ File browser navigation
+***_ Good for development
+***_ Simple workflows
+** Git Provider
+***_ Repository URL
+***_ Branch/tag/commit
+***_ All tasks share same Git ref
+***_ Snapshot at run time
+** DBFS / ADLS
+***_ Python scripts only
+***_ Full URI required
+***_ abfss:// path format
+@endmindmap

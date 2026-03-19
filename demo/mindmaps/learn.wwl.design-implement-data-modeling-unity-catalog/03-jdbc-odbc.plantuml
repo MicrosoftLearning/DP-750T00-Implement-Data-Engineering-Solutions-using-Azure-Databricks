@@ -1,0 +1,41 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* JDBC / ODBC\nConnections
+** Supported Databases
+***_ SQL Server, Oracle
+***_ PostgreSQL, MySQL
+***_ Any JDBC/ODBC driver
+** Implementation
+***_ Full or incremental loads
+***_ Watermark columns for tracking
+***_ Store credentials in Databricks secrets
+** On-Premises Access
+***_ ExpressRoute / VPN
+***_ ADF with Self-Hosted IR
+** When Still Relevant
+***_ DB not in Lakeflow Connect
+***_ Custom extraction logic needed
+***_ Existing pipelines
+@endmindmap

@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Two Pipeline\nApproaches
+** Notebooks
+***_ Procedural (step-by-step)
+***_ Full control over execution
+***_ Explicit read/transform/write
+** Lakeflow Declarative
+***_ Declare desired end state
+***_ System manages orchestration
+***_ Automatic parallelization
+***_ Automatic error recovery
+** Key Difference
+***_ Notebooks: HOW to process
+***_ Declarative: WHAT result to produce
+@endmindmap

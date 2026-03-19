@@ -1,0 +1,45 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Monitor\nCompute Metrics
+** Access Path
+***_ Compute → cluster
+***_ Metrics tab
+***_ Filter by time\n(30 days)
+** Hardware Metrics
+***_ CPU utilization
+***_ Memory utilization
+***_ Network throughput
+** Spark Metrics
+***_ Active tasks
+***_ Failed / completed tasks
+***_ Shuffle read/write
+** GPU Metrics
+***_ ML workloads
+***_ DBR ML 13.3+
+** Scope
+***_ Per-node view
+***_ Aggregated view
+***_ Serverless → query insights
+@endmindmap

@@ -1,0 +1,38 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Configure Schema\nManaged Storage
+** Optional but useful
+***_ Separate physical storage per schema
+***_ Compliance: financial data in specific accounts
+** Requirements
+***_ External location pre-configured
+***_ CREATE MANAGED STORAGE privilege
+** SQL syntax
+***_ CREATE SCHEMA ... MANAGED LOCATION '...'
+***_ abfss://container@account.dfs.core.windows.net/path
+** Without schema storage
+***_ Falls back to catalog's storage location
+***_ Simplifies management when isolation not needed
+@endmindmap

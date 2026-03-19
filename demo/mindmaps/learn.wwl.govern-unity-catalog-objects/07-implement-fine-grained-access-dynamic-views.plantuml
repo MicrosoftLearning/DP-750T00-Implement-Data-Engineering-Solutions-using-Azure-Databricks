@@ -1,0 +1,43 @@
+@startmindmap
+<style>
+:depth(0) {
+    BackgroundColor #FF5F46
+    LineColor #FF5F46
+    FontColor #ffffff
+    LineThickness 3.0
+}
+:depth(1) {
+    BackgroundColor #0078D4
+    LineColor #0078D4
+    LineThickness 3.0
+    FontColor #FFFFFF
+}
+:depth(2) {
+    BackgroundColor #ffb900
+    LineColor #ffb900
+    LineThickness 3.0
+    FontColor #000000
+}
+boxless {
+    FontColor #000000
+}
+</style>
+* Fine-Grained Access\nwith Dynamic Views
+** Recipient properties
+***_ ALTER RECIPIENT SET PROPERTIES
+***_ Key-value pairs (e.g., country_region)
+** Row-level filtering
+***_ WHERE region = CURRENT_RECIPIENT('property')
+***_ Each recipient sees only their slice
+** Column-level masking
+***_ CASE WHEN CURRENT_RECIPIENT(...) = 'full'
+***_ ELSE 'REDACTED'
+***_ PII protection per recipient
+** Partition filtering
+***_ ALTER SHARE ... ADD TABLE
+***_ PARTITION (col = CURRENT_RECIPIENT('prop'))
+***_ No view needed for simple cases
+** Testing
+***_ Cannot query CURRENT_RECIPIENT() as provider
+***_ Test by sharing with yourself as recipient
+@endmindmap
