@@ -223,6 +223,201 @@ def setup_02(spark):
     print(f"  Schema: trainer_demo.demo_02")
     print(f"  Tables: patient_visits, lab_results, medical_devices")
     print(f"  Volume: shared_libraries")
+
+def setup_03(spark):
+    spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_03")
+    spark.sql(f"USE SCHEMA demo_03")
+    
+    print("- Creating education sample data...")
+    
+    # Create volume for course materials
+    spark.sql("CREATE VOLUME IF NOT EXISTS course_materials")
+    print("  ✓ Created course_materials volume")
+    
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS students")
+    spark.sql("DROP TABLE IF EXISTS courses")
+    spark.sql("DROP TABLE IF EXISTS enrollments")
+    spark.sql("DROP TABLE IF EXISTS assessments")
+    
+    # 1. Students Table
+    print("- Generating students data...")
+    
+    students_schema = StructType([
+        StructField("student_id", IntegerType(), False),
+        StructField("first_name", StringType(), True),
+        StructField("last_name", StringType(), True),
+        StructField("email", StringType(), True),
+        StructField("enrollment_date", DateType(), True),
+        StructField("program", StringType(), True),
+        StructField("year_level", IntegerType(), True),
+        StructField("gpa", DoubleType(), True)
+    ])
+    
+    first_names = ['Emma', 'Liam', 'Olivia', 'Noah', 'Ava', 'Ethan', 'Sophia', 'Mason', 'Isabella', 'William',
+                   'Mia', 'James', 'Charlotte', 'Benjamin', 'Amelia', 'Lucas', 'Harper', 'Henry', 'Evelyn', 'Alexander']
+    last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
+                  'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin']
+    programs = ['Computer Science', 'Data Engineering', 'Business Analytics', 'Information Systems', 'Software Engineering']
+    
+    student_data = []
+    start_date = datetime(2021, 9, 1)
+    
+    for i in range(500):
+        first_name = random.choice(first_names)
+        last_name = random.choice(last_names)
+        email = f"{first_name.lower()}.{last_name.lower()}{i}@university.edu"
+        enrollment_date = start_date + timedelta(days=random.randint(0, 1095))  # 3 years of enrollment dates
+        program = random.choice(programs)
+        year_level = random.randint(1, 4)
+        gpa = round(random.uniform(2.0, 4.0), 2)
+        
+        student_data.append(Row(
+            student_id=i+1000,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            enrollment_date=enrollment_date.date(),
+            program=program,
+            year_level=year_level,
+            gpa=gpa
+        ))
+    
+    students_df = spark.createDataFrame(student_data, schema=students_schema)
+    students_df.write.format("delta").mode("overwrite").saveAsTable("students")
+    print(f"  ✓ Created students table with {students_df.count():,} records")
+    
+    # 2. Courses Table
+    print("- Generating courses data...")
+    
+    courses_schema = StructType([
+        StructField("course_id", StringType(), False),
+        StructField("course_name", StringType(), True),
+        StructField("department", StringType(), True),
+        StructField("credits", IntegerType(), True),
+        StructField("level", StringType(), True),
+        StructField("instructor", StringType(), True)
+    ])
+    
+    course_list = [
+        ('CS101', 'Introduction to Programming', 'Computer Science', 3, 'Undergraduate', 'Dr. Sarah Mitchell'),
+        ('CS201', 'Data Structures', 'Computer Science', 4, 'Undergraduate', 'Prof. James Chen'),
+        ('CS301', 'Database Systems', 'Computer Science', 3, 'Undergraduate', 'Dr. Michael Torres'),
+        ('CS401', 'Machine Learning', 'Computer Science', 4, 'Graduate', 'Prof. Lisa Anderson'),
+        ('DE101', 'Introduction to Data Engineering', 'Data Engineering', 3, 'Undergraduate', 'Dr. Robert Kim'),
+        ('DE201', 'ETL and Data Pipelines', 'Data Engineering', 4, 'Undergraduate', 'Prof. Maria Garcia'),
+        ('DE301', 'Big Data Processing', 'Data Engineering', 4, 'Graduate', 'Dr. David Lee'),
+        ('DE401', 'Advanced Data Architecture', 'Data Engineering', 3, 'Graduate', 'Prof. Jennifer Martinez'),
+        ('BA101', 'Business Analytics Fundamentals', 'Business Analytics', 3, 'Undergraduate', 'Dr. Emily Brown'),
+        ('BA201', 'Statistical Analysis', 'Business Analytics', 4, 'Undergraduate', 'Prof. Thomas Wilson'),
+        ('BA301', 'Predictive Analytics', 'Business Analytics', 3, 'Graduate', 'Dr. Amanda Taylor'),
+        ('IS101', 'Information Systems', 'Information Systems', 3, 'Undergraduate', 'Prof. Christopher Davis'),
+        ('IS201', 'Systems Analysis and Design', 'Information Systems', 4, 'Undergraduate', 'Dr. Jessica Moore'),
+        ('SE101', 'Software Development', 'Software Engineering', 4, 'Undergraduate', 'Prof. Daniel Jackson'),
+        ('SE201', 'Software Testing', 'Software Engineering', 3, 'Undergraduate', 'Dr. Nicole White')
+    ]
+    
+    course_data = [Row(
+        course_id=c[0],
+        course_name=c[1],
+        department=c[2],
+        credits=c[3],
+        level=c[4],
+        instructor=c[5]
+    ) for c in course_list]
+    
+    courses_df = spark.createDataFrame(course_data, schema=courses_schema)
+    courses_df.write.format("delta").mode("overwrite").saveAsTable("courses")
+    print(f"  ✓ Created courses table with {courses_df.count():,} records")
+    
+    # 3. Enrollments Table
+    print("- Generating enrollments data...")
+    
+    enrollments_schema = StructType([
+        StructField("enrollment_id", IntegerType(), False),
+        StructField("student_id", IntegerType(), True),
+        StructField("course_id", StringType(), True),
+        StructField("semester", StringType(), True),
+        StructField("year", IntegerType(), True),
+        StructField("enrollment_status", StringType(), True)
+    ])
+    
+    semesters = ['Fall', 'Spring', 'Summer']
+    statuses = ['Enrolled', 'Enrolled', 'Enrolled', 'Completed', 'Completed', 'Completed', 'Withdrawn', 'In Progress']
+    years = [2022, 2023, 2024]
+    
+    enrollment_data = []
+    enrollment_id = 1
+    
+    # Generate enrollments for students
+    for student in student_data[:300]:  # Not all students have enrollments
+        num_enrollments = random.randint(3, 8)
+        enrolled_courses = random.sample([c[0] for c in course_list], num_enrollments)
+        
+        for course_id in enrolled_courses:
+            enrollment_data.append(Row(
+                enrollment_id=enrollment_id,
+                student_id=student.student_id,
+                course_id=course_id,
+                semester=random.choice(semesters),
+                year=random.choice(years),
+                enrollment_status=random.choice(statuses)
+            ))
+            enrollment_id += 1
+    
+    enrollments_df = spark.createDataFrame(enrollment_data, schema=enrollments_schema)
+    enrollments_df.write.format("delta").mode("overwrite").saveAsTable("enrollments")
+    print(f"  ✓ Created enrollments table with {enrollments_df.count():,} records")
+    
+    # 4. Assessments Table
+    print("- Generating assessments data...")
+    
+    assessments_schema = StructType([
+        StructField("assessment_id", IntegerType(), False),
+        StructField("enrollment_id", IntegerType(), True),
+        StructField("assessment_type", StringType(), True),
+        StructField("assessment_date", DateType(), True),
+        StructField("score", DoubleType(), True),
+        StructField("max_score", IntegerType(), True),
+        StructField("percentage", DoubleType(), True)
+    ])
+    
+    assessment_types = ['Midterm Exam', 'Final Exam', 'Quiz', 'Project', 'Assignment', 'Lab Work']
+    
+    assessment_data = []
+    assessment_id = 1
+    
+    # Generate assessments for completed enrollments
+    for enrollment in enrollment_data:
+        if enrollment.enrollment_status in ['Completed', 'In Progress']:
+            num_assessments = random.randint(3, 6)
+            
+            for _ in range(num_assessments):
+                assessment_type = random.choice(assessment_types)
+                max_score = 100 if assessment_type in ['Midterm Exam', 'Final Exam', 'Project'] else random.choice([20, 50, 100])
+                score = round(random.uniform(max_score * 0.5, max_score), 1)
+                percentage = round((score / max_score) * 100, 2)
+                assessment_date = datetime(enrollment.year, random.randint(1, 12), random.randint(1, 28))
+                
+                assessment_data.append(Row(
+                    assessment_id=assessment_id,
+                    enrollment_id=enrollment.enrollment_id,
+                    assessment_type=assessment_type,
+                    assessment_date=assessment_date.date(),
+                    score=score,
+                    max_score=max_score,
+                    percentage=percentage
+                ))
+                assessment_id += 1
+    
+    assessments_df = spark.createDataFrame(assessment_data, schema=assessments_schema)
+    assessments_df.write.format("delta").mode("overwrite").saveAsTable("assessments")
+    print(f"  ✓ Created assessments table with {assessments_df.count():,} records")
+    
+    print("\n✓ Education data setup complete!")
+    print(f"  Schema: trainer_demo.demo_03")
+    print(f"  Tables: students, courses, enrollments, assessments")
+    print(f"  Volume: course_materials")
     
 def setup(spark):
     print("Creating catalog trainer_demo")
@@ -232,5 +427,6 @@ def setup(spark):
     
     setup_01(spark)
     setup_02(spark)
+    setup_03(spark)
     
     print("Setup complete")
