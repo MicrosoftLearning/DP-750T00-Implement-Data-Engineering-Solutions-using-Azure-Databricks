@@ -2,7 +2,7 @@ import os
 import random
 from datetime import datetime, timedelta
 from pyspark.sql import Row
-from pyspark.sql.types import StructType, StructField, StringType, DateType, DecimalType
+from pyspark.sql.types import StructType, StructField, StringType, DateType, DecimalType, IntegerType, DoubleType, BooleanType
     
 def setup_01(spark): 
     spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_01")
@@ -20,6 +20,14 @@ def setup_01(spark):
     # Define sample data
     regions = ['North America', 'Europe', 'Asia Pacific', 'South America', 'Middle East', 'Africa']
     
+    # Define schema for orders
+    orders_schema = StructType([
+        StructField("order_id", IntegerType(), False),
+        StructField("customer_region", StringType(), True),
+        StructField("order_date", DateType(), True),
+        StructField("order_amount", DoubleType(), True)
+    ])
+    
     # Generate sample orders data    
     sample_data = []
     start_date = datetime(2023, 1, 1)
@@ -36,8 +44,8 @@ def setup_01(spark):
             order_amount=order_amount
         ))
     
-    # Create DataFrame
-    orders_df = spark.createDataFrame(sample_data)
+    # Create DataFrame with explicit schema
+    orders_df = spark.createDataFrame(sample_data, schema=orders_schema)
     
     # Write to Delta table
     orders_df.write.format("delta").mode("overwrite").saveAsTable("orders")
@@ -61,6 +69,17 @@ def setup_02(spark):
     
     # 1. Patient Visits Table
     print("- Generating patient visits data...")
+    
+    # Define schema for patient visits
+    visits_schema = StructType([
+        StructField("visit_id", IntegerType(), False),
+        StructField("patient_id", IntegerType(), True),
+        StructField("visit_date", DateType(), True),
+        StructField("department", StringType(), True),
+        StructField("diagnosis_code", StringType(), True),
+        StructField("treatment_duration_mins", IntegerType(), True)
+    ])
+    
     departments = ['Emergency', 'Cardiology', 'Neurology', 'Orthopedics', 'Pediatrics', 'Oncology', 'Internal Medicine']
     diagnosis_codes = ['I10', 'E11.9', 'J44.9', 'M25.511', 'F41.1', 'R50.9', 'K21.9', 'N18.9']
     
@@ -83,12 +102,25 @@ def setup_02(spark):
             treatment_duration_mins=duration
         ))
     
-    visits_df = spark.createDataFrame(visit_data)
+    visits_df = spark.createDataFrame(visit_data, schema=visits_schema)
     visits_df.write.format("delta").mode("overwrite").saveAsTable("patient_visits")
     print(f"  ✓ Created patient_visits table with {visits_df.count():,} records")
     
     # 2. Lab Results Table
     print("- Generating lab results data...")
+    
+    # Define schema for lab results
+    labs_schema = StructType([
+        StructField("test_id", IntegerType(), False),
+        StructField("patient_id", IntegerType(), True),
+        StructField("test_date", DateType(), True),
+        StructField("test_type", StringType(), True),
+        StructField("result_value", DoubleType(), True),
+        StructField("normal_min", DoubleType(), True),
+        StructField("normal_max", DoubleType(), True),
+        StructField("result_category", StringType(), True)
+    ])
+    
     test_types = ['Blood Glucose', 'Cholesterol', 'Hemoglobin A1C', 'WBC Count', 'Platelet Count', 
                   'Creatinine', 'ALT', 'AST', 'TSH', 'Vitamin D']
     
@@ -138,17 +170,28 @@ def setup_02(spark):
             test_date=test_date.date(),
             test_type=test_type,
             result_value=result_value,
-            normal_min=min_val,
-            normal_max=max_val,
+            normal_min=float(min_val),
+            normal_max=float(max_val),
             result_category=category
         ))
     
-    labs_df = spark.createDataFrame(lab_data)
+    labs_df = spark.createDataFrame(lab_data, schema=labs_schema)
     labs_df.write.format("delta").mode("overwrite").saveAsTable("lab_results")
     print(f"  ✓ Created lab_results table with {labs_df.count():,} records")
     
     # 3. Medical Devices Table
     print("- Generating medical devices data...")
+    
+    # Define schema for medical devices
+    devices_schema = StructType([
+        StructField("device_id", StringType(), False),
+        StructField("device_type", StringType(), True),
+        StructField("location", StringType(), True),
+        StructField("status", StringType(), True),
+        StructField("last_maintenance_date", DateType(), True),
+        StructField("requires_maintenance", BooleanType(), True)
+    ])
+    
     device_types = ['Ventilator', 'Infusion Pump', 'Patient Monitor', 'Defibrillator', 
                     'X-Ray Machine', 'MRI Scanner', 'CT Scanner', 'Ultrasound']
     locations = ['ICU-1', 'ICU-2', 'ER-1', 'ER-2', 'OR-1', 'OR-2', 'OR-3', 'Radiology', 'Cardiology']
@@ -172,7 +215,7 @@ def setup_02(spark):
             requires_maintenance=requires_maintenance
         ))
     
-    devices_df = spark.createDataFrame(device_data)
+    devices_df = spark.createDataFrame(device_data, schema=devices_schema)
     devices_df.write.format("delta").mode("overwrite").saveAsTable("medical_devices")
     print(f"  ✓ Created medical_devices table with {devices_df.count():,} records")
     
