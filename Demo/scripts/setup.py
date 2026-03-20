@@ -188,5 +188,6 @@ def setup(spark):
     spark.sql(f"USE CATALOG trainer_demo")
     
     setup_01(spark)
+    setup_02(spark)
     
     print("Setup complete")
