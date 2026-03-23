@@ -1073,6 +1073,9 @@ def setup_07(spark):
     # Create volume for landing sensor data
     spark.sql("CREATE VOLUME IF NOT EXISTS sensor_data_landing")
     print("  ✓ Created sensor_data_landing volume")
+    
+    spark.sql("CREATE VOLUME IF NOT EXISTS market_prices_landing")
+    print("  ✓ Created market_prices_landing volume")
 
     # Drop existing tables if they exist
     spark.sql("DROP TABLE IF EXISTS energy_sites")
