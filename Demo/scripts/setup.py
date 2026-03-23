@@ -419,14 +419,214 @@ def setup_03(spark):
     print(f"  Tables: students, courses, enrollments, assessments")
     print(f"  Volume: course_materials")
     
+def setup_04(spark):
+    spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_04")
+    spark.sql(f"USE SCHEMA demo_04")
+
+    print("- Creating retail sample data...")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS customers")
+    spark.sql("DROP TABLE IF EXISTS products")
+    spark.sql("DROP TABLE IF EXISTS stores")
+    spark.sql("DROP TABLE IF EXISTS transactions")
+
+    # 1. Customers Table (includes PII columns for masking demos)
+    print("- Generating customers data...")
+
+    customers_schema = StructType([
+        StructField("customer_id", IntegerType(), False),
+        StructField("first_name", StringType(), True),
+        StructField("last_name", StringType(), True),
+        StructField("email", StringType(), True),
+        StructField("phone", StringType(), True),
+        StructField("region", StringType(), True),
+        StructField("customer_segment", StringType(), True)
+    ])
+
+    first_names = ['Emma', 'Liam', 'Olivia', 'Noah', 'Ava', 'Ethan', 'Sophia', 'Mason', 'Isabella', 'William',
+                   'Mia', 'James', 'Charlotte', 'Benjamin', 'Amelia', 'Lucas', 'Harper', 'Henry', 'Evelyn', 'Alexander']
+    last_names = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez']
+    regions = ['North', 'South', 'East', 'West']
+    segments = ['Bronze', 'Silver', 'Gold', 'Platinum']
+    segment_weights = [0.4, 0.35, 0.2, 0.05]
+
+    customer_data = []
+    for i in range(500):
+        first_name = random.choice(first_names)
+        last_name = random.choice(last_names)
+        region = random.choice(regions)
+        segment = random.choices(segments, weights=segment_weights)[0]
+        phone = f"{random.randint(200,999)}-{random.randint(200,999)}-{random.randint(1000,9999)}"
+        email = f"{first_name.lower()}.{last_name.lower()}{i}@email.com"
+
+        customer_data.append(Row(
+            customer_id=i+1,
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone=phone,
+            region=region,
+            customer_segment=segment
+        ))
+
+    customers_df = spark.createDataFrame(customer_data, schema=customers_schema)
+    customers_df.write.format("delta").mode("overwrite").saveAsTable("customers")
+    print(f"  ✓ Created customers table with {customers_df.count():,} records")
+
+    # 2. Products Table
+    print("- Generating products data...")
+
+    products_schema = StructType([
+        StructField("product_id", StringType(), False),
+        StructField("product_name", StringType(), True),
+        StructField("category", StringType(), True),
+        StructField("price", DoubleType(), True),
+        StructField("cost", DoubleType(), True)
+    ])
+
+    product_list = [
+        ("PROD-001", "Wireless Headphones", "Electronics", 89.99, 35.00),
+        ("PROD-002", "Running Shoes", "Sports", 129.99, 52.00),
+        ("PROD-003", "Yoga Mat", "Sports", 34.99, 12.00),
+        ("PROD-004", "Coffee Maker", "Home", 79.99, 30.00),
+        ("PROD-005", "Winter Jacket", "Clothing", 149.99, 60.00),
+        ("PROD-006", "Moisturizer SPF 50", "Beauty", 24.99, 8.00),
+        ("PROD-007", "Bluetooth Speaker", "Electronics", 59.99, 22.00),
+        ("PROD-008", "Denim Jeans", "Clothing", 54.99, 20.00),
+        ("PROD-009", "Protein Powder", "Food", 44.99, 18.00),
+        ("PROD-010", "Smart Watch", "Electronics", 249.99, 100.00),
+        ("PROD-011", "Cookware Set", "Home", 119.99, 45.00),
+        ("PROD-012", "T-Shirt Pack", "Clothing", 29.99, 10.00),
+        ("PROD-013", "Hiking Boots", "Sports", 179.99, 72.00),
+        ("PROD-014", "Face Serum", "Beauty", 39.99, 14.00),
+        ("PROD-015", "Organic Tea Set", "Food", 19.99, 7.00),
+        ("PROD-016", "Laptop Bag", "Electronics", 69.99, 26.00),
+        ("PROD-017", "Throw Blanket", "Home", 39.99, 15.00),
+        ("PROD-018", "Sports Socks 6-Pack", "Sports", 14.99, 5.00),
+        ("PROD-019", "Hair Dryer", "Beauty", 49.99, 18.00),
+        ("PROD-020", "Granola Bars 12-Pack", "Food", 12.99, 4.50)
+    ]
+
+    product_data = [Row(
+        product_id=p[0],
+        product_name=p[1],
+        category=p[2],
+        price=p[3],
+        cost=p[4]
+    ) for p in product_list]
+
+    products_df = spark.createDataFrame(product_data, schema=products_schema)
+    products_df.write.format("delta").mode("overwrite").saveAsTable("products")
+    print(f"  ✓ Created products table with {products_df.count():,} records")
+
+    # 3. Stores Table
+    print("- Generating stores data...")
+
+    stores_schema = StructType([
+        StructField("store_id", StringType(), False),
+        StructField("store_name", StringType(), True),
+        StructField("city", StringType(), True),
+        StructField("state", StringType(), True),
+        StructField("region", StringType(), True)
+    ])
+
+    store_list = [
+        ("STORE-001", "RetailNow Chicago", "Chicago", "IL", "North"),
+        ("STORE-002", "RetailNow Minneapolis", "Minneapolis", "MN", "North"),
+        ("STORE-003", "RetailNow Detroit", "Detroit", "MI", "North"),
+        ("STORE-004", "RetailNow Milwaukee", "Milwaukee", "WI", "North"),
+        ("STORE-005", "RetailNow Houston", "Houston", "TX", "South"),
+        ("STORE-006", "RetailNow Atlanta", "Atlanta", "GA", "South"),
+        ("STORE-007", "RetailNow Miami", "Miami", "FL", "South"),
+        ("STORE-008", "RetailNow Nashville", "Nashville", "TN", "South"),
+        ("STORE-009", "RetailNow New York", "New York", "NY", "East"),
+        ("STORE-010", "RetailNow Boston", "Boston", "MA", "East"),
+        ("STORE-011", "RetailNow Philadelphia", "Philadelphia", "PA", "East"),
+        ("STORE-012", "RetailNow Washington DC", "Washington", "DC", "East"),
+        ("STORE-013", "RetailNow Los Angeles", "Los Angeles", "CA", "West"),
+        ("STORE-014", "RetailNow Seattle", "Seattle", "WA", "West"),
+        ("STORE-015", "RetailNow Phoenix", "Phoenix", "AZ", "West"),
+        ("STORE-016", "RetailNow Denver", "Denver", "CO", "West")
+    ]
+
+    store_data = [Row(
+        store_id=s[0],
+        store_name=s[1],
+        city=s[2],
+        state=s[3],
+        region=s[4]
+    ) for s in store_list]
+
+    stores_df = spark.createDataFrame(store_data, schema=stores_schema)
+    stores_df.write.format("delta").mode("overwrite").saveAsTable("stores")
+    print(f"  ✓ Created stores table with {stores_df.count():,} records")
+
+    # 4. Transactions Table
+    print("- Generating transactions data...")
+
+    transactions_schema = StructType([
+        StructField("transaction_id", IntegerType(), False),
+        StructField("customer_id", IntegerType(), True),
+        StructField("product_id", StringType(), True),
+        StructField("store_id", StringType(), True),
+        StructField("store_region", StringType(), True),
+        StructField("transaction_date", DateType(), True),
+        StructField("quantity", IntegerType(), True),
+        StructField("amount", DoubleType(), True)
+    ])
+
+    store_ids_by_region = {
+        "North": ["STORE-001", "STORE-002", "STORE-003", "STORE-004"],
+        "South": ["STORE-005", "STORE-006", "STORE-007", "STORE-008"],
+        "East":  ["STORE-009", "STORE-010", "STORE-011", "STORE-012"],
+        "West":  ["STORE-013", "STORE-014", "STORE-015", "STORE-016"]
+    }
+    store_region_map = {s[0]: s[4] for s in store_list}
+    product_price_map = {p[0]: p[3] for p in product_list}
+    product_ids = [p[0] for p in product_list]
+
+    start_date = datetime(2023, 1, 1)
+    transaction_data = []
+
+    for i in range(5000):
+        customer = customer_data[random.randint(0, len(customer_data) - 1)]
+        store_id = random.choice(store_ids_by_region[customer.region])
+        store_region = store_region_map[store_id]
+        product_id = random.choice(product_ids)
+        quantity = random.randint(1, 5)
+        amount = round(product_price_map[product_id] * quantity * random.uniform(0.85, 1.0), 2)
+        transaction_date = start_date + timedelta(days=random.randint(0, 730))
+
+        transaction_data.append(Row(
+            transaction_id=i + 1,
+            customer_id=customer.customer_id,
+            product_id=product_id,
+            store_id=store_id,
+            store_region=store_region,
+            transaction_date=transaction_date.date(),
+            quantity=quantity,
+            amount=amount
+        ))
+
+    transactions_df = spark.createDataFrame(transaction_data, schema=transactions_schema)
+    transactions_df.write.format("delta").mode("overwrite").saveAsTable("transactions")
+    print(f"  ✓ Created transactions table with {transactions_df.count():,} records")
+
+    print("\n✓ Retail data setup complete!")
+    print(f"  Schema: trainer_demo.demo_04")
+    print(f"  Tables: customers, products, stores, transactions")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
-    
+
     spark.sql(f"CREATE CATALOG IF NOT EXISTS trainer_demo")
     spark.sql(f"USE CATALOG trainer_demo")
-    
+
     setup_01(spark)
     setup_02(spark)
     setup_03(spark)
-    
+    setup_04(spark)
+
     print("Setup complete")
