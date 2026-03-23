@@ -618,6 +618,187 @@ def setup_04(spark):
     print(f"  Tables: customers, products, stores, transactions")
 
 
+def setup_05(spark):
+    spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_05")
+    spark.sql(f"USE SCHEMA demo_05")
+
+    print("- Creating automotive sample data...")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS vehicles")
+    spark.sql("DROP TABLE IF EXISTS customers")
+    spark.sql("DROP TABLE IF EXISTS telemetry_events")
+    spark.sql("DROP TABLE IF EXISTS service_records")
+
+    import random
+
+    # 1. Vehicles Table
+    print("- Generating vehicles data...")
+
+    vehicles_schema = StructType([
+        StructField("vehicle_id", IntegerType(), False),
+        StructField("vin", StringType(), True),
+        StructField("make", StringType(), True),
+        StructField("model", StringType(), True),
+        StructField("year", IntegerType(), True),
+        StructField("vehicle_type", StringType(), True),
+        StructField("region", StringType(), True),
+        StructField("color", StringType(), True)
+    ])
+
+    makes_models = [
+        ("AutoNova", "Sedan X1", "Sedan"),
+        ("AutoNova", "SUV Q5", "SUV"),
+        ("AutoNova", "Truck T3", "Truck"),
+        ("AutoNova", "EV Pulse", "Electric"),
+        ("AutoNova", "Hatchback Z2", "Hatchback"),
+        ("AutoNova", "Coupe R8", "Coupe"),
+    ]
+    regions = ["North America", "Europe", "Asia Pacific", "South America"]
+    colors = ["White", "Black", "Silver", "Blue", "Red", "Gray", "Green"]
+    years = list(range(2018, 2026))
+
+    vehicle_data = []
+    for i in range(300):
+        make, model, vtype = random.choice(makes_models)
+        vehicle_data.append(Row(
+            vehicle_id=i + 1,
+            vin=f"1AUTONOVA{str(i + 1).zfill(8)}",
+            make=make,
+            model=model,
+            year=random.choice(years),
+            vehicle_type=vtype,
+            region=random.choice(regions),
+            color=random.choice(colors)
+        ))
+
+    vehicles_df = spark.createDataFrame(vehicle_data, schema=vehicles_schema)
+    vehicles_df.write.format("delta").mode("overwrite").saveAsTable("vehicles")
+    print(f"  ✓ Created vehicles table with {vehicles_df.count():,} records")
+
+    # 2. Customers Table (includes PII columns for governance demos)
+    print("- Generating customers data...")
+
+    customers_schema = StructType([
+        StructField("customer_id", IntegerType(), False),
+        StructField("first_name", StringType(), True),
+        StructField("last_name", StringType(), True),
+        StructField("email", StringType(), True),
+        StructField("phone", StringType(), True),
+        StructField("region", StringType(), True),
+        StructField("customer_since_date", DateType(), True),
+        StructField("vehicle_id", IntegerType(), True)
+    ])
+
+    first_names = ["Luca", "Emma", "Omar", "Yuki", "Carlos", "Sophie", "Arjun", "Mei",
+                   "James", "Fatima", "Henrik", "Amara", "Diego", "Sakura", "Ivan"]
+    last_names = ["Rossi", "Müller", "Al-Rashid", "Tanaka", "García", "Dubois",
+                  "Sharma", "Chen", "Smith", "Ahmed", "Andersen", "Okonkwo",
+                  "Lopez", "Yamamoto", "Petrov"]
+    customer_regions = ["North America", "Europe", "Asia Pacific", "South America"]
+    start_date = datetime(2015, 1, 1)
+
+    customer_data = []
+    for i in range(300):
+        first = random.choice(first_names)
+        last = random.choice(last_names)
+        region = random.choice(customer_regions)
+        since_days = random.randint(0, 3000)
+        customer_data.append(Row(
+            customer_id=i + 1,
+            first_name=first,
+            last_name=last,
+            email=f"{first.lower()}.{last.lower()}{i}@autonova-demo.com",
+            phone=f"+1-{random.randint(200,999)}-{random.randint(100,999)}-{random.randint(1000,9999)}",
+            region=region,
+            customer_since_date=(start_date + timedelta(days=since_days)).date(),
+            vehicle_id=random.randint(1, 300)
+        ))
+
+    customers_df = spark.createDataFrame(customer_data, schema=customers_schema)
+    customers_df.write.format("delta").mode("overwrite").saveAsTable("customers")
+    print(f"  ✓ Created customers table with {customers_df.count():,} records")
+
+    # 3. Telemetry Events Table
+    print("- Generating telemetry events data...")
+
+    telemetry_schema = StructType([
+        StructField("event_id", IntegerType(), False),
+        StructField("vehicle_id", IntegerType(), True),
+        StructField("event_date", DateType(), True),
+        StructField("speed_kmh", DoubleType(), True),
+        StructField("engine_temp_c", DoubleType(), True),
+        StructField("battery_level_pct", DoubleType(), True),
+        StructField("odometer_km", DoubleType(), True),
+        StructField("event_type", StringType(), True)
+    ])
+
+    event_types = ["normal", "normal", "normal", "warning", "critical", "idle"]
+    tel_start = datetime(2024, 1, 1)
+
+    telemetry_data = []
+    for i in range(10000):
+        etype = random.choice(event_types)
+        speed = round(random.uniform(0, 180), 1) if etype != "idle" else 0.0
+        temp = round(random.uniform(70, 120) if etype == "normal" else random.uniform(100, 150), 1)
+        battery = round(random.uniform(20, 100), 1)
+        telemetry_data.append(Row(
+            event_id=i + 1,
+            vehicle_id=random.randint(1, 300),
+            event_date=(tel_start + timedelta(days=random.randint(0, 365))).date(),
+            speed_kmh=speed,
+            engine_temp_c=temp,
+            battery_level_pct=battery,
+            odometer_km=round(random.uniform(0, 200000), 1),
+            event_type=etype
+        ))
+
+    telemetry_df = spark.createDataFrame(telemetry_data, schema=telemetry_schema)
+    telemetry_df.write.format("delta").mode("overwrite").saveAsTable("telemetry_events")
+    print(f"  ✓ Created telemetry_events table with {telemetry_df.count():,} records")
+
+    # 4. Service Records Table
+    print("- Generating service records data...")
+
+    service_schema = StructType([
+        StructField("service_id", IntegerType(), False),
+        StructField("vehicle_id", IntegerType(), True),
+        StructField("customer_id", IntegerType(), True),
+        StructField("service_date", DateType(), True),
+        StructField("service_type", StringType(), True),
+        StructField("cost_eur", DoubleType(), True),
+        StructField("dealer_id", StringType(), True),
+        StructField("technician_id", StringType(), True)
+    ])
+
+    service_types = ["Oil Change", "Brake Inspection", "Tire Rotation", "Battery Check",
+                     "Software Update", "Annual Service", "Warranty Repair", "Recall Fix"]
+    dealer_ids = [f"DEALER-{str(d).zfill(3)}" for d in range(1, 21)]
+    svc_start = datetime(2022, 1, 1)
+
+    service_data = []
+    for i in range(2000):
+        cust_row = customer_data[random.randint(0, len(customer_data) - 1)]
+        service_data.append(Row(
+            service_id=i + 1,
+            vehicle_id=cust_row.vehicle_id,
+            customer_id=cust_row.customer_id,
+            service_date=(svc_start + timedelta(days=random.randint(0, 1095))).date(),
+            service_type=random.choice(service_types),
+            cost_eur=round(random.uniform(50, 2500), 2),
+            dealer_id=random.choice(dealer_ids),
+            technician_id=f"TECH-{random.randint(1, 50):03d}"
+        ))
+
+    service_df = spark.createDataFrame(service_data, schema=service_schema)
+    service_df.write.format("delta").mode("overwrite").saveAsTable("service_records")
+    print(f"  ✓ Created service_records table with {service_df.count():,} records")
+
+    print("\n✓ Automotive data setup complete!")
+    print(f"  Schema: trainer_demo.demo_05")
+    print(f"  Tables: vehicles, customers, telemetry_events, service_records")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -628,5 +809,6 @@ def setup(spark):
     setup_02(spark)
     setup_03(spark)
     setup_04(spark)
+    setup_05(spark)
 
     print("Setup complete")
