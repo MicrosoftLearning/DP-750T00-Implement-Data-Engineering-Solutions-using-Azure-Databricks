@@ -799,6 +799,528 @@ def setup_05(spark):
     print(f"  Tables: vehicles, customers, telemetry_events, service_records")
 
 
+def setup_06(spark):
+    spark.sql(f"CREATE SCHEMA IF NOT EXISTS demo_06")
+    spark.sql(f"USE SCHEMA demo_06")
+
+    print("- Creating financial services sample data...")
+
+    import random
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS clients")
+    spark.sql("DROP TABLE IF EXISTS accounts")
+    spark.sql("DROP TABLE IF EXISTS trades")
+    spark.sql("DROP TABLE IF EXISTS market_data")
+    spark.sql("DROP TABLE IF EXISTS client_staging")
+
+    # 1. Clients Table (for SCD Type 2 demos)
+    print("- Generating clients data...")
+
+    clients_schema = StructType([
+        StructField("client_id", StringType(), False),
+        StructField("first_name", StringType(), True),
+        StructField("last_name", StringType(), True),
+        StructField("email", StringType(), True),
+        StructField("phone", StringType(), True),
+        StructField("country", StringType(), True),
+        StructField("region", StringType(), True),
+        StructField("segment", StringType(), True),
+        StructField("kyc_status", StringType(), True),
+        StructField("risk_rating", StringType(), True),
+        StructField("relationship_manager", StringType(), True),
+        StructField("onboarding_date", DateType(), True)
+    ])
+
+    first_names = ['James', 'Emma', 'Oliver', 'Sophia', 'William', 'Ava', 'Benjamin', 'Isabella',
+                   'Lucas', 'Mia', 'Henry', 'Charlotte', 'Alexander', 'Amelia', 'Mason',
+                   'Harper', 'Ethan', 'Evelyn', 'Daniel', 'Abigail']
+    last_names = ['Anderson', 'Thompson', 'Martinez', 'Garcia', 'Robinson', 'Clark', 'Rodriguez',
+                  'Lewis', 'Lee', 'Walker', 'Hall', 'Allen', 'Young', 'Hernandez', 'King',
+                  'Wright', 'Lopez', 'Hill', 'Scott', 'Green']
+    countries = ['United States', 'United Kingdom', 'Germany', 'France', 'Singapore', 'Australia']
+    country_region_map = {
+        'United States': 'Americas', 'United Kingdom': 'EMEA', 'Germany': 'EMEA',
+        'France': 'EMEA', 'Singapore': 'APAC', 'Australia': 'APAC'
+    }
+    segments = ['Retail', 'Retail', 'Retail', 'Private Banking', 'Private Banking', 'Institutional']
+    kyc_statuses = ['Approved', 'Approved', 'Approved', 'Pending Review', 'Expired']
+    risk_ratings = ['Low', 'Low', 'Medium', 'Medium', 'High']
+    relationship_managers = [
+        'Sarah Mitchell', 'James Chen', 'Michael Torres', 'Lisa Anderson',
+        'Robert Kim', 'Maria Garcia', 'David Lee', 'Jennifer Martinez'
+    ]
+    start_date = datetime(2018, 1, 1)
+
+    client_data = []
+    for i in range(400):
+        first = random.choice(first_names)
+        last = random.choice(last_names)
+        country = random.choice(countries)
+        client_data.append(Row(
+            client_id=f"CLT-{str(i + 1).zfill(5)}",
+            first_name=first,
+            last_name=last,
+            email=f"{first.lower()}.{last.lower()}{i}@finservdemo.com",
+            phone=f"+1-{random.randint(200,999)}-{random.randint(100,999)}-{random.randint(1000,9999)}",
+            country=country,
+            region=country_region_map[country],
+            segment=random.choice(segments),
+            kyc_status=random.choice(kyc_statuses),
+            risk_rating=random.choice(risk_ratings),
+            relationship_manager=random.choice(relationship_managers),
+            onboarding_date=(start_date + timedelta(days=random.randint(0, 2000))).date()
+        ))
+
+    clients_df = spark.createDataFrame(client_data, schema=clients_schema)
+    clients_df.write.format("delta").mode("overwrite").saveAsTable("clients")
+    print(f"  ✓ Created clients table with {clients_df.count():,} records")
+
+    # 2. Accounts Table
+    print("- Generating accounts data...")
+
+    accounts_schema = StructType([
+        StructField("account_id", StringType(), False),
+        StructField("client_id", StringType(), True),
+        StructField("account_type", StringType(), True),
+        StructField("currency", StringType(), True),
+        StructField("balance", DoubleType(), True),
+        StructField("opened_date", DateType(), True),
+        StructField("status", StringType(), True)
+    ])
+
+    account_types = ['Current', 'Savings', 'Investment', 'Pension', 'Trading']
+    currencies = ['USD', 'USD', 'USD', 'EUR', 'GBP', 'SGD']
+    statuses = ['Active', 'Active', 'Active', 'Active', 'Dormant', 'Closed']
+
+    account_data = []
+    acct_start = datetime(2018, 1, 1)
+    for i in range(600):
+        client = client_data[random.randint(0, len(client_data) - 1)]
+        account_data.append(Row(
+            account_id=f"ACC-{str(i + 1).zfill(6)}",
+            client_id=client.client_id,
+            account_type=random.choice(account_types),
+            currency=random.choice(currencies),
+            balance=round(random.uniform(1000, 2000000), 2),
+            opened_date=(acct_start + timedelta(days=random.randint(0, 2000))).date(),
+            status=random.choice(statuses)
+        ))
+
+    accounts_df = spark.createDataFrame(account_data, schema=accounts_schema)
+    accounts_df.write.format("delta").mode("overwrite").saveAsTable("accounts")
+    print(f"  ✓ Created accounts table with {accounts_df.count():,} records")
+
+    # 3. Trades Table (large, for partitioning and clustering demos)
+    print("- Generating trades data...")
+
+    trades_schema = StructType([
+        StructField("trade_id", StringType(), False),
+        StructField("account_id", StringType(), True),
+        StructField("ticker", StringType(), True),
+        StructField("asset_class", StringType(), True),
+        StructField("trade_type", StringType(), True),
+        StructField("quantity", IntegerType(), True),
+        StructField("price", DoubleType(), True),
+        StructField("total_value", DoubleType(), True),
+        StructField("trade_date", DateType(), True),
+        StructField("settlement_date", DateType(), True),
+        StructField("status", StringType(), True),
+        StructField("region", StringType(), True)
+    ])
+
+    tickers_by_class = {
+        'Equity': ['AAPL', 'MSFT', 'GOOGL', 'AMZN', 'TSLA', 'JPM', 'BAC', 'GS', 'MS', 'WFC'],
+        'Fixed Income': ['US10Y', 'US2Y', 'CORP-AA', 'CORP-BB', 'MUNI-NY', 'MUNI-CA'],
+        'ETF': ['SPY', 'QQQ', 'IWM', 'GLD', 'VTI', 'AGG'],
+        'FX': ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD']
+    }
+    trade_types = ['Buy', 'Buy', 'Sell', 'Sell', 'Short', 'Cover']
+    statuses_trade = ['Settled', 'Settled', 'Settled', 'Pending', 'Failed']
+    regions = ['Americas', 'EMEA', 'APAC']
+    trade_start = datetime(2022, 1, 1)
+
+    trade_data = []
+    for i in range(8000):
+        asset_class = random.choice(list(tickers_by_class.keys()))
+        ticker = random.choice(tickers_by_class[asset_class])
+        account = account_data[random.randint(0, len(account_data) - 1)]
+        quantity = random.randint(1, 10000)
+        price = round(random.uniform(10, 5000), 2)
+        td = trade_start + timedelta(days=random.randint(0, 730))
+        sd = td + timedelta(days=2)
+        trade_data.append(Row(
+            trade_id=f"TRD-{str(i + 1).zfill(7)}",
+            account_id=account.account_id,
+            ticker=ticker,
+            asset_class=asset_class,
+            trade_type=random.choice(trade_types),
+            quantity=quantity,
+            price=price,
+            total_value=round(quantity * price, 2),
+            trade_date=td.date(),
+            settlement_date=sd.date(),
+            status=random.choice(statuses_trade),
+            region=random.choice(regions)
+        ))
+
+    trades_df = spark.createDataFrame(trade_data, schema=trades_schema)
+    trades_df.write.format("delta").mode("overwrite").saveAsTable("trades")
+    print(f"  ✓ Created trades table with {trades_df.count():,} records")
+
+    # 4. Market Data Table (for granularity demos)
+    print("- Generating market data...")
+
+    market_schema = StructType([
+        StructField("price_date", DateType(), False),
+        StructField("ticker", StringType(), False),
+        StructField("open_price", DoubleType(), True),
+        StructField("high_price", DoubleType(), True),
+        StructField("low_price", DoubleType(), True),
+        StructField("close_price", DoubleType(), True),
+        StructField("volume", IntegerType(), True),
+        StructField("asset_class", StringType(), True)
+    ])
+
+    all_tickers = [(t, ac) for ac, tl in tickers_by_class.items() for t in tl]
+    mkt_start = datetime(2023, 1, 1)
+    market_data = []
+
+    for day_offset in range(365):
+        current_date = mkt_start + timedelta(days=day_offset)
+        if current_date.weekday() < 5:  # weekdays only
+            for ticker, asset_class in all_tickers:
+                base_price = round(random.uniform(20, 3000), 2)
+                open_p = round(base_price * random.uniform(0.98, 1.02), 2)
+                high_p = round(open_p * random.uniform(1.0, 1.05), 2)
+                low_p = round(open_p * random.uniform(0.95, 1.0), 2)
+                close_p = round(random.uniform(low_p, high_p), 2)
+                market_data.append(Row(
+                    price_date=current_date.date(),
+                    ticker=ticker,
+                    open_price=open_p,
+                    high_price=high_p,
+                    low_price=low_p,
+                    close_price=close_p,
+                    volume=random.randint(100000, 50000000),
+                    asset_class=asset_class
+                ))
+
+    market_df = spark.createDataFrame(market_data, schema=market_schema)
+    market_df.write.format("delta").mode("overwrite").saveAsTable("market_data")
+    print(f"  ✓ Created market_data table with {market_df.count():,} records")
+
+    # 5. Client Staging Table (for SCD Type 2 MERGE demos)
+    print("- Generating client staging data (for SCD demo)...")
+
+    # Take subset of existing clients with changes, plus some new clients
+    staging_updates = []
+    regions_updated = ['Americas', 'EMEA', 'APAC']
+    risk_ratings_updated = ['Low', 'Medium', 'High']
+    kyc_statuses_updated = ['Approved', 'Pending Review', 'Approved']
+
+    for client in client_data[:50]:  # Update first 50 clients (simulate changes)
+        staging_updates.append(Row(
+            client_id=client.client_id,
+            first_name=client.first_name,
+            last_name=client.last_name,
+            email=client.email,
+            phone=client.phone,
+            country=client.country,
+            region=random.choice(regions_updated),  # region may have changed
+            segment=client.segment,
+            kyc_status=random.choice(kyc_statuses_updated),
+            risk_rating=random.choice(risk_ratings_updated),  # risk rating may have changed
+            relationship_manager=random.choice(relationship_managers),
+            onboarding_date=client.onboarding_date
+        ))
+
+    # Add 10 brand-new clients
+    for i in range(400, 410):
+        first = random.choice(first_names)
+        last = random.choice(last_names)
+        country = random.choice(countries)
+        staging_updates.append(Row(
+            client_id=f"CLT-{str(i + 1).zfill(5)}",
+            first_name=first,
+            last_name=last,
+            email=f"{first.lower()}.{last.lower()}{i}@finservdemo.com",
+            phone=f"+1-{random.randint(200,999)}-{random.randint(100,999)}-{random.randint(1000,9999)}",
+            country=country,
+            region=country_region_map[country],
+            segment=random.choice(segments),
+            kyc_status='Approved',
+            risk_rating=random.choice(risk_ratings),
+            relationship_manager=random.choice(relationship_managers),
+            onboarding_date=(datetime(2024, 1, 1) + timedelta(days=random.randint(0, 400))).date()
+        ))
+
+    staging_df = spark.createDataFrame(staging_updates, schema=clients_schema)
+    staging_df.write.format("delta").mode("overwrite").saveAsTable("client_staging")
+    print(f"  ✓ Created client_staging table with {staging_df.count():,} records")
+
+    print("\n✓ Financial services data setup complete!")
+    print(f"  Schema: trainer_demo.demo_06")
+    print(f"  Tables: clients, accounts, trades, market_data, client_staging")
+
+
+def setup_07(spark):
+    spark.sql("CREATE SCHEMA IF NOT EXISTS demo_07")
+    spark.sql("USE SCHEMA demo_07")
+
+    print("- Creating renewable energy sample data...")
+
+    # Create volume for landing sensor data
+    spark.sql("CREATE VOLUME IF NOT EXISTS sensor_data_landing")
+    print("  ✓ Created sensor_data_landing volume")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS energy_sites")
+    spark.sql("DROP TABLE IF EXISTS turbines")
+    spark.sql("DROP TABLE IF EXISTS turbine_readings")
+    spark.sql("DROP TABLE IF EXISTS turbine_events")
+    spark.sql("DROP TABLE IF EXISTS market_prices")
+
+    # 1. Energy Sites Table
+    print("- Generating energy_sites data...")
+
+    sites_schema = StructType([
+        StructField("site_id",       StringType(),  False),
+        StructField("site_name",     StringType(),  True),
+        StructField("energy_type",   StringType(),  True),
+        StructField("country",       StringType(),  True),
+        StructField("region",        StringType(),  True),
+        StructField("capacity_mw",   DoubleType(),  True),
+        StructField("commissioned_date", DateType(), True),
+        StructField("operator",      StringType(),  True),
+    ])
+
+    site_list = [
+        ("SITE-01", "North Sea Alpha",     "Wind",   "Netherlands",  "Europe",        450.0, "2018-06-15"),
+        ("SITE-02", "Hornsea Delta",       "Wind",   "United Kingdom","Europe",        632.0, "2019-09-01"),
+        ("SITE-03", "Mohave Solar Park",   "Solar",  "United States", "North America", 280.0, "2020-04-22"),
+        ("SITE-04", "Atacama Sun",         "Solar",  "Chile",         "South America", 175.0, "2021-01-10"),
+        ("SITE-05", "Baltic Breeze",       "Wind",   "Germany",       "Europe",        390.0, "2019-03-30"),
+        ("SITE-06", "Patagonia Wind",      "Wind",   "Argentina",     "South America", 210.0, "2022-07-18"),
+        ("SITE-07", "Sahara Solar I",      "Solar",  "Morocco",       "Africa",        320.0, "2021-11-05"),
+        ("SITE-08", "Texas Panhandle",     "Wind",   "United States", "North America", 510.0, "2020-08-14"),
+        ("SITE-09", "Rajasthan Solar",     "Solar",  "India",         "Asia Pacific",  400.0, "2022-02-28"),
+        ("SITE-10", "Norwegian Ridge",     "Wind",   "Norway",        "Europe",        290.0, "2017-12-01"),
+        ("SITE-11", "Queensland Sun",      "Solar",  "Australia",     "Asia Pacific",  230.0, "2021-05-20"),
+        ("SITE-12", "Great Plains Wind",   "Wind",   "United States", "North America", 480.0, "2020-10-01"),
+        ("SITE-13", "Iberian Solar Park",  "Solar",  "Spain",         "Europe",        350.0, "2022-09-14"),
+        ("SITE-14", "Danish Offshore",     "Wind",   "Denmark",       "Europe",        560.0, "2019-06-30"),
+        ("SITE-15", "Nile Delta Solar",    "Solar",  "Egypt",         "Africa",        260.0, "2023-01-15"),
+        ("SITE-16", "Yucatan Coast",       "Wind",   "Mexico",        "North America", 180.0, "2023-04-01"),
+        ("SITE-17", "Taklamakan Solar",    "Solar",  "China",         "Asia Pacific",  600.0, "2020-12-20"),
+        ("SITE-18", "Scottish Highlands",  "Wind",   "United Kingdom","Europe",        310.0, "2018-09-05"),
+        ("SITE-19", "Minas Gerais Solar",  "Solar",  "Brazil",        "South America", 220.0, "2022-06-11"),
+        ("SITE-20", "Canterbury Plains",   "Wind",   "New Zealand",   "Asia Pacific",  140.0, "2021-08-25"),
+    ]
+
+    operators = ["GreenGrid Energy", "GreenGrid Energy", "GreenGrid Partners", "GreenGrid Partners",
+                 "GreenGrid Holdings"]
+
+    site_data = [
+        Row(
+            site_id=s[0],
+            site_name=s[1],
+            energy_type=s[2],
+            country=s[3],
+            region=s[4],
+            capacity_mw=s[5],
+            commissioned_date=datetime.strptime(s[6], "%Y-%m-%d").date(),
+            operator=random.choice(operators),
+        )
+        for s in site_list
+    ]
+
+    sites_df = spark.createDataFrame(site_data, schema=sites_schema)
+    sites_df.write.format("delta").mode("overwrite").saveAsTable("energy_sites")
+    print(f"  ✓ Created energy_sites table with {sites_df.count():,} records")
+
+    # 2. Turbines Table
+    print("- Generating turbines data...")
+
+    turbines_schema = StructType([
+        StructField("turbine_id",         StringType(),  False),
+        StructField("site_id",            StringType(),  True),
+        StructField("asset_type",         StringType(),  True),
+        StructField("manufacturer",       StringType(),  True),
+        StructField("model",              StringType(),  True),
+        StructField("capacity_kw",        DoubleType(),  True),
+        StructField("installation_date",  DateType(),    True),
+        StructField("operational_status", StringType(),  True),
+    ])
+
+    wind_manufacturers = [
+        ("Vestas",     "V150-4.5", 4500.0),
+        ("Siemens",    "SG 5.0",   5000.0),
+        ("GE Vernova", "Haliade-X",6000.0),
+        ("Enercon",    "E-138",    3500.0),
+    ]
+    solar_manufacturers = [
+        ("SunPower",   "Maxeon 6", None),
+        ("First Solar","Series 7", None),
+        ("JinkoSolar", "Tiger Pro",None),
+    ]
+    statuses = ["operational", "operational", "operational", "operational", "maintenance", "offline"]
+
+    turbine_data = []
+    for i in range(200):
+        site = random.choice(site_list)
+        site_id = site[0]
+        is_wind = site[2] == "Wind"
+        if is_wind:
+            mfr, model, cap = random.choice(wind_manufacturers)
+        else:
+            mfr, model, _ = random.choice(solar_manufacturers)
+            cap = round(random.uniform(200.0, 800.0), 1)   # kWp panel string
+
+        site_commissioned = datetime.strptime(site[6], "%Y-%m-%d")
+        install_offset = random.randint(0, 180)
+        install_date = (site_commissioned + timedelta(days=install_offset)).date()
+        turbine_data.append(Row(
+            turbine_id=f"TRB-{i + 1:03d}",
+            site_id=site_id,
+            asset_type=site[2],
+            manufacturer=mfr,
+            model=model,
+            capacity_kw=cap,
+            installation_date=install_date,
+            operational_status=random.choice(statuses),
+        ))
+
+    turbines_df = spark.createDataFrame(turbine_data, schema=turbines_schema)
+    turbines_df.write.format("delta").mode("overwrite").saveAsTable("turbines")
+    print(f"  ✓ Created turbines table with {turbines_df.count():,} records")
+
+    # 3. Turbine Readings Table (historical hourly data)
+    print("- Generating turbine_readings data (50,000 rows, may take a moment)...")
+
+    readings_schema = StructType([
+        StructField("reading_id",         IntegerType(), False),
+        StructField("turbine_id",         StringType(),  True),
+        StructField("reading_ts",         StringType(),  True),
+        StructField("power_output_kw",    DoubleType(),  True),
+        StructField("wind_speed_ms",      DoubleType(),  True),
+        StructField("temperature_c",      DoubleType(),  True),
+        StructField("operational_status", StringType(),  True),
+    ])
+
+    reading_statuses = ["operational", "operational", "operational", "operational", "offline", "maintenance"]
+    read_start = datetime(2023, 1, 1)
+
+    readings_data = []
+    for i in range(50000):
+        trb = turbine_data[random.randint(0, len(turbine_data) - 1)]
+        status = random.choice(reading_statuses)
+        power = round(random.uniform(0.0, trb.capacity_kw), 2) if status == "operational" else 0.0
+        wind  = round(random.uniform(2.5, 18.0), 1) if trb.asset_type == "Wind" else 0.0
+        ts    = read_start + timedelta(hours=random.randint(0, 8760))
+        readings_data.append(Row(
+            reading_id=i + 1,
+            turbine_id=trb.turbine_id,
+            reading_ts=ts.strftime("%Y-%m-%d %H:%M:%S"),
+            power_output_kw=power,
+            wind_speed_ms=wind,
+            temperature_c=round(random.uniform(-5.0, 35.0), 1),
+            operational_status=status,
+        ))
+
+    readings_df = spark.createDataFrame(readings_data, schema=readings_schema)
+    readings_df.write.format("delta").mode("overwrite").saveAsTable("turbine_readings")
+    print(f"  ✓ Created turbine_readings table with {readings_df.count():,} records")
+
+    # 4. Turbine Events Table (CDC-style change feed)
+    print("- Generating turbine_events data...")
+
+    events_schema = StructType([
+        StructField("event_id",           IntegerType(), False),
+        StructField("operation",          StringType(),  False),
+        StructField("sequence_num",       IntegerType(),  False),
+        StructField("turbine_id",         StringType(),  True),
+        StructField("site_id",            StringType(),  True),
+        StructField("capacity_kw",        DoubleType(),  True),
+        StructField("operational_status", StringType(),  True),
+        StructField("last_updated_ts",    StringType(),  True),
+    ])
+
+    cdc_statuses = ["commissioning", "operational", "maintenance", "offline", "decommissioned"]
+    event_operations = ["INSERT", "UPDATE", "UPDATE", "UPDATE", "DELETE"]
+    evt_start = datetime(2023, 1, 1)
+
+    event_data = []
+    for i, trb in enumerate(turbine_data[:150]):
+        num_events = random.randint(1, 5)
+        ts_base = evt_start + timedelta(days=random.randint(0, 365))
+        for j in range(num_events):
+            operation = "INSERT" if j == 0 else random.choice(["UPDATE", "UPDATE", "DELETE"])
+            status    = random.choice(cdc_statuses) if operation != "DELETE" else None
+            cap       = trb.capacity_kw if operation != "DELETE" else None
+            ts        = ts_base + timedelta(hours=j * random.randint(12, 120))
+            event_data.append(Row(
+                event_id=len(event_data) + 1,
+                operation=operation,
+                sequence_num=len(event_data) + 1,
+                turbine_id=trb.turbine_id,
+                site_id=trb.site_id,
+                capacity_kw=cap,
+                operational_status=status,
+                last_updated_ts=ts.strftime("%Y-%m-%d %H:%M:%S"),
+            ))
+            if operation == "DELETE":
+                break
+
+    events_df = spark.createDataFrame(event_data, schema=events_schema)
+    events_df.write.format("delta").mode("overwrite").saveAsTable("turbine_events")
+    print(f"  ✓ Created turbine_events table with {events_df.count():,} records")
+
+    # 5. Market Prices Table (hourly energy spot prices)
+    print("- Generating market_prices data...")
+
+    prices_schema = StructType([
+        StructField("price_id",       IntegerType(), False),
+        StructField("region",         StringType(),  True),
+        StructField("price_date",     DateType(),    True),
+        StructField("hour_utc",       IntegerType(), True),
+        StructField("spot_price_eur", DoubleType(),  True),
+        StructField("currency",       StringType(),  True),
+    ])
+
+    price_regions = ["Europe", "North America", "South America", "Asia Pacific", "Africa"]
+    price_start = datetime(2023, 1, 1)
+
+    price_data = []
+    price_id = 1
+    for day_offset in range(365):
+        price_date = (price_start + timedelta(days=day_offset)).date()
+        for region in price_regions:
+            for hour in [0, 6, 12, 18]:
+                # Simulate peak / off-peak pricing
+                base = 55.0 if region == "Europe" else 42.0
+                peak_factor = 1.4 if hour in [8, 9, 10, 17, 18, 19] else 1.0
+                spot = round(base * peak_factor * random.uniform(0.7, 1.6), 2)
+                price_data.append(Row(
+                    price_id=price_id,
+                    region=region,
+                    price_date=price_date,
+                    hour_utc=hour,
+                    spot_price_eur=spot,
+                    currency="EUR",
+                ))
+                price_id += 1
+
+    prices_df = spark.createDataFrame(price_data, schema=prices_schema)
+    prices_df.write.format("delta").mode("overwrite").saveAsTable("market_prices")
+    print(f"  ✓ Created market_prices table with {prices_df.count():,} records")
+
+    print("\n✓ Renewable energy data setup complete!")
+    print("  Schema: trainer_demo.demo_07")
+    print("  Tables: energy_sites, turbines, turbine_readings, turbine_events, market_prices")
+    print("  Volume: sensor_data_landing")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -810,5 +1332,7 @@ def setup(spark):
     setup_03(spark)
     setup_04(spark)
     setup_05(spark)
+    setup_06(spark)
+    setup_07(spark)
 
     print("Setup complete")
