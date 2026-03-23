@@ -1324,6 +1324,242 @@ def setup_07(spark):
     print("  Volume: sensor_data_landing")
 
 
+def setup_08(spark):
+    spark.sql("CREATE SCHEMA IF NOT EXISTS demo_08")
+    spark.sql("USE SCHEMA demo_08")
+
+    print("- Creating real estate sample data...")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS properties")
+    spark.sql("DROP TABLE IF EXISTS agents")
+    spark.sql("DROP TABLE IF EXISTS property_updates")
+
+    # 1. Agents table
+    print("- Generating agents data...")
+
+    agents_schema = StructType([
+        StructField("agent_id", IntegerType(), False),
+        StructField("agent_name", StringType(), True),
+        StructField("agency", StringType(), True),
+        StructField("region", StringType(), True),
+        StructField("phone", StringType(), True),
+        StructField("email", StringType(), True)
+    ])
+
+    agent_info = [
+        ('Sophie van den Berg', 'Makelaars NL', 'Amsterdam'),
+        ('Lars Janssen', 'HomeVision', 'Amsterdam'),
+        ('Emma de Vries', 'PropertyPro', 'Rotterdam'),
+        ('Thomas Bakker', 'RealEstate NL', 'Rotterdam'),
+        ('Julia Visser', 'DreamHomes', 'Utrecht'),
+        ('Pieter Smit', 'Makelaars NL', 'Utrecht'),
+        ('Anna Meijer', 'HomeVision', 'The Hague'),
+        ('David de Boer', 'PropertyPro', 'The Hague'),
+        ('Lisa Mulder', 'RealEstate NL', 'Eindhoven'),
+        ('Mark Vermeer', 'DreamHomes', 'Eindhoven'),
+        ('Sandra Kok', 'Makelaars NL', 'Amsterdam'),
+        ('Jan Dekker', 'HomeVision', 'Rotterdam'),
+        ('Michelle Peters', 'PropertyPro', 'Utrecht'),
+        ('Rick Hendriks', 'RealEstate NL', 'The Hague'),
+        ('Anke van Dijk', 'DreamHomes', 'Eindhoven'),
+        ('Bas de Graaf', 'Makelaars NL', 'Amsterdam'),
+        ('Chantal van Linden', 'HomeVision', 'Rotterdam'),
+        ('Frank Bos', 'PropertyPro', 'Utrecht'),
+        ('Iris Hoek', 'RealEstate NL', 'The Hague'),
+        ('Kevin Vos', 'DreamHomes', 'Eindhoven')
+    ]
+
+    agent_data = []
+    for i, (name, agency, region) in enumerate(agent_info):
+        parts = name.lower().split()
+        email_local = parts[0] + '.' + ''.join(parts[1:])
+        agent_data.append(Row(
+            agent_id=i + 1,
+            agent_name=name,
+            agency=agency,
+            region=region,
+            phone=f"+31 6 {random.randint(10000000, 99999999)}",
+            email=f"{email_local}@{agency.lower().replace(' ', '')}.nl"
+        ))
+
+    agents_df = spark.createDataFrame(agent_data, schema=agents_schema)
+    agents_df.write.format("delta").mode("overwrite").saveAsTable("agents")
+    print(f"  ✓ Created agents table with {agents_df.count():,} records")
+
+    # 2. Properties table (with intentional data quality issues for demo)
+    print("- Generating properties data...")
+
+    properties_schema = StructType([
+        StructField("property_id", IntegerType(), False),
+        StructField("address", StringType(), True),
+        StructField("neighborhood", StringType(), True),
+        StructField("city", StringType(), True),
+        StructField("property_type", StringType(), True),
+        StructField("bedrooms", IntegerType(), True),        # nullable: ~12% nulls
+        StructField("bathrooms", DoubleType(), True),        # nullable: ~10% nulls
+        StructField("area_sqm", DoubleType(), True),         # nullable:  ~8% nulls
+        StructField("listing_price", DoubleType(), True),    # DoubleType — demo shows why DECIMAL is better
+        StructField("listing_date", DateType(), True),
+        StructField("year_built", IntegerType(), True),      # IntegerType — demo shows SMALLINT is sufficient
+        StructField("status", StringType(), True),
+        StructField("agent_id", IntegerType(), True)
+    ])
+
+    city_neighborhoods = [
+        ('Amsterdam', 'Jordaan'), ('Amsterdam', 'De Pijp'), ('Amsterdam', 'Centrum'),
+        ('Amsterdam', 'Oost'), ('Amsterdam', 'Zuid'),
+        ('Rotterdam', 'Kralingen'), ('Rotterdam', 'Hillegersberg'), ('Rotterdam', 'Feijenoord'),
+        ('Rotterdam', 'Centrum'), ('Rotterdam', 'Noord'),
+        ('Utrecht', 'Binnenstad'), ('Utrecht', 'Leidsche Rijn'), ('Utrecht', 'Overvecht'),
+        ('Utrecht', 'Vleuten'), ('Utrecht', 'Zuilen'),
+        ('The Hague', 'Scheveningen'), ('The Hague', 'Benoordenhout'), ('The Hague', 'Centrum'),
+        ('The Hague', 'Laak'), ('The Hague', 'Moerwijk'),
+        ('Eindhoven', 'Strijp-S'), ('Eindhoven', 'Woensel'), ('Eindhoven', 'Tongelre'),
+        ('Eindhoven', 'Centrum'), ('Eindhoven', 'Gestel')
+    ]
+
+    property_types = ['Apartment', 'House', 'Condo', 'Townhouse', 'Villa']
+    type_weights = [0.40, 0.25, 0.15, 0.15, 0.05]
+
+    statuses = ['Active', 'Sold', 'Pending', 'Withdrawn']
+    status_weights = [0.45, 0.35, 0.15, 0.05]
+
+    price_ranges    = {'Apartment': (100000, 350000), 'Condo': (150000, 400000),
+                       'Townhouse': (250000, 600000), 'House': (300000, 900000), 'Villa': (600000, 1500000)}
+    bedroom_ranges  = {'Apartment': (1, 3), 'Condo': (1, 3), 'Townhouse': (2, 4),
+                       'House': (3, 5), 'Villa': (4, 7)}
+    area_ranges     = {'Apartment': (40, 120), 'Condo': (50, 150), 'Townhouse': (80, 200),
+                       'House': (100, 300), 'Villa': (200, 500)}
+
+    city_agents = {
+        'Amsterdam': [1, 2, 11, 16], 'Rotterdam': [3, 4, 12, 17],
+        'Utrecht': [5, 6, 13, 18],   'The Hague': [7, 8, 14, 19],
+        'Eindhoven': [9, 10, 15, 20]
+    }
+
+    street_names = ['Keizersgracht', 'Prinsengracht', 'Herengracht', 'Vijzelstraat',
+                    'Kalverstraat', 'Leidsestraat', 'Coolsingel', 'Blaak',
+                    'Witte de Withstraat', 'Oudegracht', 'Lange Viestraat',
+                    'Lange Poten', 'Kneuterdijk', 'Stratumseind', 'Mathildelaan']
+
+    start_date = datetime(2022, 1, 1)
+    property_data = []
+
+    for i in range(470):
+        city, neigh = random.choice(city_neighborhoods)
+        prop_type = random.choices(property_types, weights=type_weights)[0]
+        status = random.choices(statuses, weights=status_weights)[0]
+
+        price_min, price_max = price_ranges[prop_type]
+        listing_price = float(round(random.randint(price_min, price_max) / 1000) * 1000)
+
+        bed_min, bed_max = bedroom_ranges[prop_type]
+        bedrooms = random.randint(bed_min, bed_max)
+        if random.random() < 0.12:
+            bedrooms = None
+
+        if random.random() < 0.10:
+            bathrooms = None
+        else:
+            ref = bedrooms if bedrooms else 2
+            bathrooms = round(random.uniform(1.0, min(ref + 0.5, 4.5)) * 2) / 2  # nearest 0.5
+
+        area_min, area_max = area_ranges[prop_type]
+        area_sqm = round(random.uniform(area_min, area_max), 1)
+        if random.random() < 0.08:
+            area_sqm = None
+
+        listing_date = start_date + timedelta(days=random.randint(0, 900))
+
+        property_data.append(Row(
+            property_id=i + 1,
+            address=f"{random.choice(street_names)} {random.randint(1, 250)}",
+            neighborhood=neigh,
+            city=city,
+            property_type=prop_type,
+            bedrooms=bedrooms,
+            bathrooms=bathrooms,
+            area_sqm=area_sqm,
+            listing_price=listing_price,
+            listing_date=listing_date.date(),
+            year_built=random.randint(1950, 2024),
+            status=status,
+            agent_id=random.choice(city_agents[city])
+        ))
+
+    # Append 30 duplicate records (property_ids 1–30) to simulate repeated data imports
+    for i in range(30):
+        dup = property_data[i]
+        property_data.append(Row(
+            property_id=dup.property_id,
+            address=dup.address,
+            neighborhood=dup.neighborhood,
+            city=dup.city,
+            property_type=dup.property_type,
+            bedrooms=dup.bedrooms,
+            bathrooms=dup.bathrooms,
+            area_sqm=dup.area_sqm,
+            listing_price=dup.listing_price,
+            listing_date=dup.listing_date,
+            year_built=dup.year_built,
+            status=dup.status,
+            agent_id=dup.agent_id
+        ))
+
+    properties_df = spark.createDataFrame(property_data, schema=properties_schema)
+    properties_df.write.format("delta").mode("overwrite").saveAsTable("properties")
+    print(f"  ✓ Created properties table with {properties_df.count():,} records "
+          f"(includes 30 duplicate property_ids, ~56 null bedrooms/bathrooms/area values)")
+
+    # 3. Property updates staging table (for MERGE demo)
+    print("- Generating property_updates staging data...")
+
+    updates_schema = StructType([
+        StructField("property_id", IntegerType(), False),
+        StructField("new_status", StringType(), True),
+        StructField("new_price", DoubleType(), True),
+        StructField("update_date", DateType(), True)
+    ])
+
+    update_statuses = ['Sold', 'Pending', 'Withdrawn', 'Active']
+    update_start = datetime(2024, 6, 1)
+    update_data = []
+
+    # 50 updates to existing properties
+    for pid in random.sample(range(1, 471), 50):
+        orig_price = property_data[pid - 1].listing_price
+        new_price = float(round(orig_price * random.uniform(0.90, 1.05) / 1000) * 1000)
+        update_data.append(Row(
+            property_id=pid,
+            new_status=random.choice(update_statuses),
+            new_price=new_price,
+            update_date=(update_start + timedelta(days=random.randint(0, 180))).date()
+        ))
+
+    # 20 new listings not yet in the properties table
+    for pid in range(471, 491):
+        city, _ = random.choice(city_neighborhoods)
+        prop_type = random.choices(property_types, weights=type_weights)[0]
+        price_min, price_max = price_ranges[prop_type]
+        new_price = float(round(random.randint(price_min, price_max) / 1000) * 1000)
+        update_data.append(Row(
+            property_id=pid,
+            new_status='Active',
+            new_price=new_price,
+            update_date=(update_start + timedelta(days=random.randint(0, 180))).date()
+        ))
+
+    updates_df = spark.createDataFrame(update_data, schema=updates_schema)
+    updates_df.write.format("delta").mode("overwrite").saveAsTable("property_updates")
+    print(f"  ✓ Created property_updates table with {updates_df.count():,} records "
+          f"(50 updates to existing + 20 new listings)")
+
+    print("\n✓ Real estate data setup complete!")
+    print("  Schema: trainer_demo.demo_08")
+    print("  Tables: properties, agents, property_updates")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -1337,5 +1573,6 @@ def setup(spark):
     setup_05(spark)
     setup_06(spark)
     setup_07(spark)
+    setup_08(spark)
 
     print("Setup complete")
