@@ -1745,6 +1745,151 @@ def setup_09(spark):
     print("  Tables: policies, raw_claims, raw_policies")
 
 
+def setup_10(spark):
+    spark.sql("CREATE SCHEMA IF NOT EXISTS demo_10")
+    spark.sql("USE SCHEMA demo_10")
+
+    print("- Creating hospitality sample data (StayWell Hotels)...")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS raw_reservations")
+    spark.sql("DROP TABLE IF EXISTS raw_guests")
+
+    # ── 1. Raw guests table (loyalty CRM data) ─────────────────────────────
+    print("- Generating raw guest profiles (with intentional quality issues)...")
+
+    guests_schema = StructType([
+        StructField("guest_id",       IntegerType(), True),
+        StructField("guest_name",     StringType(),  True),
+        StructField("email",          StringType(),  True),
+        StructField("loyalty_tier",   StringType(),  True),
+        StructField("loyalty_points", IntegerType(), True),
+        StructField("nationality",    StringType(),  True),
+    ])
+
+    loyalty_tiers = ["standard", "silver", "gold", "platinum"]
+    nationalities = ["British", "German", "French", "Dutch", "American",
+                     "Italian", "Spanish", "UAE", "Saudi", "Qatari", "Japanese"]
+    first_names = ["Oliver", "Emma", "Luca", "Sophie", "James", "Amira",
+                   "Carlos", "Yuki", "Fatima", "Ahmed", "Claire", "Hugo"]
+    last_names  = ["Smith", "Müller", "Dubois", "van der Berg", "Johnson",
+                   "Rossi", "García", "Tanaka", "Al-Rashid", "Leclerc", "Costa"]
+
+    guest_data = []
+    for i in range(400):
+        loyalty_tier   = random.choices(loyalty_tiers, weights=[0.5, 0.25, 0.18, 0.07])[0]
+        loyalty_points = random.randint(0, 50000)
+
+        # Inject ~5 % null guest_ids
+        guest_id    = None if random.random() < 0.05 else i + 1
+        # Inject ~6 % invalid emails
+        first_name  = random.choice(first_names)
+        last_name   = random.choice(last_names)
+        if random.random() < 0.06:
+            email = "invalid-email-address"
+        else:
+            email = f"{first_name.lower()}.{last_name.lower().replace(' ', '')}{i}@staywell.example"
+        # Inject ~4 % negative loyalty points
+        if random.random() < 0.04:
+            loyalty_points = -abs(loyalty_points)
+
+        guest_data.append(Row(
+            guest_id       = guest_id,
+            guest_name     = f"{first_name} {last_name}",
+            email          = email,
+            loyalty_tier   = loyalty_tier,
+            loyalty_points = loyalty_points,
+            nationality    = random.choice(nationalities),
+        ))
+
+    guests_df = spark.createDataFrame(guest_data, schema=guests_schema)
+    guests_df.write.format("delta").mode("overwrite").saveAsTable("raw_guests")
+    print(f"  ✓ Created raw_guests table with {guests_df.count():,} records "
+          f"(includes intentional quality issues)")
+
+    # ── 2. Raw reservations table (PMS nightly export) ─────────────────────
+    print("- Generating raw reservation data (with intentional quality issues)...")
+
+    reservations_schema = StructType([
+        StructField("reservation_id", IntegerType(),  True),
+        StructField("guest_id",       IntegerType(),  True),
+        StructField("property_id",    StringType(),   True),
+        StructField("room_type",      StringType(),   True),
+        StructField("check_in_date",  DateType(),     True),
+        StructField("check_out_date", DateType(),     True),
+        StructField("total_amount",   DoubleType(),   True),
+        StructField("status",         StringType(),   True),
+        StructField("booking_channel",StringType(),   True),
+    ])
+
+    properties      = [f"PROP-{i:03d}" for i in range(1, 11)]
+    room_types      = ["standard", "deluxe", "suite", "executive"]
+    statuses_valid  = ["confirmed", "checked_in", "checked_out", "cancelled"]
+    statuses_invalid= ["pending", "unknown", "ERROR"]
+    booking_channels= ["direct", "ota", "corporate", "travel_agent", "walk_in"]
+    base_date       = datetime(2024, 1, 1)
+
+    valid_guest_ids = [g.guest_id for g in guest_data if g.guest_id is not None]
+
+    reservation_data = []
+    for i in range(2000):
+        reservation_id = None if random.random() < 0.04 else i + 1
+        guest_id       = None if random.random() < 0.05 else random.choice(valid_guest_ids)
+
+        check_in  = base_date + timedelta(days=random.randint(0, 730))
+        # Inject ~5 % check_out before check_in
+        if random.random() < 0.05:
+            check_out = check_in - timedelta(days=random.randint(1, 3))
+        else:
+            check_out = check_in + timedelta(days=random.randint(1, 14))
+
+        # Inject ~6 % negative or zero amounts
+        r = random.random()
+        if r < 0.06:
+            total_amount = round(random.uniform(-500.0, 0.0), 2)
+        elif r < 0.08:
+            total_amount = round(random.uniform(51000.0, 80000.0), 2)   # unreasonably high
+        else:
+            nights       = max(1, (check_out - check_in).days)
+            rate_per_night = {"standard": 120, "deluxe": 200, "suite": 400, "executive": 600}
+            room_type    = random.choice(room_types)
+            total_amount = round(nights * rate_per_night[room_type] * random.uniform(0.8, 1.3), 2)
+
+        room_type = random.choice(room_types)
+
+        # Inject ~7 % invalid statuses
+        status = (
+            random.choice(statuses_invalid)
+            if random.random() < 0.07
+            else random.choice(statuses_valid)
+        )
+
+        reservation_data.append(Row(
+            reservation_id  = reservation_id,
+            guest_id        = guest_id,
+            property_id     = random.choice(properties),
+            room_type       = room_type,
+            check_in_date   = check_in.date(),
+            check_out_date  = check_out.date(),
+            total_amount    = total_amount,
+            status          = status,
+            booking_channel = random.choice(booking_channels),
+        ))
+
+    # Add ~3 % duplicate reservation_ids
+    duplicates = [r for r in reservation_data if r.reservation_id is not None][:60]
+    reservation_data.extend(duplicates)
+
+    reservations_df = spark.createDataFrame(reservation_data, schema=reservations_schema)
+    reservations_df.write.format("delta").mode("overwrite").saveAsTable("raw_reservations")
+    print(f"  ✓ Created raw_reservations table with {reservations_df.count():,} records "
+          f"(includes intentional quality issues)")
+
+    print("\n✓ Hospitality data setup complete!")
+    print("  Schema: trainer_demo.demo_10")
+    print("  Tables: raw_guests, raw_reservations")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -1760,5 +1905,6 @@ def setup(spark):
     setup_07(spark)
     setup_08(spark)
     setup_09(spark)
+    setup_10(spark)
 
     print("Setup complete")
