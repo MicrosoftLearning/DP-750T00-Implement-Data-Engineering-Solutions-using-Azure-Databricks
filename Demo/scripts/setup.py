@@ -1890,6 +1890,169 @@ def setup_10(spark):
     print("  Tables: raw_guests, raw_reservations")
 
 
+def setup_11(spark):
+    """Telecommunications demo data for module 11 – Implement Lakeflow Jobs.
+
+    Industry: NexaTel Communications
+    Schema: trainer_demo.demo_11
+    Tables:
+      - raw_cdr            : Call Detail Records (intentional quality issues for demo)
+      - network_events     : Tower / network-event log
+      - subscriber_profiles: Subscriber plan information
+    """
+    spark.sql("CREATE SCHEMA IF NOT EXISTS demo_11")
+    spark.sql("USE SCHEMA demo_11")
+
+    print("- Creating telecommunications sample data (NexaTel Communications)...")
+
+    # Drop existing tables
+    for tbl in ("raw_cdr", "network_events", "subscriber_profiles"):
+        spark.sql(f"DROP TABLE IF EXISTS {tbl}")
+
+    # ── 1. Subscriber Profiles ──────────────────────────────────────────────
+    print("- Generating subscriber_profiles data...")
+
+    from pyspark.sql.types import TimestampType
+
+    profiles_schema = StructType([
+        StructField("subscriber_id",  StringType(),  False),
+        StructField("full_name",       StringType(),  True),
+        StructField("plan_type",       StringType(),  True),
+        StructField("region",          StringType(),  True),
+        StructField("monthly_cap_gb",  DoubleType(),  True),
+        StructField("active",          BooleanType(), True),
+    ])
+
+    plan_types   = ["basic", "standard", "premium", "enterprise"]
+    cap_by_plan  = {"basic": 5.0, "standard": 20.0, "premium": 100.0, "enterprise": 500.0}
+    regions      = ["North", "South", "East", "West", "Central"]
+    first_names  = ["Alice", "Bob", "Carlos", "Diana", "Evan", "Fatima", "Grace",
+                    "Hassan", "Isla", "Jorge", "Kira", "Liam", "Maya", "Noel", "Olivia"]
+    last_names   = ["Smith", "Patel", "Nguyen", "Kim", "Garcia", "Müller", "Okonkwo",
+                    "Ferreira", "Johansson", "Chen", "Rossi", "Ali", "Dubois", "Park", "Santos"]
+
+    profiles = []
+    for i in range(200):
+        plan   = random.choice(plan_types)
+        region = random.choice(regions)
+        fname  = random.choice(first_names)
+        lname  = random.choice(last_names)
+        profiles.append(Row(
+            subscriber_id  = f"SUB-{i+1:05d}",
+            full_name      = f"{fname} {lname}",
+            plan_type      = plan,
+            region         = region,
+            monthly_cap_gb = cap_by_plan[plan],
+            active         = random.random() > 0.05,   # 95 % active
+        ))
+
+    profiles_df = spark.createDataFrame(profiles, schema=profiles_schema)
+    profiles_df.write.format("delta").mode("overwrite").saveAsTable("subscriber_profiles")
+    print(f"  ✓ Created subscriber_profiles with {profiles_df.count():,} records")
+
+    # ── 2. Network Events ───────────────────────────────────────────────────
+    print("- Generating network_events data...")
+
+    events_schema = StructType([
+        StructField("event_id",        IntegerType(),   False),
+        StructField("tower_id",        StringType(),    True),
+        StructField("region",          StringType(),    True),
+        StructField("event_type",      StringType(),    True),
+        StructField("severity",        StringType(),    True),
+        StructField("event_timestamp", TimestampType(), True),
+        StructField("resolved",        BooleanType(),   True),
+    ])
+
+    event_types = ["outage", "degraded", "maintenance", "restored"]
+    severities  = ["low", "medium", "high"]
+    towers      = [f"TWR-{i:03d}" for i in range(1, 51)]
+    base_ts     = datetime(2024, 1, 1)
+
+    events = []
+    for i in range(2000):
+        ts = base_ts + timedelta(
+            days=random.randint(0, 364),
+            hours=random.randint(0, 23),
+            minutes=random.randint(0, 59)
+        )
+        etype = random.choice(event_types)
+        events.append(Row(
+            event_id        = i + 1,
+            tower_id        = random.choice(towers),
+            region          = random.choice(regions),
+            event_type      = etype,
+            severity        = random.choice(severities),
+            event_timestamp = ts,
+            resolved        = etype == "restored" or random.random() > 0.3,
+        ))
+
+    events_df = spark.createDataFrame(events, schema=events_schema)
+    events_df.write.format("delta").mode("overwrite").saveAsTable("network_events")
+    print(f"  ✓ Created network_events with {events_df.count():,} records")
+
+    # ── 3. Raw CDR (Call Detail Records) ────────────────────────────────────
+    print("- Generating raw_cdr data (includes intentional quality issues)...")
+
+    cdr_schema = StructType([
+        StructField("cdr_id",              IntegerType(),   False),
+        StructField("subscriber_id",       StringType(),    True),   # nullable – intentional NULLs
+        StructField("tower_id",            StringType(),    True),
+        StructField("call_start_ts",       TimestampType(), True),
+        StructField("duration_seconds",    IntegerType(),   True),   # some negatives – intentional
+        StructField("call_type",           StringType(),    True),   # voice / data / sms
+        StructField("termination_code",    StringType(),    True),   # NORMAL / FAILED / DROPPED / NO_ANSWER
+        StructField("data_volume_mb",      DoubleType(),    True),   # only set for data calls
+        StructField("roaming",             BooleanType(),   True),
+    ])
+
+    call_types         = ["voice", "data", "sms"]
+    call_type_weights  = [0.45, 0.40, 0.15]
+    term_codes         = ["NORMAL", "NORMAL", "NORMAL", "FAILED", "DROPPED", "NO_ANSWER"]
+    subscriber_ids     = [f"SUB-{i+1:05d}" for i in range(200)]
+
+    cdr_records = []
+    for i in range(50_000):
+        ctype = random.choices(call_types, weights=call_type_weights)[0]
+        start = base_ts + timedelta(
+            days=random.randint(0, 364),
+            hours=random.randint(0, 23),
+            minutes=random.randint(0, 59),
+            seconds=random.randint(0, 59)
+        )
+        # Intentionally corrupt ~3 % of records
+        if random.random() < 0.02:
+            sub_id = None           # missing subscriber
+        elif random.random() < 0.01:
+            sub_id = "INVALID-ID"   # bad format
+        else:
+            sub_id = random.choice(subscriber_ids)
+
+        duration = random.randint(1, 3600)
+        if random.random() < 0.01:
+            duration = -duration    # intentionally negative
+
+        cdr_records.append(Row(
+            cdr_id           = i + 1,
+            subscriber_id    = sub_id,
+            tower_id         = random.choice(towers),
+            call_start_ts    = start,
+            duration_seconds = duration,
+            call_type        = ctype,
+            termination_code = random.choice(term_codes),
+            data_volume_mb   = round(random.uniform(0.1, 500.0), 2) if ctype == "data" else None,
+            roaming          = random.random() < 0.08,   # 8 % roaming
+        ))
+
+    cdr_df = spark.createDataFrame(cdr_records, schema=cdr_schema)
+    cdr_df.write.format("delta").mode("overwrite").saveAsTable("raw_cdr")
+    print(f"  ✓ Created raw_cdr with {cdr_df.count():,} records "
+          f"(includes intentional NULLs and invalid records)")
+
+    print("\n✓ Telecommunications data setup complete!")
+    print("  Schema: trainer_demo.demo_11")
+    print("  Tables: subscriber_profiles, network_events, raw_cdr")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -1906,5 +2069,6 @@ def setup(spark):
     setup_08(spark)
     setup_09(spark)
     setup_10(spark)
+    setup_11(spark)
 
     print("Setup complete")
