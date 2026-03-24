@@ -1560,6 +1560,188 @@ def setup_08(spark):
     print("  Tables: properties, agents, property_updates")
 
 
+def setup_09(spark):
+    spark.sql("CREATE SCHEMA IF NOT EXISTS demo_09")
+    spark.sql("USE SCHEMA demo_09")
+
+    print("- Creating insurance sample data...")
+
+    # Drop existing tables if they exist
+    spark.sql("DROP TABLE IF EXISTS raw_claims")
+    spark.sql("DROP TABLE IF EXISTS raw_policies")
+    spark.sql("DROP TABLE IF EXISTS policies")
+
+    # ── 1. Clean reference policies table ──────────────────────────────────
+    print("- Generating clean policies reference data...")
+
+    policies_schema = StructType([
+        StructField("policy_id",        StringType(),  False),
+        StructField("customer_id",      IntegerType(), True),
+        StructField("policy_type",      StringType(),  True),
+        StructField("start_date",       DateType(),    True),
+        StructField("end_date",         DateType(),    True),
+        StructField("premium_amount",   DoubleType(),  True),
+        StructField("coverage_amount",  DoubleType(),  True),
+    ])
+
+    policy_types = ["Auto", "Property", "Life", "Health", "Liability"]
+    premiums = {
+        "Auto":      (800.0,  3000.0),
+        "Property":  (600.0,  2500.0),
+        "Life":      (300.0,  1500.0),
+        "Health":    (400.0,  2000.0),
+        "Liability": (500.0,  2200.0),
+    }
+    coverages = {
+        "Auto":      (10000.0,  100000.0),
+        "Property":  (50000.0,  500000.0),
+        "Life":      (100000.0, 1000000.0),
+        "Health":    (50000.0,  250000.0),
+        "Liability": (100000.0, 500000.0),
+    }
+
+    policy_data = []
+    base_date = datetime(2022, 1, 1)
+    for i in range(300):
+        ptype = random.choice(policy_types)
+        pmin, pmax = premiums[ptype]
+        cmin, cmax = coverages[ptype]
+        start = base_date + timedelta(days=random.randint(0, 730))
+        end   = start + timedelta(days=random.choice([365, 730]))
+        policy_data.append(Row(
+            policy_id=f"POL-{i+1:05d}",
+            customer_id=random.randint(1000, 9999),
+            policy_type=ptype,
+            start_date=start.date(),
+            end_date=end.date(),
+            premium_amount=round(random.uniform(pmin, pmax), 2),
+            coverage_amount=round(random.uniform(cmin, cmax), 2),
+        ))
+
+    policies_df = spark.createDataFrame(policy_data, schema=policies_schema)
+    policies_df.write.format("delta").mode("overwrite").saveAsTable("policies")
+    print(f"  ✓ Created policies table with {policies_df.count():,} records")
+
+    # ── 2. Raw claims table (intentional data quality issues) ───────────────
+    print("- Generating raw claims data (with intentional quality issues)...")
+
+    raw_claims_schema = StructType([
+        StructField("claim_id",      IntegerType(), True),   # nullable - some nulls injected
+        StructField("policy_id",     StringType(),  True),   # nullable - some nulls injected
+        StructField("claimant_name", StringType(),  True),
+        StructField("claim_date",    DateType(),    True),
+        StructField("claim_amount",  DoubleType(),  True),   # some negative / zero values injected
+        StructField("claim_type",    StringType(),  True),   # some invalid values injected
+        StructField("status",        StringType(),  True),   # some nulls injected
+        StructField("adjuster_id",   IntegerType(), True),   # some nulls, some duplicates
+    ])
+
+    claim_types_valid   = ["Auto", "Property", "Life", "Health", "Liability"]
+    claim_types_invalid = ["Unknown", "Other", "MISC", None]
+    statuses_valid      = ["Submitted", "Under Review", "Approved", "Denied"]
+    adjuster_ids        = list(range(50, 200))  # senior adjusters < 100, junior >= 100
+
+    ref_policy_ids = [p.policy_id for p in policy_data]
+    first_names = ["James", "Sarah", "Michael", "Emma", "David", "Olivia",
+                   "Robert", "Sophia", "William", "Mia", "John", "Ava"]
+    last_names  = ["Anderson", "Mitchell", "Clarke", "Thompson", "Baker",
+                   "Harris", "Clark", "Wilson", "Davis", "Lee", "Martin", "Hall"]
+
+    claim_data = []
+    start_date = datetime(2024, 1, 1)
+
+    for i in range(500):
+        # Inject ~8% null claim_ids
+        claim_id = None if random.random() < 0.08 else i + 1
+
+        # Inject ~5% null policy_ids
+        policy_id = None if random.random() < 0.05 else random.choice(ref_policy_ids)
+
+        claimant = f"{random.choice(first_names)} {random.choice(last_names)}"
+        claim_date = start_date + timedelta(days=random.randint(-365, 30))  # ~5% future dates
+
+        # Inject ~6% negative or zero amounts, ~3% unreasonably large
+        r = random.random()
+        if r < 0.06:
+            claim_amount = round(random.uniform(-5000.0, 0.0), 2)
+        elif r < 0.09:
+            claim_amount = round(random.uniform(5100000.0, 9000000.0), 2)
+        else:
+            claim_amount = round(random.uniform(500.0, 250000.0), 2)
+
+        # Inject ~7% invalid claim types
+        claim_type = (
+            random.choice(claim_types_invalid)
+            if random.random() < 0.07
+            else random.choice(claim_types_valid)
+        )
+
+        # Inject ~6% null statuses
+        status = None if random.random() < 0.06 else random.choice(statuses_valid)
+
+        # Inject ~10% null adjusters; approved claims sometimes missing adjuster (~4%)
+        if status == "Approved" and random.random() < 0.04:
+            adjuster_id = None
+        elif random.random() < 0.10:
+            adjuster_id = None
+        else:
+            adjuster_id = random.choice(adjuster_ids)
+
+        claim_data.append(Row(
+            claim_id=claim_id,
+            policy_id=policy_id,
+            claimant_name=claimant,
+            claim_date=claim_date.date(),
+            claim_amount=claim_amount,
+            claim_type=claim_type,
+            status=status,
+            adjuster_id=adjuster_id,
+        ))
+
+    # Add ~3% exact duplicate claim_ids to demonstrate cardinality issues
+    duplicates = [c for c in claim_data if c.claim_id is not None][:15]
+    claim_data.extend(duplicates)
+
+    raw_claims_df = spark.createDataFrame(claim_data, schema=raw_claims_schema)
+    raw_claims_df.write.format("delta").mode("overwrite").saveAsTable("raw_claims")
+    print(f"  ✓ Created raw_claims table with {raw_claims_df.count():,} records "
+          f"(includes intentional quality issues)")
+
+    # ── 3. Raw policies table (for schema drift demo) ───────────────────────
+    print("- Generating raw policies data (for schema drift demo)...")
+
+    raw_policies_schema = StructType([
+        StructField("policy_id",       StringType(),  True),
+        StructField("customer_id",     IntegerType(), True),
+        StructField("policy_type",     StringType(),  True),
+        StructField("start_date",      DateType(),    True),
+        StructField("end_date",        DateType(),    True),
+        StructField("premium_amount",  DoubleType(),  True),
+        StructField("coverage_amount", DoubleType(),  True),
+    ])
+
+    raw_policy_data = []
+    for i, p in enumerate(policy_data[:200]):
+        # Inject ~5% null policy_ids and ~4% null customer_ids for demo
+        raw_policy_data.append(Row(
+            policy_id=None if random.random() < 0.05 else p.policy_id,
+            customer_id=None if random.random() < 0.04 else p.customer_id,
+            policy_type=p.policy_type,
+            start_date=p.start_date,
+            end_date=p.end_date,
+            premium_amount=p.premium_amount,
+            coverage_amount=p.coverage_amount,
+        ))
+
+    raw_policies_df = spark.createDataFrame(raw_policy_data, schema=raw_policies_schema)
+    raw_policies_df.write.format("delta").mode("overwrite").saveAsTable("raw_policies")
+    print(f"  ✓ Created raw_policies table with {raw_policies_df.count():,} records")
+
+    print("\n✓ Insurance data setup complete!")
+    print("  Schema: trainer_demo.demo_09")
+    print("  Tables: policies, raw_claims, raw_policies")
+
+
 def setup(spark):
     print("Creating catalog trainer_demo")
 
@@ -1574,5 +1756,6 @@ def setup(spark):
     setup_06(spark)
     setup_07(spark)
     setup_08(spark)
+    setup_09(spark)
 
     print("Setup complete")
