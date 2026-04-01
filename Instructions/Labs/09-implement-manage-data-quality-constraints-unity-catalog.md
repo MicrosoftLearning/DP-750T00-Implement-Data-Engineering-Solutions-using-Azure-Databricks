@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 09: Implementing Data Quality Constraints for Insurance Claims
+# Lab 09: Implement and Manage Data Quality Constraints in Unity Catalog
 
 ## Introduction
 

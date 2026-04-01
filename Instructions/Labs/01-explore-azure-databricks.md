@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Explore Azure Databricks
+# Lab 01: xplore Azure Databricks
 
 In this lab, you take your first steps with Azure Databricks in the context of **CityMoves Transit**, a regional public transportation authority managing bus, tram, and train services across a metropolitan area. As a newly onboarded data engineer, your goal is to get familiar with the Azure Databricks workspace before diving into data pipelines and analytics in later labs.
 

@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Design and Implement a Data Model in Unity Catalog
+# Lab 06: Design and implement data modeling with Azure Databricks
 
 ## Scenario
 

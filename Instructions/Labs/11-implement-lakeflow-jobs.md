@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 11: Implement Lakeflow Jobs
+# Lab 11: Implement Lakeflow Jobs with Azure Databricks
 
 ## Introduction
 

@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Secure Unity Catalog Objects
+# Lab 04: Secure Unity Catalog Objects
 
 ## Scenario
 

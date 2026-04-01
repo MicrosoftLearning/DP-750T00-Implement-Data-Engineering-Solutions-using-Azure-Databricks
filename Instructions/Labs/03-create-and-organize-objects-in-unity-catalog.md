@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Create and Organize Objects in Unity Catalog
+# Lab 03: Create and Organize Objects in Unity Catalog
 
 ## Scenario
 

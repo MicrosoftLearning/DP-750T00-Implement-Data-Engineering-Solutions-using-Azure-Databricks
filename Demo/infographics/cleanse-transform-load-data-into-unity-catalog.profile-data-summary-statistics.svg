@@ -1,0 +1,407 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1408" height="768" viewBox="0 0 1408 768">
+  <defs>
+    <marker id="arrowOrange" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF5E34"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#0076C8"/>
+    </marker>
+    <filter id="shadowLight" x="-3%" y="-3%" width="106%" height="106%">
+      <feDropShadow dx="1" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1408" height="768" fill="#FFFFFF"/>
+
+  <!-- ==================== MICROSOFT LOGO ==================== -->
+  <g transform="translate(28, 16)">
+    <rect x="0" y="0" width="15" height="15" fill="#F25022"/>
+    <rect x="17" y="0" width="15" height="15" fill="#7FBA00"/>
+    <rect x="0" y="17" width="15" height="15" fill="#00A4EF"/>
+    <rect x="17" y="17" width="15" height="15" fill="#FFB900"/>
+    <text x="42" y="27" font-family="Segoe UI, Arial, sans-serif" font-size="22" fill="#737373" font-weight="400">Microsoft</text>
+  </g>
+
+  <!-- ==================== GENERATE SUMMARY STATISTICS (LEFT PANEL) ==================== -->
+  <!-- Blue header with rounded top -->
+  <rect x="24" y="84" width="430" height="46" rx="8" ry="8" fill="#0076C8"/>
+  <rect x="24" y="106" width="430" height="24" fill="#0076C8"/>
+  <text x="239" y="114" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#FFFFFF" font-weight="600" text-anchor="middle">Generate Summary Statistics</text>
+
+  <!-- Light blue content area extending to encompass table -->
+  <rect x="24" y="130" width="430" height="555" fill="#E6F0F9"/>
+  <rect x="24" y="663" width="430" height="22" rx="8" ry="8" fill="#E6F0F9"/>
+  <rect x="24" y="663" width="430" height="10" fill="#E6F0F9"/>
+
+  <!-- ANALYZE TABLE section -->
+  <g transform="translate(58, 148)">
+    <!-- Terminal icon -->
+    <rect x="0" y="0" width="42" height="34" rx="4" fill="#06222E"/>
+    <text x="7" y="24" font-family="Consolas, monospace" font-size="17" fill="#FFFFFF" font-weight="700">&gt;_</text>
+    <!-- ANALYZE TABLE text -->
+    <text x="52" y="24" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#06222E" font-weight="700">ANALYZE TABLE</text>
+    <!-- Magnifying glass with table icon -->
+    <g transform="translate(228, 0)">
+      <rect x="2" y="5" width="22" height="18" rx="2" fill="none" stroke="#0076C8" stroke-width="1.5"/>
+      <line x1="6" y1="10" x2="20" y2="10" stroke="#0076C8" stroke-width="1"/>
+      <line x1="6" y1="14" x2="20" y2="14" stroke="#0076C8" stroke-width="1"/>
+      <line x1="6" y1="18" x2="20" y2="18" stroke="#0076C8" stroke-width="1"/>
+      <circle cx="28" cy="18" r="10" fill="none" stroke="#0076C8" stroke-width="2.5"/>
+      <line x1="36" y1="26" x2="42" y2="32" stroke="#0076C8" stroke-width="2.5" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Down arrow triangle 1 (pointing DOWN) -->
+  <polygon points="215,198 255,198 235,218" fill="#7BBDE6"/>
+
+  <!-- Collects Basic Metrics -->
+  <text x="239" y="245" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#06222E" font-weight="600" text-anchor="middle">Collects Basic Metrics</text>
+
+  <!-- Four metric icons row -->
+  <g transform="translate(52, 262)">
+    <!-- Row Counts icon -->
+    <g>
+      <circle cx="35" cy="22" r="20" fill="#06222E"/>
+      <rect x="24" y="13" width="22" height="18" rx="2" fill="none" stroke="#FFFFFF" stroke-width="1.5"/>
+      <line x1="27" y1="18" x2="43" y2="18" stroke="#FFFFFF" stroke-width="1"/>
+      <line x1="27" y1="22" x2="43" y2="22" stroke="#FFFFFF" stroke-width="1"/>
+      <line x1="27" y1="26" x2="43" y2="26" stroke="#FFFFFF" stroke-width="1"/>
+      <text x="35" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Row</text>
+      <text x="35" y="73" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Counts</text>
+    </g>
+
+    <!-- Nulls icon -->
+    <g transform="translate(90, 0)">
+      <circle cx="35" cy="22" r="20" fill="#06222E"/>
+      <circle cx="35" cy="20" r="9" fill="none" stroke="#FF5E34" stroke-width="2"/>
+      <line x1="27" y1="12" x2="43" y2="30" stroke="#FF5E34" stroke-width="2.5"/>
+      <text x="35" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Nulls</text>
+    </g>
+
+    <!-- Min/Max icon -->
+    <g transform="translate(185, 0)">
+      <circle cx="35" cy="22" r="20" fill="#06222E"/>
+      <line x1="20" y1="22" x2="50" y2="22" stroke="#FFFFFF" stroke-width="2"/>
+      <polyline points="24,17 20,22 24,27" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <polyline points="46,17 50,22 46,27" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="35" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Min/Max</text>
+    </g>
+
+    <!-- Distinct Counts icon -->
+    <g transform="translate(280, 0)">
+      <circle cx="35" cy="22" r="20" fill="#0076C8"/>
+      <rect x="24" y="13" width="9" height="9" fill="#FFFFFF" rx="1"/>
+      <rect x="35" y="13" width="9" height="9" fill="#FF5E34" rx="1"/>
+      <rect x="30" y="24" width="9" height="9" fill="#FFFFFF" rx="1"/>
+      <text x="35" y="60" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Distinct</text>
+      <text x="35" y="73" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#06222E" font-weight="600" text-anchor="middle">Counts</text>
+    </g>
+  </g>
+
+  <!-- Down arrow triangle 2 (pointing DOWN) -->
+  <polygon points="215,360 255,360 235,380" fill="#7BBDE6"/>
+
+  <!-- DESCRIBE TABLE EXTENDED -->
+  <g transform="translate(58, 392)">
+    <g>
+      <rect x="0" y="0" width="30" height="36" rx="3" fill="#FFFFFF" stroke="#0076C8" stroke-width="2"/>
+      <line x1="7" y1="10" x2="23" y2="10" stroke="#0076C8" stroke-width="1.5"/>
+      <line x1="7" y1="16" x2="23" y2="16" stroke="#0076C8" stroke-width="1.5"/>
+      <line x1="7" y1="22" x2="23" y2="22" stroke="#0076C8" stroke-width="1.5"/>
+      <line x1="7" y1="28" x2="18" y2="28" stroke="#0076C8" stroke-width="1.5"/>
+    </g>
+    <text x="40" y="16" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#06222E" font-weight="700">DESCRIBE TABLE</text>
+    <text x="40" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#06222E" font-weight="700">EXTENDED</text>
+  </g>
+
+  <!-- Down arrow triangle 3 (pointing DOWN) -->
+  <polygon points="215,443 255,443 235,463" fill="#7BBDE6"/>
+
+  <!-- White overlay for lower panel area (table section has white background) -->
+  <rect x="25" y="470" width="428" height="205" fill="#FFFFFF"/>
+
+  <!-- ==================== DATA TABLE ==================== -->
+  <g transform="translate(44, 555)">
+    <!-- Table header (blue) -->
+    <rect x="0" y="0" width="372" height="34" rx="0" fill="#0076C8"/>
+    <text x="12" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Column Name</text>
+    <line x1="102" y1="0" x2="102" y2="34" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3"/>
+    <text x="112" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Count</text>
+    <line x1="156" y1="0" x2="156" y2="34" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3"/>
+    <text x="166" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Null %</text>
+    <line x1="212" y1="0" x2="212" y2="34" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3"/>
+    <text x="225" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Min</text>
+    <line x1="256" y1="0" x2="256" y2="34" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3"/>
+    <text x="269" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Max</text>
+    <line x1="305" y1="0" x2="305" y2="34" stroke="#FFFFFF" stroke-width="0.5" opacity="0.3"/>
+    <text x="318" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#FFFFFF" font-weight="600">Distinct</text>
+
+    <!-- Row 1: customer_id (white) -->
+    <rect x="0" y="34" width="372" height="32" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+    <text x="12" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">customer_id</text>
+    <text x="112" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1M</text>
+    <text x="166" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">0%</text>
+    <text x="225" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1</text>
+    <text x="269" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1M</text>
+    <text x="318" y="55" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1M</text>
+
+    <!-- Row 2: age (light gray) -->
+    <rect x="0" y="66" width="372" height="32" fill="#F2F2F4" stroke="#E0E0E0" stroke-width="0.5"/>
+    <text x="12" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">age</text>
+    <text x="112" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1M</text>
+    <text x="166" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">2%</text>
+    <text x="225" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">18</text>
+    <text x="269" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">85</text>
+    <text x="318" y="87" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">60</text>
+
+    <!-- Row 3: sales_amount (white) -->
+    <rect x="0" y="98" width="372" height="32" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="0.5"/>
+    <text x="12" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">sales_amount</text>
+    <text x="112" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1M</text>
+    <text x="166" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">1%</text>
+    <text x="225" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">$10</text>
+    <text x="269" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">$5K</text>
+    <text x="318" y="119" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333">500K</text>
+  </g>
+
+  <!-- ==================== LARGE ORANGE ARROW (LEFT → CENTER) ==================== -->
+  <polygon points="458,185 458,275 488,230" fill="#FF5E34"/>
+
+  <!-- ==================== DATA PROFILING IN UNITY CATALOG (CENTER) ==================== -->
+  <!-- Orange header -->
+  <rect x="498" y="84" width="464" height="46" rx="8" ry="8" fill="#FF5E34"/>
+  <rect x="498" y="106" width="464" height="24" fill="#FF5E34"/>
+  <text x="730" y="114" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#FFFFFF" font-weight="600" text-anchor="middle">Data Profiling in Unity Catalog</text>
+
+  <!-- Peach content area -->
+  <rect x="498" y="130" width="464" height="320" fill="#FEE8DA"/>
+  <rect x="498" y="428" width="464" height="22" rx="8" ry="8" fill="#FEE8DA"/>
+  <rect x="498" y="428" width="464" height="10" fill="#FEE8DA"/>
+
+  <!-- Snapshot panel -->
+  <g transform="translate(510, 145)">
+    <rect x="0" y="0" width="132" height="285" rx="8" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <!-- Camera icon -->
+    <g transform="translate(34, 12)">
+      <rect x="0" y="10" width="56" height="38" rx="6" fill="none" stroke="#0076C8" stroke-width="2.5"/>
+      <rect x="16" y="0" width="24" height="12" rx="3" fill="none" stroke="#0076C8" stroke-width="2"/>
+      <circle cx="28" cy="30" r="11" fill="none" stroke="#0076C8" stroke-width="2"/>
+      <circle cx="28" cy="30" r="4" fill="#0076C8"/>
+    </g>
+    <text x="66" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#FF5E34" font-weight="700" text-anchor="middle">Snapshot</text>
+    <text x="66" y="98" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333" text-anchor="middle">General</text>
+    <text x="66" y="113" font-family="Segoe UI, Arial, sans-serif" font-size="12" fill="#333333" text-anchor="middle">Tables</text>
+    <!-- Scatter plot -->
+    <g transform="translate(16, 125)">
+      <line x1="8" y1="130" x2="8" y2="10" stroke="#06222E" stroke-width="1.5"/>
+      <line x1="8" y1="130" x2="100" y2="130" stroke="#06222E" stroke-width="1.5"/>
+      <circle cx="25" cy="105" r="5" fill="#0076C8"/>
+      <circle cx="38" cy="85" r="5" fill="#0076C8"/>
+      <circle cx="52" cy="95" r="5" fill="#0076C8"/>
+      <circle cx="65" cy="60" r="5" fill="#FF5E34"/>
+      <circle cx="78" cy="45" r="5" fill="#0076C8"/>
+      <circle cx="48" cy="35" r="5" fill="#FF5E34"/>
+      <circle cx="85" cy="72" r="5" fill="#0076C8"/>
+    </g>
+  </g>
+
+  <!-- Arrow Snapshot → Time Series -->
+  <g transform="translate(652, 265)">
+    <polygon points="0,-7 14,0 0,7" fill="#FF5E34"/>
+  </g>
+
+  <!-- Time Series panel -->
+  <g transform="translate(672, 145)">
+    <rect x="0" y="0" width="132" height="285" rx="8" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <!-- Clock + bars icon -->
+    <g transform="translate(20, 8)">
+      <circle cx="28" cy="26" r="20" fill="none" stroke="#FF5E34" stroke-width="2.5"/>
+      <line x1="28" y1="26" x2="28" y2="14" stroke="#FF5E34" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="28" y1="26" x2="37" y2="30" stroke="#FF5E34" stroke-width="2.5" stroke-linecap="round"/>
+      <rect x="52" y="32" width="8" height="14" fill="#0076C8"/>
+      <rect x="62" y="22" width="8" height="24" fill="#0076C8"/>
+      <rect x="72" y="10" width="8" height="36" fill="#FF5E34"/>
+    </g>
+    <text x="66" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#FF5E34" font-weight="700" text-anchor="middle">Time Series</text>
+    <text x="66" y="98" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333" text-anchor="middle">Timestamp</text>
+    <text x="66" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333" text-anchor="middle">columns,</text>
+    <text x="66" y="126" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333" text-anchor="middle">tracks trends</text>
+    <!-- Line chart -->
+    <g transform="translate(12, 138)">
+      <line x1="8" y1="115" x2="8" y2="10" stroke="#06222E" stroke-width="1.5"/>
+      <line x1="8" y1="115" x2="105" y2="115" stroke="#06222E" stroke-width="1.5"/>
+      <polyline points="14,100 35,88 55,72 72,40 90,25" fill="none" stroke="#FF5E34" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <polygon points="88,18 94,18 91,12" fill="#FF5E34"/>
+    </g>
+  </g>
+
+  <!-- Arrow Time Series → Inference -->
+  <g transform="translate(814, 265)">
+    <polygon points="0,-7 14,0 0,7" fill="#FF5E34"/>
+  </g>
+
+  <!-- Inference panel -->
+  <g transform="translate(834, 145)">
+    <rect x="0" y="0" width="120" height="285" rx="8" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <!-- Brain icon -->
+    <g transform="translate(22, 8)">
+      <circle cx="32" cy="26" r="22" fill="none" stroke="#06222E" stroke-width="2.5"/>
+      <path d="M24,18 Q32,12 32,26 Q32,36 42,32" fill="none" stroke="#06222E" stroke-width="2" stroke-linecap="round"/>
+      <path d="M26,26 Q30,21 36,26" fill="none" stroke="#06222E" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- Arrow entering -->
+      <line x1="-8" y1="26" x2="8" y2="26" stroke="#FF5E34" stroke-width="2.5"/>
+      <polygon points="5,22 12,26 5,30" fill="#FF5E34"/>
+    </g>
+    <text x="60" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#FF5E34" font-weight="700" text-anchor="middle">Inference</text>
+    <text x="60" y="98" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333" text-anchor="middle">ML model</text>
+    <text x="60" y="112" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333" text-anchor="middle">monitoring</text>
+    <!-- Neural network / gears icon -->
+    <g transform="translate(8, 130)">
+      <circle cx="15" cy="20" r="6" fill="#0076C8"/>
+      <circle cx="15" cy="45" r="6" fill="#0076C8"/>
+      <circle cx="15" cy="70" r="6" fill="#0076C8"/>
+      <circle cx="52" cy="30" r="6" fill="#FF5E34"/>
+      <circle cx="52" cy="58" r="6" fill="#FF5E34"/>
+      <circle cx="88" cy="44" r="6" fill="#0076C8"/>
+      <line x1="21" y1="20" x2="46" y2="30" stroke="#999" stroke-width="1"/>
+      <line x1="21" y1="20" x2="46" y2="58" stroke="#999" stroke-width="1"/>
+      <line x1="21" y1="45" x2="46" y2="30" stroke="#999" stroke-width="1"/>
+      <line x1="21" y1="45" x2="46" y2="58" stroke="#999" stroke-width="1"/>
+      <line x1="21" y1="70" x2="46" y2="30" stroke="#999" stroke-width="1"/>
+      <line x1="21" y1="70" x2="46" y2="58" stroke="#999" stroke-width="1"/>
+      <line x1="58" y1="30" x2="82" y2="44" stroke="#999" stroke-width="1"/>
+      <line x1="58" y1="58" x2="82" y2="44" stroke="#999" stroke-width="1"/>
+    </g>
+  </g>
+
+  <!-- ==================== LARGE ORANGE ARROW (CENTER → RIGHT) ==================== -->
+  <polygon points="968,185 968,275 998,230" fill="#FF5E34"/>
+
+  <!-- ==================== KEY QUALITY METRICS (RIGHT PANEL) ==================== -->
+  <!-- Blue header -->
+  <rect x="1000" y="84" width="382" height="46" rx="8" ry="8" fill="#0076C8"/>
+  <rect x="1000" y="106" width="382" height="24" fill="#0076C8"/>
+  <text x="1191" y="114" font-family="Segoe UI, Arial, sans-serif" font-size="21" fill="#FFFFFF" font-weight="600" text-anchor="middle">Key Quality Metrics</text>
+
+  <!-- Light blue content area -->
+  <rect x="1000" y="130" width="382" height="348" fill="#E6F0F9"/>
+  <rect x="1000" y="456" width="382" height="22" rx="8" ry="8" fill="#E6F0F9"/>
+  <rect x="1000" y="456" width="382" height="10" fill="#E6F0F9"/>
+
+  <!-- Null % card (top-left) -->
+  <g transform="translate(1015, 145)">
+    <rect x="0" y="0" width="175" height="90" rx="6" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <g transform="translate(12, 12)">
+      <circle cx="20" cy="20" r="17" fill="#E6F0F9" stroke="#0076C8" stroke-width="2"/>
+      <path d="M20,20 L20,3 A17,17 0 0,1 36,24 Z" fill="#FF5E34"/>
+      <text x="36" y="2" font-family="Segoe UI, Arial, sans-serif" font-size="8" fill="#06222E" font-weight="600">7%</text>
+    </g>
+    <text x="62" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#0076C8" font-weight="700">Null %</text>
+    <text x="62" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">Percentage of</text>
+    <text x="62" y="63" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">null values</text>
+  </g>
+
+  <!-- Distinct Count card (top-right) -->
+  <g transform="translate(1200, 145)">
+    <rect x="0" y="0" width="168" height="90" rx="6" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <g transform="translate(10, 10)">
+      <circle cx="20" cy="20" r="17" fill="#E6F0F9" stroke="#0076C8" stroke-width="2"/>
+      <path d="M20,20 L20,3 A17,17 0 1,1 6,30 Z" fill="#0076C8"/>
+      <circle cx="20" cy="20" r="8" fill="#FFFFFF"/>
+    </g>
+    <text x="55" y="18" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Distinct</text>
+    <text x="55" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Count</text>
+    <text x="55" y="54" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">Number of</text>
+    <text x="55" y="69" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">unique values</text>
+  </g>
+
+  <!-- Min/Max/Avg card (mid-left) -->
+  <g transform="translate(1015, 248)">
+    <rect x="0" y="0" width="175" height="90" rx="6" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <g transform="translate(12, 14)">
+      <line x1="0" y1="8" x2="40" y2="8" stroke="#06222E" stroke-width="2"/>
+      <circle cx="12" cy="8" r="5" fill="#0076C8"/>
+      <line x1="0" y1="22" x2="40" y2="22" stroke="#06222E" stroke-width="2"/>
+      <circle cx="28" cy="22" r="5" fill="#FF5E34"/>
+      <line x1="0" y1="36" x2="40" y2="36" stroke="#06222E" stroke-width="2"/>
+      <circle cx="20" cy="36" r="5" fill="#0076C8"/>
+    </g>
+    <text x="62" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Min/Max/Avg</text>
+    <text x="62" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">Range and central</text>
+    <text x="62" y="63" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">tendency</text>
+  </g>
+
+  <!-- Frequent Items card (mid-right) -->
+  <g transform="translate(1200, 248)">
+    <rect x="0" y="0" width="168" height="90" rx="6" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <g transform="translate(10, 8)">
+      <path d="M5,38 L20,30 L35,38 L20,46 Z" fill="#0076C8" opacity="0.5"/>
+      <path d="M5,30 L20,22 L35,30 L20,38 Z" fill="#0076C8" opacity="0.65"/>
+      <path d="M5,22 L20,14 L35,22 L20,30 Z" fill="#0076C8" opacity="0.8"/>
+      <path d="M5,14 L20,6 L35,14 L20,22 Z" fill="#FF5E34"/>
+    </g>
+    <text x="55" y="18" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Frequent</text>
+    <text x="55" y="34" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Items</text>
+    <text x="55" y="54" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">Most common</text>
+    <text x="55" y="69" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">values</text>
+  </g>
+
+  <!-- Quantiles card (bottom-center) -->
+  <g transform="translate(1105, 352)">
+    <rect x="0" y="0" width="175" height="90" rx="6" fill="#FFFFFF" filter="url(#shadowLight)"/>
+    <g transform="translate(12, 10)">
+      <path d="M0,42 Q6,42 12,36 Q18,14 22,4 Q26,14 32,36 Q38,42 44,42" fill="none" stroke="#0076C8" stroke-width="2.5"/>
+      <line x1="0" y1="42" x2="44" y2="42" stroke="#06222E" stroke-width="1.5"/>
+    </g>
+    <text x="64" y="22" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0076C8" font-weight="700">Quantiles</text>
+    <text x="64" y="48" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">Data distribution</text>
+    <text x="64" y="63" font-family="Segoe UI, Arial, sans-serif" font-size="11" fill="#333333">points</text>
+  </g>
+
+  <!-- ==================== DATA DRIFT DETECTION (BOTTOM) ==================== -->
+  <!-- Title -->
+  <text x="860" y="545" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#06222E" font-weight="700" text-anchor="middle">Data Drift Detection</text>
+
+  <!-- Dark background section -->
+  <rect x="468" y="558" width="914" height="182" rx="10" fill="#06222E"/>
+
+  <!-- KS Test section -->
+  <g transform="translate(495, 580)">
+    <!-- Two bell curves -->
+    <g transform="translate(0, 20)">
+      <path d="M0,80 Q12,80 24,68 Q36,28 52,8 Q68,28 80,68 Q92,80 104,80" fill="none" stroke="#FFFFFF" stroke-width="2.5" opacity="0.85"/>
+      <path d="M18,80 Q30,78 42,62 Q54,20 68,8 Q82,20 92,62 Q100,78 112,80" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="5,4" opacity="0.45"/>
+      <line x1="0" y1="82" x2="115" y2="82" stroke="#FFFFFF" stroke-width="1" opacity="0.3"/>
+    </g>
+    <text x="130" y="30" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#FFFFFF" font-weight="600">KS Test</text>
+    <text x="130" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#0076C8" font-weight="700">Numeric</text>
+    <text x="130" y="85" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#FFFFFF" opacity="0.85">Statistical test for</text>
+    <text x="130" y="102" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#FFFFFF" opacity="0.85">continuous data drift</text>
+  </g>
+
+  <!-- Arrow between KS Test and Chi-squared -->
+  <g transform="translate(790, 648)">
+    <line x1="0" y1="0" x2="55" y2="0" stroke="#0076C8" stroke-width="3"/>
+    <polygon points="53,-7 67,0 53,7" fill="#0076C8"/>
+  </g>
+
+  <!-- Chi-squared Test section -->
+  <g transform="translate(870, 580)">
+    <text x="0" y="28" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#FFFFFF" font-weight="600">Chi-squared Test</text>
+    <!-- Stacked bar chart -->
+    <g transform="translate(230, 10)">
+      <rect x="0" y="30" width="18" height="52" fill="#0076C8"/>
+      <rect x="0" y="12" width="18" height="18" fill="#FF5E34"/>
+      <rect x="22" y="18" width="18" height="64" fill="#0076C8"/>
+      <rect x="22" y="4" width="18" height="14" fill="#FF5E34"/>
+      <rect x="44" y="24" width="18" height="58" fill="#0076C8"/>
+      <rect x="44" y="10" width="18" height="14" fill="#FF5E34"/>
+      <rect x="66" y="35" width="18" height="47" fill="#0076C8"/>
+      <rect x="66" y="20" width="18" height="15" fill="#FF5E34"/>
+    </g>
+    <text x="0" y="62" font-family="Segoe UI, Arial, sans-serif" font-size="24" fill="#0076C8" font-weight="700">Categorical</text>
+    <text x="0" y="85" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#FFFFFF" opacity="0.85">Statistical test for</text>
+    <text x="0" y="102" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#FFFFFF" opacity="0.85">categorical data drift</text>
+  </g>
+</svg>

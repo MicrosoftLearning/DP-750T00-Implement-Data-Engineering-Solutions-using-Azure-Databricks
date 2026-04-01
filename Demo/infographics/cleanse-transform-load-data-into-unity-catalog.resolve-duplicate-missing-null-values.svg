@@ -1,0 +1,392 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1408" height="768" viewBox="0 0 1408 768">
+  <defs>
+    <style>
+      text { font-family: 'Segoe UI', Arial, Helvetica, sans-serif; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1408" height="768" fill="#f5f0eb"/>
+
+  <!-- Vertical divider -->
+  <line x1="700" y1="15" x2="700" y2="755" stroke="#ddd5cb" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+  <!-- ==================== LEFT HALF: HANDLING DUPLICATES ==================== -->
+  <text x="40" y="38" font-size="20" font-weight="bold" fill="#1a1a1a" letter-spacing="2">HANDLING DUPLICATES</text>
+
+  <!-- ===== Identify Duplicates Section ===== -->
+  <rect x="28" y="55" width="656" height="314" rx="5" fill="none" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="28" y="55" width="185" height="26" rx="5" fill="#d94f30"/>
+  <text x="38" y="73" font-size="13" font-weight="bold" fill="#ffffff">Identify Duplicates</text>
+
+  <!-- Card 1: GROUP BY + HAVING -->
+  <rect x="40" y="92" width="195" height="126" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="50" y="102" width="30" height="30" rx="5" fill="#0078d4"/>
+  <g transform="translate(55,108)" fill="#ffffff">
+    <rect width="8" height="8" rx="1"/><rect x="10" width="8" height="8" rx="1"/>
+    <rect y="10" width="8" height="8" rx="1"/><rect x="10" y="10" width="8" height="8" rx="1"/>
+  </g>
+  <text x="86" y="114" font-size="12" font-weight="bold" fill="#1a1a1a">GROUP BY +</text>
+  <text x="86" y="128" font-size="12" font-weight="bold" fill="#1a1a1a">HAVING</text>
+  <text x="50" y="150" font-size="9" fill="#666">Count occurrences to spot dupes.</text>
+  <rect x="50" y="160" width="175" height="40" rx="3" fill="#f2f2f2"/>
+  <text x="56" y="176" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`GROUP BY col</text>
+  <text x="56" y="190" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">HAVING count(*) &gt; 1`</text>
+
+  <!-- Card 2: QUALIFY with window function -->
+  <rect x="245" y="92" width="195" height="126" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="255" y="102" width="30" height="30" rx="5" fill="#0078d4"/>
+  <g transform="translate(260,108)" fill="#ffffff">
+    <rect width="18" height="5" rx="1"/><rect y="7" width="18" height="5" rx="1"/><rect y="14" width="18" height="5" rx="1"/>
+  </g>
+  <text x="291" y="114" font-size="12" font-weight="bold" fill="#1a1a1a">QUALIFY with</text>
+  <text x="291" y="128" font-size="12" font-weight="bold" fill="#1a1a1a">window function</text>
+  <text x="255" y="150" font-size="9" fill="#666">See actual duplicate rows.</text>
+  <rect x="255" y="160" width="175" height="40" rx="3" fill="#f2f2f2"/>
+  <text x="261" y="176" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`QUALIFY count(*) OVER</text>
+  <text x="261" y="190" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">(PARTITION BY col) &gt; 1`</text>
+
+  <!-- Card 3: PySpark dropDuplicates / exceptAll -->
+  <rect x="450" y="92" width="222" height="126" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="460" y="102" width="30" height="30" rx="5" fill="#0078d4"/>
+  <text x="467" y="122" font-size="12" fill="#ffffff" font-weight="bold" font-family="Consolas, monospace">Py</text>
+  <text x="496" y="110" font-size="12" font-weight="bold" fill="#1a1a1a">PySpark</text>
+  <text x="496" y="124" font-size="12" font-weight="bold" fill="#1a1a1a">dropDuplicates /</text>
+  <text x="496" y="138" font-size="12" font-weight="bold" fill="#1a1a1a">exceptAll</text>
+  <text x="460" y="156" font-size="9" fill="#666">Programmatic approach.</text>
+  <rect x="460" y="166" width="202" height="36" rx="3" fill="#f2f2f2"/>
+  <text x="466" y="181" font-size="8" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.dropDuplicates(subset=[...])`</text>
+  <text x="466" y="194" font-size="8" fill="#333" font-family="Consolas, 'Courier New', monospace">or `df1.exceptAll(df2)`</text>
+
+  <!-- Example Table 1 (Name/Date) -->
+  <g transform="translate(40, 230)">
+    <rect width="40" height="20" fill="#1a3a5c"/><rect x="40" width="75" height="20" fill="#1a3a5c"/><rect x="115" width="85" height="20" fill="#1a3a5c"/>
+    <text x="12" y="14" font-size="9" fill="#fff" font-weight="bold">ID</text>
+    <text x="60" y="14" font-size="9" fill="#fff" font-weight="bold">Name</text>
+    <text x="140" y="14" font-size="9" fill="#fff" font-weight="bold">Date</text>
+    <rect y="20" width="200" height="18" fill="#ffffff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="33" font-size="8.5" fill="#333">101</text><text x="52" y="33" font-size="8.5" fill="#333">John Doe</text><text x="125" y="33" font-size="8.5" fill="#333">2023-01-01</text>
+    <rect y="38" width="200" height="18" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="51" font-size="8.5" fill="#333">102</text><text x="52" y="51" font-size="8.5" fill="#333">John Doe</text><text x="125" y="51" font-size="8.5" fill="#333">2023-01-01</text>
+    <rect y="56" width="200" height="18" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="69" font-size="8.5" fill="#333">103</text><text x="52" y="69" font-size="8.5" fill="#333">John Doe</text><text x="125" y="69" font-size="8.5" fill="#333">2023-01-01</text>
+    <rect y="74" width="200" height="18" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="87" font-size="8.5" fill="#333">104</text><text x="52" y="87" font-size="8.5" fill="#333">John Doe</text><text x="125" y="87" font-size="8.5" fill="#333">2023-01-01</text>
+  </g>
+
+  <!-- Example Table 2 (Transaction/Amount) -->
+  <g transform="translate(310, 230)">
+    <rect width="45" height="20" fill="#1a3a5c"/><rect x="45" width="100" height="20" fill="#1a3a5c"/><rect x="145" width="70" height="20" fill="#1a3a5c"/>
+    <text x="12" y="14" font-size="9" fill="#fff" font-weight="bold">ID</text>
+    <text x="72" y="14" font-size="9" fill="#fff" font-weight="bold">Transaction</text>
+    <text x="168" y="14" font-size="9" fill="#fff" font-weight="bold">Amount</text>
+    <rect y="20" width="215" height="18" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="33" font-size="8.5" fill="#333">A01</text><text x="58" y="33" font-size="8.5" fill="#333">Sale</text><text x="195" y="33" font-size="8.5" fill="#333" text-anchor="end">100</text>
+    <rect y="38" width="215" height="18" fill="#ffffff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="51" font-size="8.5" fill="#333">A02</text><text x="58" y="51" font-size="8.5" fill="#333">Refund</text><text x="195" y="51" font-size="8.5" fill="#333" text-anchor="end">50</text>
+    <rect y="56" width="215" height="18" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="69" font-size="8.5" fill="#333">A01</text><text x="58" y="69" font-size="8.5" fill="#333">Sale</text><text x="195" y="69" font-size="8.5" fill="#333" text-anchor="end">100</text>
+    <rect y="74" width="215" height="18" fill="#ffffff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="87" font-size="8.5" fill="#333">A03</text><text x="58" y="87" font-size="8.5" fill="#333">Sale</text><text x="195" y="87" font-size="8.5" fill="#333" text-anchor="end">200</text>
+    <rect y="92" width="215" height="18" fill="#ffffff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="105" font-size="8.5" fill="#333">A02</text><text x="58" y="105" font-size="8.5" fill="#333">Refund</text><text x="195" y="105" font-size="8.5" fill="#333" text-anchor="end">50</text>
+  </g>
+
+  <rect x="540" y="352" width="10" height="10" fill="#d94f30" rx="1"/>
+  <text x="555" y="361" font-size="8.5" fill="#666">Highlighted duplicate rows</text>
+
+  <!-- ===== Remove Duplicates Section ===== -->
+  <rect x="28" y="386" width="656" height="370" rx="5" fill="none" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="28" y="386" width="195" height="26" rx="5" fill="#d94f30"/>
+  <text x="38" y="404" font-size="13" font-weight="bold" fill="#ffffff">Remove Duplicates</text>
+
+  <!-- Card: dropDuplicates() -->
+  <rect x="40" y="422" width="290" height="108" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="50" y="432" width="32" height="32" rx="5" fill="#d94f30"/>
+  <g transform="translate(56,437)" fill="none" stroke="#ffffff" stroke-width="1.5">
+    <rect x="3" y="6" width="14" height="14" rx="2"/><line x1="1" y1="6" x2="19" y2="6"/><line x1="7" y1="3" x2="13" y2="3"/>
+    <line x1="7" y1="10" x2="7" y2="17" stroke-width="1"/><line x1="10" y1="10" x2="10" y2="17" stroke-width="1"/><line x1="13" y1="10" x2="13" y2="17" stroke-width="1"/>
+  </g>
+  <text x="90" y="450" font-size="13" font-weight="bold" fill="#1a1a1a">dropDuplicates()</text>
+  <text x="50" y="478" font-size="9.5" fill="#666">Keeps the first occurrence.</text>
+  <rect x="50" y="490" width="268" height="24" rx="3" fill="#f2f2f2"/>
+  <text x="56" y="506" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.dropDuplicates(subset=[...])`</text>
+
+  <!-- Card: ROW_NUMBER() with QUALIFY -->
+  <rect x="342" y="422" width="330" height="108" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="352" y="432" width="32" height="32" rx="5" fill="#0078d4"/>
+  <text x="356" y="454" font-size="10" fill="#ffffff" font-weight="bold" font-family="Consolas, monospace">SQL</text>
+  <text x="392" y="444" font-size="13" font-weight="bold" fill="#1a1a1a">ROW_NUMBER()</text>
+  <text x="392" y="460" font-size="13" font-weight="bold" fill="#1a1a1a">with QUALIFY</text>
+  <text x="352" y="478" font-size="9.5" fill="#666">Keeps most recent by date.</text>
+  <rect x="352" y="490" width="308" height="28" rx="3" fill="#f2f2f2"/>
+  <text x="358" y="504" font-size="8" fill="#333" font-family="Consolas, 'Courier New', monospace">`QUALIFY ROW_NUMBER() OVER (PARTITION BY</text>
+  <text x="358" y="515" font-size="8" fill="#333" font-family="Consolas, 'Courier New', monospace">col ORDER BY date DESC) = 1`</text>
+
+  <!-- dropDuplicates Before/After -->
+  <text x="100" y="548" font-size="10" font-weight="bold" fill="#333">Before</text>
+  <text x="258" y="548" font-size="10" font-weight="bold" fill="#333">After</text>
+
+  <g transform="translate(40, 556)">
+    <rect width="35" height="17" fill="#1a3a5c"/><rect x="35" width="72" height="17" fill="#1a3a5c"/><rect x="107" width="50" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="48" y="12" font-size="8" fill="#fff" font-weight="bold">Transaction</text>
+    <text x="118" y="12" font-size="8" fill="#fff" font-weight="bold">Amount</text>
+    <rect y="17" width="157" height="15" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">A01</text><text x="44" y="28" font-size="7.5" fill="#333">Sale</text><text x="132" y="28" font-size="7.5" fill="#333">100</text>
+    <rect y="32" width="157" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="43" font-size="7.5" fill="#333">A02</text><text x="44" y="43" font-size="7.5" fill="#333">Refund</text><text x="132" y="43" font-size="7.5" fill="#333">50</text>
+    <rect y="47" width="157" height="15" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="58" font-size="7.5" fill="#333">A01</text><text x="44" y="58" font-size="7.5" fill="#333">Sale</text><text x="132" y="58" font-size="7.5" fill="#333">100</text>
+    <rect y="62" width="157" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="73" font-size="7.5" fill="#333">A03</text><text x="44" y="73" font-size="7.5" fill="#333">Sale</text><text x="132" y="73" font-size="7.5" fill="#333">200</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="202" y1="600" x2="218" y2="600" stroke="#555" stroke-width="1.5"/>
+  <polygon points="218,596 226,600 218,604" fill="#555"/>
+
+  <g transform="translate(232, 556)">
+    <rect width="35" height="17" fill="#1a3a5c"/><rect x="35" width="72" height="17" fill="#1a3a5c"/><rect x="107" width="50" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="48" y="12" font-size="8" fill="#fff" font-weight="bold">Transaction</text>
+    <text x="118" y="12" font-size="8" fill="#fff" font-weight="bold">Amount</text>
+    <rect y="17" width="157" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">A01</text><text x="44" y="28" font-size="7.5" fill="#333">Sale</text><text x="132" y="28" font-size="7.5" fill="#333">100</text>
+    <rect y="32" width="157" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="43" font-size="7.5" fill="#333">A02</text><text x="44" y="43" font-size="7.5" fill="#333">Refund</text><text x="132" y="43" font-size="7.5" fill="#333">50</text>
+    <rect y="47" width="157" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="58" font-size="7.5" fill="#333">A03</text><text x="44" y="58" font-size="7.5" fill="#333">Sale</text><text x="132" y="58" font-size="7.5" fill="#333">200</text>
+  </g>
+  <text x="170" y="650" font-size="8.5" fill="#666" text-anchor="middle" font-style="italic">Deduplicated table</text>
+
+  <!-- ROW_NUMBER Before/After -->
+  <text x="440" y="548" font-size="10" font-weight="bold" fill="#333">Before</text>
+  <text x="580" y="548" font-size="10" font-weight="bold" fill="#333">After</text>
+
+  <g transform="translate(380, 556)">
+    <rect width="28" height="17" fill="#1a3a5c"/><rect x="28" width="132" height="17" fill="#1a3a5c"/>
+    <text x="6" y="12" font-size="7.5" fill="#fff" font-weight="bold">ID</text>
+    <text x="66" y="12" font-size="7.5" fill="#fff" font-weight="bold">Transaction</text>
+    <rect y="17" width="160" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="6" y="28" font-size="6.5" fill="#333">B01</text><text x="34" y="28" font-size="6.5" fill="#333">Login | 2023-01-01 10:00</text>
+    <rect y="32" width="160" height="15" fill="#fce4dd" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="6" y="43" font-size="6.5" fill="#333">B01</text><text x="34" y="43" font-size="6.5" fill="#333">Login | 2023-01-01 10:05</text>
+    <rect y="47" width="160" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="6" y="58" font-size="6.5" fill="#333">B02</text><text x="34" y="58" font-size="6.5" fill="#333">Login | 2023-01-01 10:02</text>
+  </g>
+
+  <!-- Arrow -->
+  <line x1="544" y1="590" x2="558" y2="590" stroke="#555" stroke-width="1.5"/>
+  <polygon points="558,586 566,590 558,594" fill="#555"/>
+
+  <g transform="translate(570, 556)">
+    <rect width="28" height="17" fill="#1a3a5c"/><rect x="28" width="132" height="17" fill="#1a3a5c"/>
+    <text x="6" y="12" font-size="7.5" fill="#fff" font-weight="bold">ID</text>
+    <text x="66" y="12" font-size="7.5" fill="#fff" font-weight="bold">Transaction</text>
+    <rect y="17" width="160" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="6" y="28" font-size="6.5" fill="#333">B01</text><text x="34" y="28" font-size="6.5" fill="#333">Login | 2023-01-01 16:05</text>
+    <rect y="32" width="160" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="6" y="43" font-size="6.5" fill="#333">B02</text><text x="34" y="43" font-size="6.5" fill="#333">Login | 2023-01-01 10:02</text>
+  </g>
+  <text x="530" y="650" font-size="8.5" fill="#666" text-anchor="middle" font-style="italic">Keeps latest record</text>
+
+
+  <!-- ==================== RIGHT HALF: HANDLING NULLS ==================== -->
+  <text x="730" y="38" font-size="20" font-weight="bold" fill="#1a1a1a" letter-spacing="2">HANDLING NULLS</text>
+
+  <!-- ===== Identify Nulls ===== -->
+  <rect x="718" y="55" width="672" height="180" rx="5" fill="none" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="718" y="55" width="145" height="26" rx="5" fill="#0078d4"/>
+  <text x="728" y="73" font-size="13" font-weight="bold" fill="#ffffff">Identify Nulls</text>
+
+  <rect x="730" y="92" width="410" height="76" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="740" y="102" width="32" height="32" rx="5" fill="#0078d4"/>
+  <g transform="translate(746,108)" fill="none" stroke="#ffffff" stroke-width="2">
+    <circle cx="8" cy="8" r="7"/><line x1="13" y1="13" x2="19" y2="19"/>
+  </g>
+  <text x="780" y="116" font-size="14" font-weight="bold" fill="#1a1a1a">IS NULL &amp; COUNT Patterns</text>
+  <text x="740" y="142" font-size="9" fill="#666">`WHERE column IS NULL` to find rows.</text>
+  <text x="740" y="156" font-size="9" fill="#666">`COUNT(*) – COUNT(column)` to get null count per column.</text>
+
+  <!-- Null example table -->
+  <g transform="translate(1162, 66)">
+    <rect width="38" height="20" fill="#1a3a5c"/><rect x="38" width="120" height="20" fill="#1a3a5c"/><rect x="158" width="50" height="20" fill="#1a3a5c"/>
+    <text x="12" y="14" font-size="9" fill="#fff" font-weight="bold">ID</text>
+    <text x="78" y="14" font-size="9" fill="#fff" font-weight="bold">Email</text>
+    <text x="174" y="14" font-size="9" fill="#fff" font-weight="bold">Age</text>
+    <rect y="20" width="208" height="18" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="33" font-size="8.5" fill="#333">101</text><text x="48" y="33" font-size="8.5" fill="#333">john@example.com</text><text x="174" y="33" font-size="8.5" fill="#333">30</text>
+    <rect y="38" width="208" height="18" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="51" font-size="8.5" fill="#333">102</text>
+    <rect x="44" y="40" width="108" height="14" rx="2" fill="#2196F3"/><text x="98" y="51" font-size="8.5" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <text x="174" y="51" font-size="8.5" fill="#333">40</text>
+    <rect y="56" width="208" height="18" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="69" font-size="8.5" fill="#333">103</text><text x="48" y="69" font-size="8.5" fill="#333">john@example.com</text>
+    <rect x="162" y="58" width="42" height="14" rx="2" fill="#2196F3"/><text x="183" y="69" font-size="8.5" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect y="74" width="208" height="18" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="12" y="87" font-size="8.5" fill="#333">104</text>
+    <rect x="44" y="76" width="108" height="14" rx="2" fill="#2196F3"/><text x="98" y="87" font-size="8.5" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect x="162" y="76" width="42" height="14" rx="2" fill="#2196F3"/><text x="183" y="87" font-size="8.5" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+  </g>
+  <rect x="1282" y="164" width="10" height="10" fill="#2196F3" rx="1"/>
+  <text x="1296" y="173" font-size="8.5" fill="#666">Highlighted null cells</text>
+
+  <!-- ===== Remove Nulls ===== -->
+  <rect x="718" y="248" width="672" height="198" rx="5" fill="none" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="718" y="248" width="155" height="26" rx="5" fill="#d94f30"/>
+  <text x="728" y="266" font-size="13" font-weight="bold" fill="#ffffff">Remove Nulls</text>
+
+  <!-- dropna() any -->
+  <rect x="730" y="284" width="200" height="95" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="740" y="294" width="32" height="32" rx="5" fill="#0078d4"/>
+  <g transform="translate(746,298)" fill="#ffffff">
+    <circle cx="10" cy="6" r="5"/><path d="M3,20 C3,14 17,14 17,20"/>
+    <circle cx="20" cy="8" r="4" fill="#ffffff" opacity="0.7"/>
+  </g>
+  <text x="780" y="312" font-size="13" font-weight="bold" fill="#1a1a1a">dropna() any</text>
+  <text x="740" y="340" font-size="9" fill="#666">Drops row if any column is null.</text>
+  <rect x="740" y="350" width="180" height="20" rx="3" fill="#f2f2f2"/>
+  <text x="746" y="364" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.dropna(how='any')`</text>
+
+  <!-- all -->
+  <rect x="942" y="284" width="200" height="95" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="952" y="294" width="32" height="32" rx="5" fill="#0078d4"/>
+  <g transform="translate(958,298)" fill="#ffffff">
+    <circle cx="6" cy="6" r="5"/><circle cx="18" cy="6" r="5"/>
+    <path d="M-1,20 C-1,14 13,14 13,20"/><path d="M11,20 C11,14 25,14 25,20"/>
+  </g>
+  <text x="992" y="312" font-size="13" font-weight="bold" fill="#1a1a1a">all</text>
+  <text x="952" y="340" font-size="9" fill="#666">Drops row only if all columns are null.</text>
+  <rect x="952" y="350" width="180" height="20" rx="3" fill="#f2f2f2"/>
+  <text x="958" y="364" font-size="8.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.dropna(how='all')`</text>
+
+  <!-- dropna() subset -->
+  <rect x="1154" y="284" width="224" height="95" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="1164" y="294" width="32" height="32" rx="5" fill="#0078d4"/>
+  <g transform="translate(1170,300)" fill="none" stroke="#ffffff" stroke-width="1.5">
+    <rect x="2" y="2" width="16" height="16" rx="2"/><line x1="6" y1="8" x2="14" y2="8"/><line x1="6" y1="12" x2="14" y2="12"/>
+  </g>
+  <text x="1204" y="312" font-size="13" font-weight="bold" fill="#1a1a1a">dropna() subset</text>
+  <text x="1164" y="340" font-size="9" fill="#666">Drops row if specific columns are null.</text>
+  <rect x="1164" y="350" width="204" height="20" rx="3" fill="#f2f2f2"/>
+  <text x="1170" y="364" font-size="7.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.dropna(subset=['col1', 'col2'])`</text>
+
+  <!-- Remove nulls example tables -->
+  <g transform="translate(832, 396)">
+    <rect width="30" height="17" fill="#1a3a5c"/><rect x="30" width="105" height="17" fill="#1a3a5c"/><rect x="135" width="40" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="62" y="12" font-size="8" fill="#fff" font-weight="bold">Email</text>
+    <text x="146" y="12" font-size="8" fill="#fff" font-weight="bold">Age</text>
+    <rect y="17" width="175" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">101</text><text x="38" y="28" font-size="7.5" fill="#333">john@example.com</text><text x="148" y="28" font-size="7.5" fill="#333">30</text>
+  </g>
+
+  <line x1="1012" y1="418" x2="1028" y2="418" stroke="#555" stroke-width="1.5"/>
+  <polygon points="1028,414 1036,418 1028,422" fill="#555"/>
+
+  <g transform="translate(1046, 396)">
+    <rect width="30" height="17" fill="#1a3a5c"/><rect x="30" width="105" height="17" fill="#1a3a5c"/><rect x="135" width="40" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="62" y="12" font-size="8" fill="#fff" font-weight="bold">Email</text>
+    <text x="146" y="12" font-size="8" fill="#fff" font-weight="bold">Age</text>
+    <rect y="17" width="175" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">101</text><text x="38" y="28" font-size="7.5" fill="#333">john@example.com</text><text x="148" y="28" font-size="7.5" fill="#333">30</text>
+  </g>
+  <text x="1260" y="408" font-size="8" fill="#666">Rows with</text>
+  <text x="1260" y="420" font-size="8" fill="#666">nulls removed</text>
+
+  <!-- ===== Fill Nulls ===== -->
+  <rect x="718" y="456" width="672" height="305" rx="5" fill="none" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="718" y="456" width="110" height="26" rx="5" fill="#0078d4"/>
+  <text x="728" y="474" font-size="13" font-weight="bold" fill="#ffffff">Fill Nulls</text>
+
+  <!-- fillna() in PySpark -->
+  <rect x="730" y="492" width="280" height="88" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="740" y="502" width="32" height="32" rx="5" fill="#0078d4"/>
+  <g transform="translate(748,508)" fill="none" stroke="#ffffff" stroke-width="1.5">
+    <path d="M4,16 L4,4 L16,4"/><path d="M12,0 L16,4 L12,8"/>
+  </g>
+  <text x="780" y="520" font-size="13" font-weight="bold" fill="#1a1a1a">fillna() in PySpark</text>
+  <text x="740" y="544" font-size="9" fill="#666">Fill with specific values per column.</text>
+  <rect x="740" y="552" width="260" height="20" rx="3" fill="#f2f2f2"/>
+  <text x="746" y="566" font-size="7.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`df.fillna({'age': 0, 'email': 'unknown'})`</text>
+
+  <!-- COALESCE in SQL -->
+  <rect x="1024" y="492" width="280" height="88" rx="5" fill="#ffffff" stroke="#ddd5cb" stroke-width="1"/>
+  <rect x="1034" y="502" width="32" height="32" rx="5" fill="#d94f30"/>
+  <g transform="translate(1042,510)" fill="none" stroke="#ffffff" stroke-width="2.5">
+    <line x1="3" y1="3" x2="15" y2="15"/><line x1="15" y1="3" x2="3" y2="15"/>
+  </g>
+  <text x="1074" y="520" font-size="13" font-weight="bold" fill="#1a1a1a">COALESCE in SQL</text>
+  <text x="1034" y="544" font-size="9" fill="#666">Returns first non-null value.</text>
+  <rect x="1034" y="552" width="260" height="20" rx="3" fill="#f2f2f2"/>
+  <text x="1040" y="566" font-size="7.5" fill="#333" font-family="Consolas, 'Courier New', monospace">`COALESCE(col1, col2, 'default_value')`</text>
+
+  <!-- Fill Nulls Before/After -->
+  <text x="800" y="598" font-size="10" font-weight="bold" fill="#333">Before</text>
+  <text x="970" y="598" font-size="10" font-weight="bold" fill="#333">After</text>
+
+  <!-- Before -->
+  <g transform="translate(730, 606)">
+    <rect width="32" height="17" fill="#1a3a5c"/><rect x="32" width="110" height="17" fill="#1a3a5c"/><rect x="142" width="42" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="66" y="12" font-size="8" fill="#fff" font-weight="bold">Email</text>
+    <text x="154" y="12" font-size="8" fill="#fff" font-weight="bold">Age</text>
+    <rect y="17" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">101</text><text x="40" y="28" font-size="7.5" fill="#333">john@example.com</text><text x="154" y="28" font-size="7.5" fill="#333">30</text>
+    <rect y="32" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="43" font-size="7.5" fill="#333">102</text>
+    <rect x="38" y="34" width="96" height="11" rx="2" fill="#2196F3"/><text x="86" y="43" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect x="146" y="34" width="34" height="11" rx="2" fill="#2196F3"/><text x="163" y="43" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect y="47" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="58" font-size="7.5" fill="#333">103</text>
+    <rect x="38" y="49" width="96" height="11" rx="2" fill="#2196F3"/><text x="86" y="58" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect x="146" y="49" width="34" height="11" rx="2" fill="#2196F3"/><text x="163" y="58" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect y="62" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="73" font-size="7.5" fill="#333">A04</text>
+    <rect x="38" y="64" width="96" height="11" rx="2" fill="#2196F3"/><text x="86" y="73" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+    <rect x="146" y="64" width="34" height="11" rx="2" fill="#2196F3"/><text x="163" y="73" font-size="7" fill="#fff" font-weight="bold" text-anchor="middle">NULL</text>
+  </g>
+
+  <line x1="920" y1="656" x2="936" y2="656" stroke="#555" stroke-width="1.5"/>
+  <polygon points="936,652 944,656 936,660" fill="#555"/>
+
+  <!-- After -->
+  <g transform="translate(950, 606)">
+    <rect width="32" height="17" fill="#1a3a5c"/><rect x="32" width="110" height="17" fill="#1a3a5c"/><rect x="142" width="42" height="17" fill="#1a3a5c"/>
+    <text x="8" y="12" font-size="8" fill="#fff" font-weight="bold">ID</text>
+    <text x="66" y="12" font-size="8" fill="#fff" font-weight="bold">Email</text>
+    <text x="154" y="12" font-size="8" fill="#fff" font-weight="bold">Age</text>
+    <rect y="17" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="28" font-size="7.5" fill="#333">101</text><text x="40" y="28" font-size="7.5" fill="#333">john@example.com</text><text x="154" y="28" font-size="7.5" fill="#333">30</text>
+    <rect y="32" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="43" font-size="7.5" fill="#333">102</text><text x="40" y="43" font-size="7.5" fill="#333">unknown</text><text x="154" y="43" font-size="7.5" fill="#333">0</text>
+    <rect y="47" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="58" font-size="7.5" fill="#333">103</text><text x="40" y="58" font-size="7.5" fill="#333">0</text><text x="154" y="58" font-size="7.5" fill="#333">0</text>
+    <rect y="62" width="184" height="15" fill="#fff" stroke="#e0e0e0" stroke-width="0.5"/>
+    <text x="8" y="73" font-size="7.5" fill="#333">404</text><text x="40" y="73" font-size="7.5" fill="#333">unknown</text><text x="154" y="73" font-size="7.5" fill="#333">0</text>
+  </g>
+  <text x="870" y="702" font-size="8.5" fill="#666" text-anchor="middle" font-style="italic">Nulls filled with default values</text>
+
+  <!-- ===== STRATEGY GUIDE ===== -->
+  <rect x="1150" y="596" width="228" height="158" rx="6" fill="#d94f30"/>
+  <text x="1264" y="620" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">STRATEGY GUIDE</text>
+
+  <!-- Header row -->
+  <circle cx="1170" cy="638" r="5" fill="#e8735a"/><text x="1182" y="642" font-size="9" font-weight="bold" fill="#ffffff">Field Type</text>
+  <circle cx="1292" cy="638" r="5" fill="#e8735a"/><text x="1304" y="642" font-size="9" font-weight="bold" fill="#ffffff">Action</text>
+
+  <!-- Required ID fields -> Drop rows -->
+  <circle cx="1170" cy="660" r="5" fill="#e8735a"/><text x="1182" y="664" font-size="9" fill="#ffe8dd">Required ID fields</text>
+  <rect x="1286" y="654" width="12" height="12" rx="2" fill="#e8735a"/><text x="1304" y="664" font-size="9" fill="#ffe8dd">Drop rows</text>
+
+  <!-- Numeric fields -> Fill with 0 or mean -->
+  <text x="1170" y="684" font-size="11" fill="#ffe8dd" font-weight="bold">#</text><text x="1182" y="684" font-size="9" fill="#ffe8dd">Numeric fields</text>
+  <rect x="1286" y="676" width="12" height="12" rx="2" fill="#e8735a"/><text x="1304" y="686" font-size="9" fill="#ffe8dd">Fill with 0 or mean</text>
+
+  <line x1="1162" y1="700" x2="1366" y2="700" stroke="#e8735a" stroke-width="0.5"/>
+  <text x="1264" y="716" font-size="8" fill="#f5c8b5" text-anchor="middle">Choose strategy based on data importance</text>
+  <text x="1264" y="728" font-size="8" fill="#f5c8b5" text-anchor="middle">and analysis requirements.</text>
+
+</svg>

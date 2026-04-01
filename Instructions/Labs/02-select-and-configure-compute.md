@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Select and Configure Compute in Azure Databricks
+# Lab 02: Select and Configure Compute in Azure Databricks
 
 In this lab, you work as a data engineer at **HealthBridge Analytics**, a regional healthcare organization that processes millions of patient records daily — from hospital admissions and lab results to billing and compliance data. Your team relies on Azure Databricks to run data engineering pipelines, ad hoc analysis, and pipeline validation workloads.
 

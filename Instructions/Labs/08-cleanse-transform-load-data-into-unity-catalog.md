@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 08: Cleansing and Transforming Real Estate Data in Unity Catalog
+# Lab 08: Cleanse, transform, and load data into Unity Catalog
 
 ## Introduction
 

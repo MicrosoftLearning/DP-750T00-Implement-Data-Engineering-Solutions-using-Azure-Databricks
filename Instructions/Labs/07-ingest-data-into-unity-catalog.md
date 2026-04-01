@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab: Ingest Data into Unity Catalog — Solaris Energy
+# Lab 07: Ingest Data into Unity Catalog
 
 ## Scenario
 

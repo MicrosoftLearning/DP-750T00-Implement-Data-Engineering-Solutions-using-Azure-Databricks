@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 12: Implement Development Lifecycle Processes
+# Lab 12: Implement Development Lifecycle Processes in Azure Databricks
 
 ## Introduction
 

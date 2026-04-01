@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Govern Unity Catalog Objects
+# Lab 05: Govern Unity Catalog Objects
 
 ## Scenario
 

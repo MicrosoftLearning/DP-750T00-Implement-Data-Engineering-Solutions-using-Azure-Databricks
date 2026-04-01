@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 10: Design and Implement Data Pipelines
+# Lab 10: Design and implement data pipelines with Azure Databricks
 
 ## Introduction
 

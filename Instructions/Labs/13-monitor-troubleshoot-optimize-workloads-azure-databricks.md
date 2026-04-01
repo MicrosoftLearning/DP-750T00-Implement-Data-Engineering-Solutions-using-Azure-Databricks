@@ -13,7 +13,7 @@ lab:
     - Azure Databricks
 ---
 
-# Lab 13: Diagnose and Fix Spark Performance Issues
+# Lab 13: Monitor, Troubleshoot, and Optimize Workloads in Azure Databricks
 
 ## Introduction
 
