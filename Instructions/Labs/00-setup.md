@@ -13,16 +13,7 @@ lab:
 
 Before starting the labs in this course, you need to provision an **Azure Databricks Premium workspace**. This setup lab walks you through that process using **Azure Cloud Shell** so you don't need to install any tools locally.
 
-This lab should take approximately **15 minutes** to complete.
-
----
-
-## Prerequisites
-
-Before starting, ensure you have:
-
-- An **Azure subscription** provided to you for this course.
-- A browser with access to the [Azure portal](https://portal.azure.com).
+This setup should take approximately **15 minutes** to complete.
 
 ---
 
