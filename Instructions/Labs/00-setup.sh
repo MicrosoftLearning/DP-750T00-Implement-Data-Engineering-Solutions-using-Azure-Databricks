@@ -13,17 +13,17 @@ RESOURCE_GROUP="rg-dp750"
 WORKSPACE_NAME="adb-dp750"
 
 echo "Installing az databricks extension..."
+az config set core.collect_telemetry=no
+az config set core.display_warnings=no
 az config set extension.dynamic_install_allow_preview=true
 az extension add --upgrade -n databricks
 
-echo "Deploying to region: $REGION"
-
-# Create the resource group
+echo "Creating resource group $RESOURCE_GROUP in region $REGION..."
 az group create \
   --name $RESOURCE_GROUP \
   --location $REGION
 
-# Create the Azure Databricks Premium workspace
+echo "Creating Azure Databricks Premium workspace $WORKSPACE_NAME..."
 az databricks workspace create \
   --resource-group $RESOURCE_GROUP \
   --name $WORKSPACE_NAME \

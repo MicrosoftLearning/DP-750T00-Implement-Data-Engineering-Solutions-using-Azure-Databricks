@@ -34,7 +34,7 @@ Deleting the resource group removes the Azure Databricks workspace and any other
 1. In Cloud Shell, run the following command to download and execute the cleanup script:
 
     ```bash
-    curl -sL https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Instructions/Labs/99-cleanup.md | bash
+    curl -sL https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Instructions/Labs/99-cleanup.sh | bash
     ```
 
 2. The script deletes the resource group asynchronously. You can close Cloud Shell after running the command.
