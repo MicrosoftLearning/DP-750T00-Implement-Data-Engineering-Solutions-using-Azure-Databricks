@@ -31,22 +31,13 @@ Deleting the resource group removes the Azure Databricks workspace and any other
 
 ### Task 2: Delete the resource group
 
-1. Copy and paste the following script into Cloud Shell, then press **Enter** to run it:
+1. In Cloud Shell, run the following command to download and execute the cleanup script:
 
     ```bash
-    RESOURCE_GROUP="rg-dp750"
-
-    echo "Deleting resource group: $RESOURCE_GROUP and all resources within it..."
-
-    az group delete \
-      --name $RESOURCE_GROUP \
-      --yes \
-      --no-wait
-
-    echo "Resource group deletion initiated. It may take a few minutes to complete."
+    curl -sL https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Instructions/Labs/99-cleanup.md | bash
     ```
 
-2. The `--no-wait` flag returns control immediately while the deletion continues in the background. You can close Cloud Shell after running the command.
+2. The script deletes the resource group asynchronously. You can close Cloud Shell after running the command.
 
 > [!NOTE]
 > This permanently deletes the **rg-dp750** resource group along with the **adb-dp750** Azure Databricks workspace and any other resources you may have added to the group during the labs. This action cannot be undone.

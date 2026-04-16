@@ -40,35 +40,10 @@ You'll use a single Azure CLI script in Cloud Shell to create a resource group a
 
 ### Task 2: Run the provisioning script
 
-1. Copy and paste the following script into Cloud Shell, then press **Enter** to run it:
+1. In Cloud Shell, run the following command to download and execute the setup script:
 
     ```bash
-    # Select a random Azure region that supports Azure Databricks
-    REGIONS=( australiaeast australiasoutheast brazilsouth canadacentral canadaeast centralindia centralus eastasia eastus eastus2 francecentral germanywestcentral japaneast japanwest koreacentral northcentralus northeurope norwayeast southcentralus southeastasia southindia swedencentral switzerlandnorth uksouth ukwest westeurope westus westus2 westus3 )
-    REGION=${REGIONS[$RANDOM % ${#REGIONS[@]}]}
-
-    RESOURCE_GROUP="rg-dp750"
-    WORKSPACE_NAME="adb-dp750"
-
-    echo "Installing az databricks extension"
-    az config set extension.dynamic_install_allow_preview=true
-    az extension add --upgrade -n databricks
-
-    echo "Deploying to region: $REGION"
-
-    # Create the resource group
-    az group create \
-      --name $RESOURCE_GROUP \
-      --location $REGION
-
-    # Create the Azure Databricks Premium workspace
-    az databricks workspace create \
-      --resource-group $RESOURCE_GROUP \
-      --name $WORKSPACE_NAME \
-      --location $REGION \
-      --sku premium
-
-    echo "Installation done"
+    curl -sL https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Instructions/Labs/00-setup.sh | bash
     ```
 
 2. Wait for the deployment to finish. This takes approximately **5 minutes**. 
