@@ -23,12 +23,12 @@ You'll use a single Azure CLI script in Cloud Shell to create a resource group a
 
 ### Task 1: Open Azure Cloud Shell
 
-1. Sign in to the [Azure portal](https://portal.azure.com) using the credentials provided to you.
+1. Sign in to the Azure portal at `https://portal.azure.com` using the credentials provided to you.
 
 2. Select the **Cloud Shell** button (**>_**) in the toolbar at the top of the portal. If prompted, select **Bash** as the shell type.
 
     > [!NOTE]
-    > If the Cloud Shell button isn't visible, your browser window may be too narrow. Try expanding the window or navigating directly to [https://shell.azure.com](https://shell.azure.com) to open Cloud Shell in a full browser tab.
+    > If the Cloud Shell button isn't visible, your browser window may be too narrow. Try expanding the window or navigating directly to `https://shell.azure.com` to open Cloud Shell in a full browser tab.
 
 3. If this is your first time using Cloud Shell, you're prompted to set up a storage account. Select **No storage account required**, choose your subscription, and select **Apply**.
 
@@ -50,30 +50,28 @@ You'll use a single Azure CLI script in Cloud Shell to create a resource group a
     RESOURCE_GROUP="rg-dp750"
     WORKSPACE_NAME="adb-dp750"
 
+    echo "Installing az databricks extension"
+    az config set extension.dynamic_install_allow_preview=true
+    az extension add --upgrade -n databricks
+
     echo "Deploying to region: $REGION"
 
     # Create the resource group
     az group create \
       --name $RESOURCE_GROUP \
-      --location $REGION \
-      --output table
+      --location $REGION
 
     # Create the Azure Databricks Premium workspace
     az databricks workspace create \
       --resource-group $RESOURCE_GROUP \
       --name $WORKSPACE_NAME \
       --location $REGION \
-      --sku premium \
-      --output table
+      --sku premium
+
+    echo "Installation done"
     ```
 
-2. Wait for the deployment to finish. This takes approximately **5 minutes**. When complete, you see output similar to:
-
-    ```
-    Name        ResourceGroup    Location    Sku      ProvisioningState
-    ----------  ---------------  ----------  -------  -------------------
-    adb-dp750   rg-dp750         eastus2     premium  Succeeded
-    ```
+2. Wait for the deployment to finish. This takes approximately **5 minutes**. 
 
 > [!NOTE]
 > The region is chosen at random from a list of supported public Azure regions. The workspace name and resource group name are fixed so you can easily find them in later labs.

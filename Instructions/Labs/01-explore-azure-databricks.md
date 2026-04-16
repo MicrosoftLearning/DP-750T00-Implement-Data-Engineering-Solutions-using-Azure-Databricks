@@ -78,7 +78,7 @@ CityMoves Transit has provided a CSV file with route information. Your task is t
 Before uploading, you need a Unity Catalog **volume** to store the file. Follow these steps to create one:
 
 1. In the Databricks workspace sidebar, click **Catalog**.
-2. In the Catalog Explorer, expand the **main** catalog, then expand the **default** schema.
+2. In the Catalog Explorer, expand the **adb-dp750** catalog, then expand the **default** schema.
 3. Click the **⋮** menu next to **default**, then select **Create** > **Volume**.
 4. Enter `lab_data` as the volume name, leave the type as **Managed**, and click **Create**.
 
@@ -91,9 +91,9 @@ Now upload the data file:
 7. Download the file from the following URL, then click **Browse** to select it:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/data/routes.csv`
 
-8. When prompted for a destination, select the volume you just created: `main` > `default` > `lab_data`.
+8. When prompted for a destination, select the volume you just created: `adb-dp750` > `default` > `lab_data`.
 
-9. After the upload completes, navigate to **Catalog** in the left sidebar and locate the uploaded file. Expand the catalog hierarchy (`main` > `default` > `lab_data`) to verify that `routes.csv` is visible.
+9. After the upload completes, navigate to **Catalog** in the left sidebar and locate the uploaded file. Expand the catalog hierarchy (`adb-dp750` > `default` > `lab_data`) to verify that `routes.csv` is visible.
 
     > **Note**: You do not need to query or load the data in this lab. The goal is simply to get familiar with the upload workflow. You will work with this data in later labs.
 
