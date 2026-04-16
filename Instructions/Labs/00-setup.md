@@ -29,7 +29,9 @@ You'll use a single Azure CLI script in Cloud Shell to create a resource group a
 
     > [!NOTE]
     > If the Cloud Shell button isn't visible, your browser window may be too narrow. Try expanding the window or navigating directly to `https://shell.azure.com` to open Cloud Shell in a full browser tab.
-
+    > 
+    > ![Cloud shell icon](Media/cloud-shell.png)
+    
 3. If this is your first time using Cloud Shell, you're prompted to set up a storage account. Select **No storage account required**, choose your subscription, and select **Apply**.
 
 4. Wait for the Cloud Shell prompt to appear. It looks like this:
