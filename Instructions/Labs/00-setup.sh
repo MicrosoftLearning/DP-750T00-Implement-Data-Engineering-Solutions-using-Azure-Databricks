@@ -13,9 +13,9 @@ RESOURCE_GROUP="rg-dp750"
 WORKSPACE_NAME="adb-dp750"
 
 echo "Installing az databricks extension..."
-az config set core.collect_telemetry=no
-az config set core.display_warnings=no
-az config set extension.dynamic_install_allow_preview=true
+az config set core.collect_telemetry=no 2>/dev/null
+az config set core.display_warnings=no 2>/dev/null
+az config set extension.dynamic_install_allow_preview=true 2>/dev/null
 az extension add --upgrade -n databricks
 
 echo "Creating resource group $RESOURCE_GROUP in region $REGION..."
