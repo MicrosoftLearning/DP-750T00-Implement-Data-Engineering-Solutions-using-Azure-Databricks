@@ -6,7 +6,7 @@
 set -e
 
 # Select a random Azure region that supports Azure Databricks
-REGIONS=( australiaeast australiasoutheast brazilsouth canadacentral canadaeast centralindia centralus eastasia eastus eastus2 francecentral germanywestcentral japaneast japanwest koreacentral northcentralus northeurope norwayeast southcentralus southeastasia southindia swedencentral switzerlandnorth uksouth ukwest westeurope westus westus2 westus3 )
+REGIONS=( australiaeast australiasoutheast brazilsouth canadacentral canadaeast centralindia centralus eastasia eastus eastus2 francecentral germanywestcentral japaneast koreacentral northcentralus northeurope norwayeast southcentralus southeastasia swedencentral switzerlandnorth uksouth westeurope westus westus2 westus3 )
 REGION=${REGIONS[$RANDOM % ${#REGIONS[@]}]}
 
 RESOURCE_GROUP="rg-dp750"

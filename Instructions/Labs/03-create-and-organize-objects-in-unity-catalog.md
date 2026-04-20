@@ -87,8 +87,8 @@ After completing the notebook exercises, you can optionally create a Genie Space
    - `edu_dev.silver.enrollments`
    - `edu_dev.silver.vw_student_enrollments`
    - `edu_dev.gold.vw_department_enrollment_stats`
-3. Name the space **Lakeside University Analytics**.
-4. For the `enrollments.grade` column, update the description to: *"Numerical grade on a 0.0–10.0 scale where 8.5+ is an A, 7.0+ is a B, 5.5+ is a C, 4.0+ is a D, and below 4.0 is an F."*
+3. Name the space `Lakeside University Analytics`.
+4. For the `enrollments.grade` column, update the description to: `Numerical grade on a 0.0–10.0 scale where 8.5+ is an A, 7.0+ is a B, 5.5+ is a C, 4.0+ is a D, and below 4.0 is an F.`
 5. Navigate to the **Chat** tab and ask: *"Which department has the highest average grade?"*
 6. Review the SQL Genie generated and compare it to your `vw_department_enrollment_stats` materialized view.
 
