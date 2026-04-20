@@ -93,7 +93,7 @@ Follow these steps to import the lab notebook into your Databricks workspace:
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/07-ingest-data-into-unity-catalog.ipynb`
-5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
+5. Open the imported notebook and, in the compute selector at the top, choose **Serverless Starter Warehouse** compute.
 
 ---
 
