@@ -158,7 +158,7 @@ Now that the cluster is configured, switch to the notebook to complete the remai
 ### Attach the notebook to Serverless compute
 
 1. Open the `02-select-and-configure-compute` notebook you imported earlier.
-2. In the compute selector at the top of the notebook, choose **Serverless Starter Warehouse** compute.
+2. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
     > **Note:** Exercises 3 and 4 in the notebook use **Serverless** compute. The cluster you created in Exercise 1 is relevant to understanding compute configuration — the notebook itself runs on Serverless to demonstrate notebook-scoped library installation, which works independently of cluster-scoped libraries.
 

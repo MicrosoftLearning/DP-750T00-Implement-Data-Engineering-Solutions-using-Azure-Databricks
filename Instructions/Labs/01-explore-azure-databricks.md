@@ -112,7 +112,7 @@ Now that the data file is uploaded, import the lab notebook into your Databricks
 4. Choose **URL**, enter the following URL, and click **Import**:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/01-explore-azure-databricks.ipynb`
 
-5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless Starter Warehouse** compute.
+5. Open the imported notebook. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
 ---
 

@@ -71,7 +71,7 @@ Before starting this lab, ensure you have:
 3. Select the **⋮** (kebab) menu next to the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and select **Import**:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/04-secure-unity-catalog-objects.ipynb`
-5. Open the imported notebook and, in the compute selector at the top, choose **Serverless Starter Warehouse** compute.
+5. Open the imported notebook and, in the compute selector at the top, choose **Serverless** compute.
 
 ---
 
