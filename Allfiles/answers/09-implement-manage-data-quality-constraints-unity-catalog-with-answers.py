@@ -4,7 +4,7 @@
 # ==============================================================
 
 from pyspark import pipelines as dp
-from pyspark.sql.functions import try_cast, col, count, sum as spark_sum
+from pyspark.sql.functions import expr, col, count, sum as spark_sum
 
 
 # --------------------------------------------------------------
@@ -24,8 +24,8 @@ def claims_validated():
     return (
         spark.readStream
         .table('insurance_lab.bronze.claims_raw')
-        .withColumn('claim_date',   try_cast(col('claim_date'),   'date'))
-        .withColumn('claim_amount', try_cast(col('claim_amount'), 'decimal(12,2)'))
+        .withColumn('claim_date',   expr('try_cast(claim_date AS date)'))
+        .withColumn('claim_amount', expr('try_cast(claim_amount AS decimal(12,2))'))
     )
 
 
