@@ -134,12 +134,12 @@ In a real pipeline, you might want to route execution differently based on wheth
 1. Return to the **GlobStay Booking Pipeline** job editor.
 2. Click **+ Add task** alongside Task 3 (deselect Task 3 first to avoid a dependency).
 3. Name the task `check_quality`, type **Notebook**, same notebook path.
-4. Set this task to depend on `clean_silver`.
+4. Set this task to depend on **clean_silver**.
 
 5. Click **+ Add task**.
 6. In the **Type** dropdown, select **If/else condition**.
 7. Name it `quality_gate`.
-8. Set this task to depend on `check_quality`.
+8. Set this task to depend on **check_quality**.
 9. In the **Condition** field, enter:
    ```
    {{tasks.check_quality.values.invalid_count}} > 5
@@ -147,7 +147,7 @@ In a real pipeline, you might want to route execution differently based on wheth
 10. For the **If true** path, add a task named `alert_data_issues` (Notebook, same path).
 11. For the **If false** path, add a task named `proceed_gold` (Notebook, same path).
 
-> **Discussion:** How does this compare to implementing error handling inside the notebook itself with `try/except`? When would you choose each approach?
+> **Discussion:** How does this compare to implementing error handling inside the notebook itself with try/except? When would you choose each approach?
 
 ---
 
@@ -158,6 +158,6 @@ In this lab you:
 - Built a **medallion architecture** (Bronze → Silver → Gold) for hotel booking data in Unity Catalog
 - Applied **data cleaning patterns**: deduplication, null filtering, date validation, and value constraints
 - Created **Gold-layer aggregations** covering property revenue and booking channel performance
-- Implemented **error handling** with `try/except` and `dbutils.notebook.exit()` for job-level signaling
+- Implemented **error handling** with try/except and dbutils.notebook.exit() for job-level signaling
 - Parameterized notebooks using **dbutils.widgets** and passed values between tasks using **dbutils.jobs.taskValues**
 - Configured a **Lakeflow Job** with sequential task dependencies, retry policies, notifications, and an If/else condition task

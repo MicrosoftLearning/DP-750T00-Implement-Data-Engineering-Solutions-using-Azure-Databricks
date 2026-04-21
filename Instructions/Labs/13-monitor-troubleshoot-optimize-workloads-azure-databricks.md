@@ -55,7 +55,7 @@ Use it to:
 
 ## Create a compute cluster
 
-This lab requires a **classic compute cluster** (not Serverless). Some Spark configuration options used to disable and re-enable Adaptive Query Execution — such as `spark.databricks.optimizer.adaptive.enabled` — are only available on classic clusters.
+This lab requires a **classic compute cluster** (not Serverless). Some Spark configuration options used to disable and re-enable Adaptive Query Execution — such as *spark.databricks.optimizer.adaptive.enabled* — are only available on classic clusters.
 
 > ⚠️ **Photon must be disabled.** Photon is Databricks' vectorized query engine. When enabled, it optimises shuffle and skew handling automatically, which masks the performance problems this lab is designed to demonstrate. You will not see skewed task distributions or high shuffle metrics in the Spark UI if Photon is active.
 
@@ -90,7 +90,7 @@ This lab requires a **classic compute cluster** (not Serverless). Some Spark con
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/13-monitor-troubleshoot-optimize-workloads-azure-databricks.ipynb`
-5. Open the imported notebook and, in the compute selector at the top, select the **`perf-lab`** cluster you created above.
+5. Open the imported notebook and, in the compute selector at the top, select the **perf-lab** cluster you created above.
 
 ---
 
@@ -100,7 +100,7 @@ After running the cells in **Exercise 2** of the notebook, return here and follo
 
 ### Open the Spark UI
 
-1. In your Databricks workspace, click **Compute** in the left sidebar, then click the **`perf-lab`** cluster. On the cluster detail page, click the **Spark UI** tab. The Spark UI opens in a new browser tab.
+1. In your Databricks workspace, click **Compute** in the left sidebar, then click the **perf-lab** cluster. On the cluster detail page, click the **Spark UI** tab. The Spark UI opens in a new browser tab.
 2. You land on the **Jobs** page, which lists all Spark jobs triggered during this session.
 
 ### Identify the skewed aggregation job

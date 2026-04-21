@@ -148,9 +148,9 @@ Before writing any pipeline code, import the starter pipeline file and create th
 
 Open the imported pipeline file and keep it open throughout exercises 3–5. You will now edit it to add data quality constraints.
 
-### Task 3.1: Add nullability and status expectations to `claims_validated()`
+### Task 3.1: Add nullability and status expectations to claims_validated()
 
-Open `09-implement-manage-data-quality-constraints-unity-catalog.py` and add the following expectations to the `claims_validated()` function. Place all decorators between `@dp.table(...)` and `def claims_validated():`.
+Open 09-implement-manage-data-quality-constraints-unity-catalog.py and add the following expectations to the *claims_validated()* function. Place all decorators between `@dp.table(...)` and `def claims_validated():`.
 
 | Expectation name  | Condition                                 | Action        |
 | ----------------- | ----------------------------------------- | ------------- |

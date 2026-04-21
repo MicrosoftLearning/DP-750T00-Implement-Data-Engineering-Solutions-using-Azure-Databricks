@@ -60,7 +60,7 @@ Before starting this lab, ensure you have:
 - An active **Unity Catalog metastore** attached to the workspace.
 - The **CREATE CATALOG** privilege on the metastore.
 - An **Azure subscription** where you can create a Key Vault.
-- Familiarity with basic SQL (`CREATE TABLE`, `SELECT`, `GRANT`).
+- Familiarity with basic SQL (CREATE TABLE, SELECT, GRANT).
 
 ---
 
@@ -123,8 +123,8 @@ Exercise 4 requires an Azure Key Vault with a pre-created secret. Complete these
 ### Step 4: Note down the Key Vault details
 
 Before leaving the Key Vault, navigate to **Properties** and copy:
-- **Vault URI** (DNS Name), for example: `https://kv-northmart-abc.vault.azure.net/`
-- **Resource ID**, for example: `/subscriptions/xxxxxxxx/resourceGroups/rg-lab/providers/Microsoft.KeyVault/vaults/kv-northmart-abc`
+- **Vault URI** (DNS Name), for example: *https://kv-northmart-abc.vault.azure.net/*
+- **Resource ID**, for example: */subscriptions/xxxxxxxx/resourceGroups/rg-lab/providers/Microsoft.KeyVault/vaults/kv-northmart-abc*
 
 You will need both values when creating the Databricks secret scope in Exercise 4.
 
@@ -136,7 +136,7 @@ You will need both values when creating the Databricks secret scope in Exercise 
     https://<your-databricks-workspace-url>#secrets/createScope
     ```
 
-    > ⚠️ The `S` in `createScope` must be uppercase. Replace `<your-databricks-workspace-url>` with your actual workspace URL (omit any trailing `/`).
+    > ⚠️ The **S** in **createScope** must be uppercase. Replace `<your-databricks-workspace-url>` with your actual workspace URL (omit any trailing '/').
 
 2. Configure the scope:
    - **Scope Name**: `retail-kv-scope`

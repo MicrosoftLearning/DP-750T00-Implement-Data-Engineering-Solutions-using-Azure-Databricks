@@ -63,8 +63,8 @@ The notebook contains five exercises that build the Bronze → Silver → Gold p
 
 ### Run the notebook
 
-1. Run **Exercise 1** cells — this creates the `telconnect_lab` Unity Catalog with bronze, silver, and gold schemas.
-2. In **Exercise 2**, run the first cell to create the `raw_uploads` volume and automatically download `telecom_cdrs.csv` from GitHub into the volume.
+1. Run **Exercise 1** cells — this creates the **telconnect_lab** Unity Catalog with bronze, silver, and gold schemas.
+2. In **Exercise 2**, run the first cell to create the **raw_uploads** volume and automatically download **telecom_cdrs.csv** from GitHub into the volume.
 3. Continue running all remaining cells through **Exercise 5**.
 
 > **Tip:** Each cell is marked ✅. Read the markdown above each code cell to understand what the step does before running it — this context will help you when configuring the Lakeflow Job in Part 2.
@@ -91,7 +91,7 @@ These exercises are the core of this lab. Using the Azure Databricks **Jobs & Pi
 
 4. In the task editor, enter the task name `process_cdrs`.
 5. In the **Type** dropdown, select **Notebook**.
-6. In the **Source** dropdown, select **Workspace**, then browse to the path of the notebook you imported (`11-implement-lakeflow-jobs`).
+6. In the **Source** dropdown, select **Workspace**, then browse to the path of the notebook you imported (*11-implement-lakeflow-jobs*).
 7. In the **Compute** selector, choose **Serverless**.
 8. Click **Save task**.
 
@@ -116,7 +116,7 @@ These exercises are the core of this lab. Using the Azure Databricks **Jobs & Pi
 
 In a real pipeline, you might want a second task to send a summary report after the CDR processing task completes. Here you simulate that with a short SQL task that reads from the Gold table.
 
-1. In the **TelConnect CDR Pipeline** job editor, click **+ Add task** below `process_cdrs`.
+1. In the **TelConnect CDR Pipeline** job editor, click **+ Add task** below **process_cdrs**.
 2. Name the task `summarize_gold`.
 3. In the **Type** dropdown, select **SQL**.
 4. In the **SQL** field, enter:
@@ -128,7 +128,7 @@ In a real pipeline, you might want a second task to send a summary report after 
    ```
 
 5. In the **SQL warehouse** selector, choose an available Serverless SQL warehouse.
-6. Confirm that **Depends on** is already set to `process_cdrs` and the **Run if** condition is **All succeeded**.
+6. Confirm that **Depends on** is already set to **process_cdrs** and the **Run if** condition is **All succeeded**.
 7. Click **Save task**.
 
 #### Verify the DAG
@@ -207,7 +207,7 @@ The network operations team must be alerted immediately if the CDR pipeline fail
 
 #### Add task-level retry notification
 
-7. Select the `process_cdrs` task in the task graph to open its configuration.
+7. Select the **process_cdrs** task in the task graph to open its configuration.
 8. In the task panel, scroll to **Notifications** and click **Add**.
 9. Choose **Email address** (same address), select **Failure**, and check **Mute notifications until the last retry**.
 
@@ -221,9 +221,9 @@ The network operations team must be alerted immediately if the CDR pipeline fail
 
 CDR files are read from cloud storage, and transient network errors or storage throttling are common causes of short-lived task failures. Configuring retries means the pipeline recovers without manual intervention.
 
-#### Configure task-level retries on `process_cdrs`
+#### Configure task-level retries on process_cdrs
 
-1. Select the `process_cdrs` task in the task graph.
+1. Select the **process_cdrs** task in the task graph.
 2. In the task configuration panel, click **+ Add** next to **Retries**.
 3. Set **Retry count** to `2`.
 4. Set **Retry interval** to `60` seconds.
@@ -245,11 +245,11 @@ CDR files are read from cloud storage, and transient network errors or storage t
 
 1. In the **TelConnect CDR Pipeline** job editor, click **Run now**.
 2. Navigate to the **Runs** tab and click the active run to open the run details.
-3. Observe both tasks (`process_cdrs` and `summarize_gold`) executing in sequence.
-4. Click `process_cdrs` in the run timeline to view:
+3. Observe both tasks (process_cdrs and summarize_gold) executing in sequence.
+4. Click **process_cdrs** in the run timeline to view:
    - The notebook output (each cell result)
-   - The job parameter value passed in (`processing_date`)
-   - The task values set by `dbutils.jobs.taskValues.set()`
+   - The job parameter value passed in (processing_date)
+   - The task values set by dbutils.jobs.taskValues.set()
 5. After both tasks complete, verify that the run status is **Succeeded**.
 
 ---
@@ -260,7 +260,7 @@ In this lab you:
 
 - Ran a **medallion architecture** pipeline (Bronze → Silver → Gold) for TelConnect CDR data in Unity Catalog
 - Created a **Lakeflow Job** with two tasks and a sequential task dependency
-- Passed `processing_date` as a **dynamic job parameter** tied to the trigger time
+- Passed processing_date as a **dynamic job parameter** tied to the trigger time
 - Configured a **file arrival trigger** that fires when new CDR files land in the volume
 - Added a **nightly cron schedule** at 02:00 CET to ensure daily refresh
 - Set up **failure notifications** with muted retry alerts to reduce alert noise

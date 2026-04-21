@@ -60,7 +60,7 @@ Before starting this lab, ensure you have:
 - Access to an **Azure Databricks Premium workspace** (already provisioned for you).
 - An active **Unity Catalog metastore** attached to the workspace.
 - The **CREATE CATALOG** privilege on the metastore.
-- Familiarity with basic SQL (`CREATE TABLE`, `SELECT`, `ALTER TABLE`).
+- Familiarity with basic SQL (CREATE TABLE, SELECT, ALTER TABLE).
 
 ---
 
@@ -84,8 +84,8 @@ After completing Exercise 1 in the notebook (which creates your tables), come ba
 ### View table lineage
 
 1. In your Azure Databricks workspace, select **Catalog** in the left sidebar to open Catalog Explorer.
-2. Navigate to `automotive_catalog` > `governance_lab`.
-3. Select the `vehicle_telemetry` table.
+2. Navigate to **automotive_catalog** > **governance_lab**.
+3. Select the **vehicle_telemetry** table.
 4. Select the **Lineage** tab.
 5. Select **See Lineage Graph** to open the interactive lineage visualization.
 
@@ -95,12 +95,12 @@ Observe the upstream and downstream relationships. Notice that the graph shows:
 
 ### View column-level lineage
 
-1. Still on the **Lineage** tab, select the `service_records` table node.
-2. Select a column (for example, `vehicle_id`) to explore which upstream columns it traces back to.
+1. Still on the **Lineage** tab, select the **service_records** table node.
+2. Select a column (for example, **vehicle_id**) to explore which upstream columns it traces back to.
 
 ### View table history
 
-1. Navigate to the `vehicle_telemetry` table in Catalog Explorer.
+1. Navigate to the **vehicle_telemetry** table in Catalog Explorer.
 2. Select the **History** tab.
 3. Observe the version history — each row represents one operation (write, update, VACUUM, etc.).
 

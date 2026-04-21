@@ -19,14 +19,14 @@ lab:
 
 You are a data engineer at **Solaris Energy**, a renewable energy company operating solar farms in Spain and Germany, and wind turbine installations in the Netherlands and Denmark. Your team is building a centralised data platform on Azure Databricks to consolidate energy production readings, turbine maintenance events, and grid telemetry from all sites.
 
-In this lab, you will practise the core data ingestion techniques available in Azure Databricks: batch ingestion with PySpark DataFrames, SQL-based file loading with `COPY INTO`, aggregated table creation with `CTAS`, and continuous file detection with Auto Loader.
+In this lab, you will practise the core data ingestion techniques available in Azure Databricks: batch ingestion with PySpark DataFrames, SQL-based file loading with **COPY INTO**, aggregated table creation with **CTAS**, and continuous file detection with **Auto Loader**.
 
 By the end of this lab, you will be able to:
 
 - Create a Unity Catalog hierarchy (catalog, schema, volume) to house ingested data
 - Load CSV data from a managed volume into a Delta table using PySpark DataFrames
-- Use `COPY INTO` to incrementally load files with built-in deduplication
-- Create summary tables using `CREATE TABLE AS SELECT`
+- Use COPY INTO to incrementally load files with built-in deduplication
+- Create summary tables using CREATE TABLE AS SELECT
 - Configure Auto Loader to automatically detect and process new files from cloud storage
 
 ---
@@ -80,7 +80,7 @@ To explore the pipeline editor:
 3. Review the options for specifying a source notebook or SQL file, naming the pipeline catalog and schema, and choosing a cluster type.
 4. Click **Cancel** — you do not need to create or run a pipeline.
 
-> 💡 The **Auto CDC API** (`create_auto_cdc_flow` / `AUTO CDC INTO`) is the recommended way to process change data capture (CDC) feeds inside a Lakeflow Declarative Pipeline. It handles deduplication, out-of-order events, and SCD Type 1 or Type 2 patterns automatically. You would define it in a pipeline notebook or SQL file, then run it from the Pipelines UI.
+> 💡 The **Auto CDC API** (create_auto_cdc_flow / AUTO CDC INTO) is the recommended way to process change data capture (CDC) feeds inside a Lakeflow Declarative Pipeline. It handles deduplication, out-of-order events, and SCD Type 1 or Type 2 patterns automatically. You would define it in a pipeline notebook or SQL file, then run it from the Pipelines UI.
 
 ---
 
@@ -89,7 +89,7 @@ To explore the pipeline editor:
 Follow these steps to import the lab notebook into your Databricks workspace:
 
 1. In the Databricks workspace, click **Workspace** in the left sidebar.
-2. Navigate to or create a folder where you want to store the lab (for example, `/Users/<your-email>/Labs`).
+2. Navigate to or create a folder where you want to store the lab (for example, /Users/<your-email>/Labs).
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/07-ingest-data-into-unity-catalog.ipynb`
@@ -103,9 +103,9 @@ The notebook is structured into four exercises:
 
 | Exercise | Topic | Technique |
 |---|---|---|
-| 1 | Set up the catalog hierarchy | SQL DDL — `CREATE CATALOG`, `CREATE SCHEMA`, `CREATE VOLUME` |
-| 2 | Batch ingestion with DataFrames | PySpark `spark.read` / `df.write` |
-| 3 | SQL-based file ingestion | `COPY INTO`, `CREATE TABLE AS SELECT` |
-| 4 | Auto Loader | `cloudFiles` format with `spark.readStream` |
+| 1 | Set up the catalog hierarchy | SQL DDL — CREATE CATALOG, CREATE SCHEMA, CREATE VOLUME |
+| 2 | Batch ingestion with DataFrames | PySpark spark.read / df.write |
+| 3 | SQL-based file ingestion | COPY INTO, CREATE TABLE AS SELECT |
+| 4 | Auto Loader | cloudFiles format with spark.readStream |
 
 Work through the exercises in order. Each exercise builds on the catalog and data created in the previous one.

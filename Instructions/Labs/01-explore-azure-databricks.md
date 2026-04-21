@@ -91,9 +91,9 @@ Now upload the data file:
 7. Download the file from the following URL, then click **Browse** to select it:
    `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/data/routes.csv`
 
-8. When prompted for a destination, select the volume you just created: `adb-dp750` > `default` > `lab_data`.
+8. When prompted for a destination, select the volume you just created: **adb-dp750** > **default** > **lab_data**.
 
-9. After the upload completes, navigate to **Catalog** in the left sidebar and locate the uploaded file. Expand the catalog hierarchy (`adb-dp750` > `default` > `lab_data`) to verify that `routes.csv` is visible.
+9. After the upload completes, navigate to **Catalog** in the left sidebar and locate the uploaded file. Expand the catalog hierarchy (**adb-dp750** > **default** > **lab_data**) to verify that routes.csv is visible.
 
     > **Note**: You do not need to query or load the data in this lab. The goal is simply to get familiar with the upload workflow. You will work with this data in later labs.
 
@@ -105,7 +105,7 @@ Now that the data file is uploaded, import the lab notebook into your Databricks
 
 1. In your Azure Databricks workspace, click **Workspace** in the left sidebar.
 
-2. Navigate to or create a folder where you want to store the lab (for example, `Labs/01-explore-azure-databricks`).
+2. Navigate to or create a folder where you want to store the lab (for example, Labs/01-explore-azure-databricks).
 
 3. Click the **⋮** (kebab) menu next to the folder, or right-click it, then select **Import**.
 
@@ -118,6 +118,6 @@ Now that the data file is uploaded, import the lab notebook into your Databricks
 
 ## Continue in the notebook
 
-You have completed the UI-based exercises. Now open the imported notebook `01-explore-azure-databricks.ipynb` and continue with the hands-on coding exercises.
+You have completed the UI-based exercises. Now open the imported notebook 01-explore-azure-databricks.ipynb and continue with the hands-on coding exercises.
 
 Make sure **Serverless** compute is selected before running any cells.

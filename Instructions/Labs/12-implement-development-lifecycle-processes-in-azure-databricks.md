@@ -72,7 +72,7 @@ Use it to:
 
 The notebook contains three exercises:
 
-- **Exercise 1** — Install pytest and review the provided `transforms.py` module that you will test.
+- **Exercise 1** — Install pytest and review the provided **transforms.py** module that you will test.
 - **Exercise 2** — Write unit tests for each transformation function using pytest fixtures.
 - **Exercise 3** — Write an integration test that runs the full pipeline against data created with a Spark session.
 
@@ -113,7 +113,7 @@ In this part, you create a bundle for the order processing job using the **Datab
    databricks auth login --host https://<your-workspace-url>
    ```
 
-   Replace `<your-workspace-url>` with the URL of your workspace (for example, `https://adb-1234567890123456.7.azuredatabricks.net`). Follow the browser prompts to complete authentication.
+   Replace **<your-workspace-url>** with the URL of your workspace (for example, https://adb-1234567890123456.7.azuredatabricks.net). Follow the browser prompts to complete authentication.
 
 3. Create a new project directory and navigate into it:
 
@@ -124,20 +124,20 @@ In this part, you create a bundle for the order processing job using the **Datab
 
 ### Create the bundle configuration file
 
-Your task is to create a `databricks.yml` file with the following requirements:
+Your task is to create a databricks.yml file with the following requirements:
 
 - Bundle name: `order-pipeline-bundle`
-- A `variables` section with:
-  - An `environment` variable (default: `development`)
-  - A `cluster_policy_id` variable with a description and no default value
-- A `resources` section defining a job named `order-pipeline-job` that:
-  - Has a display name using the `environment` variable: `${var.environment}-order-pipeline`
+- A variables section with:
+  - An environment variable (default: `development`)
+  - A cluster_policy_id variable with a description and no default value
+- A resources section defining a job named order-pipeline-job that:
+  - Has a display name using the environment variable: ${var.environment}-order-pipeline
   - Has two notebook tasks:
-    - `validate-data` — runs `./notebooks/validate.py`
-    - `transform-data` — depends on `validate-data` and runs `./notebooks/transform.py`
-- A `targets` section with:
-  - A `dev` target (default, development mode, `environment` = `development`)
-  - A `prod` target (production mode, with its own workspace host and `environment` = `production`)
+    - validate-data — runs ./notebooks/validate.py
+    - transform-data — depends on validate-data and runs ./notebooks/transform.py
+- A targets section with:
+  - A dev target (default, development mode, environment = development)
+  - A prod target (production mode, with its own workspace host and environment = production)
 
 Use the heredoc below as a **starting point** and fill in the sections marked with `# TODO`:
 
@@ -197,7 +197,7 @@ With your bundle configured, you use the **Databricks CLI** to validate, preview
 
 ### Step 1 — Validate the bundle
 
-Run the following command from inside the `order-pipeline-bundle` directory. This checks that your `databricks.yml` is syntactically correct and references valid resources.
+Run the following command from inside the order-pipeline-bundle directory. This checks that your databricks.yml is syntactically correct and references valid resources.
 
 ```bash
 databricks bundle validate
@@ -215,7 +215,7 @@ Before making any changes to your workspace, preview what the deployment would c
 databricks bundle plan
 ```
 
-Review the output. You should see that the `order-pipeline-job` would be **created** (since it doesn't exist yet). For a non-default target, specify it explicitly:
+Review the output. You should see that the order-pipeline-job would be **created** (since it doesn't exist yet). For a non-default target, specify it explicitly:
 
 ```bash
 databricks bundle plan -t dev
@@ -231,7 +231,7 @@ databricks bundle deploy -t dev
 
 During deployment, the CLI:
 - Uploads your notebook files to the workspace
-- Creates the `order-pipeline-job` in the **Jobs & Pipelines** section of your workspace (prefixed with `[dev <username>]` because development mode is active)
+- Creates the order-pipeline-job in the **Jobs & Pipelines** section of your workspace (prefixed with `[dev <username>]` because development mode is active)
 
 ### Step 4 — Verify the deployed resources
 
@@ -241,7 +241,7 @@ Confirm the deployment succeeded:
 databricks bundle summary
 ```
 
-The output includes direct URLs to the created job. Open the URL in your browser to verify that the job appears in your workspace with both tasks (`validate-data` and `transform-data`) correctly configured.
+The output includes direct URLs to the created job. Open the URL in your browser to verify that the job appears in your workspace with both tasks (validate-data and transform-data) correctly configured.
 
 > 🤖 **Tip:** Ask *"What does Databricks Asset Bundle development mode do to job names and schedules?"* to understand why the job is prefixed with your username.
 

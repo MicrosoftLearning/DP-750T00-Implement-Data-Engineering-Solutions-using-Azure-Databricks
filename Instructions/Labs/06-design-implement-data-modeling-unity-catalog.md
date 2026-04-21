@@ -36,9 +36,9 @@ By the end of this lab, you will have:
 
 - Created a Unity Catalog data model with managed Delta Lake tables.
 - Applied **liquid clustering** to optimise query performance on transaction tables.
-- Implemented **SCD Type 2** on a customer dimension using `MERGE`.
+- Implemented **SCD Type 2** on a customer dimension using **MERGE**.
 - Queried historical customer records using point-in-time filters.
-- Enabled **Change Data Feed** and queried the audit trail using `table_changes()`.
+- Enabled **Change Data Feed** and queried the audit trail using **table_changes()**.
 - Used **Delta Lake time travel** to inspect and restore previous table versions.
 
 This lab should take approximately **45 minutes** to complete.
@@ -62,7 +62,7 @@ Before starting this lab, ensure you have:
 - Access to an **Azure Databricks Premium workspace** (already provisioned for you).
 - An active **Unity Catalog metastore** attached to the workspace.
 - The **CREATE CATALOG** privilege on the metastore.
-- Familiarity with basic SQL (`CREATE TABLE`, `SELECT`, `MERGE`) and Python/PySpark.
+- Familiarity with basic SQL (CREATE TABLE, SELECT, MERGE) and Python/PySpark.
 
 ---
 
@@ -91,7 +91,7 @@ When you have completed **Exercise 1** in the notebook (which creates your catal
 2. Expand the **banking_lab** catalog and then the **silver** schema.
 3. Click on the **dim_customer** table to open its details panel.
 4. Under the **Details** tab, locate the **Storage location** field.
-   - Notice that the storage path is managed by Unity Catalog — you did not specify a `LOCATION` when creating the table.
+   - Notice that the storage path is managed by Unity Catalog — you did not specify a *LOCATION* when creating the table.
    - This is a **managed table**: Unity Catalog controls both the metadata and the underlying data files.
 5. Repeat the same inspection for the **fact_transactions** table.
 6. Note the **Clustering** information listed for **fact_transactions** — this confirms that liquid clustering is active.

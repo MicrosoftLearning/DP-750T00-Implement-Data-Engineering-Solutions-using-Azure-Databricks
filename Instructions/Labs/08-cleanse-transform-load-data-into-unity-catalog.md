@@ -66,7 +66,7 @@ To open the Databricks Assistant, select the ![assistant-icon](https://raw.githu
 
 ## Non-notebook task: Create a data profile in Catalog Explorer
 
-After completing Exercise 1 (the environment setup), you can create a data profile for the `realestate_lab.bronze.listings` table using the Unity Catalog UI. This is a UI-based task and does not require any code.
+After completing Exercise 1 (the environment setup), you can create a data profile for the **realestate_lab.bronze.listings** table using the Unity Catalog UI. This is a UI-based task and does not require any code.
 
 1. Open **Catalog Explorer** from the left navigation pane.
 2. Navigate to the **realestate_lab** catalog → **bronze** schema → **listings** table.
@@ -77,6 +77,6 @@ After completing Exercise 1 (the environment setup), you can create a data profi
 7. After the profile completes, explore the generated metrics. Look at:
    - **Null counts** — which columns have the most missing values?
    - **Distinct counts** — are there any columns where unexpected values appear?
-   - **Value distributions** — what is the spread of `list_price` values?
+   - **Value distributions** — what is the spread of *list_price* values?
 
 This gives you a visual and statistical overview of the data before you begin cleaning it programmatically.

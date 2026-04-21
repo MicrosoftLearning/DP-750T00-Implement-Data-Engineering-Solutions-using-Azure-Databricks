@@ -30,7 +30,7 @@ By the end of this lab, you will have:
 - Built a standard view and a materialized view to serve analytical queries.
 - Created a managed volume and loaded a CSV file into it.
 - Written a reusable SQL scalar function for grade classification.
-- Used `ALTER` statements to extend tables and apply governance tags.
+- Used **ALTER** statements to extend tables and apply governance tags.
 
 This lab should take approximately **45 minutes** to complete.
 
@@ -53,7 +53,7 @@ Before starting this lab, ensure you have:
 - Access to an **Azure Databricks Premium workspace** (already provisioned for you).
 - An active **Unity Catalog metastore** attached to the workspace.
 - The **CREATE CATALOG** privilege on the metastore (granted by your instructor or workspace admin).
-- Familiarity with basic SQL (`CREATE TABLE`, `SELECT`, `JOIN`).
+- Familiarity with basic SQL (CREATE TABLE, SELECT, JOIN).
 
 ---
 
@@ -90,7 +90,7 @@ After completing the notebook exercises, you can optionally create a Genie Space
 3. Name the space `Lakeside University Analytics`.
 4. For the `enrollments.grade` column, update the description to: `Numerical grade on a 0.0–10.0 scale where 8.5+ is an A, 7.0+ is a B, 5.5+ is a C, 4.0+ is a D, and below 4.0 is an F.`
 5. Navigate to the **Chat** tab and ask: *"Which department has the highest average grade?"*
-6. Review the SQL Genie generated and compare it to your `vw_department_enrollment_stats` materialized view.
+6. Review the SQL Genie generated and compare it to your **vw_department_enrollment_stats** materialized view.
 
 > 🤖 **Databricks Assistant tip:** You can ask the Databricks Assistant from within a Genie space to help you write SQL instructions or define synonyms for columns.
 
@@ -104,4 +104,4 @@ If you want to remove the resources created during this lab, run the following i
 DROP CATALOG IF EXISTS edu_dev CASCADE;
 ```
 
-> ⚠️ This will permanently delete all schemas, tables, views, volumes, and functions created under `edu_dev`. Only run this if you are sure you no longer need these objects.
+> ⚠️ This will permanently delete all schemas, tables, views, volumes, and functions created under edu_dev. Only run this if you are sure you no longer need these objects.

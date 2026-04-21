@@ -113,13 +113,13 @@ Wait for the cluster to reach a **Running** state before proceeding. This might 
 
 ## Exercise 2: Install a Cluster-Scoped Library
 
-Your team uses the `faker` library to generate synthetic patient datasets for pipeline testing. You need to make this library available to all notebooks that run on the `healthbridge-dev` cluster.
+Your team uses the *faker* library to generate synthetic patient datasets for pipeline testing. You need to make this library available to all notebooks that run on the healthbridge-dev cluster.
 
 [faker](https://faker.readthedocs.io/) is a Python library that generates realistic fake data — such as names, addresses, phone numbers, dates, and more — for use in testing, prototyping, and seeding databases. It supports many locales and data categories, making it easy to produce large volumes of plausible synthetic data without using real personal information.
 
 ### Task 2.1: Install faker as a cluster-scoped library
 
-1. In the **Compute** page, select your `healthbridge-dev` cluster.
+1. In the **Compute** page, select your healthbridge-dev cluster.
 2. Select the **Libraries** tab.
 3. Select **Install new**.
 4. Set the following:
@@ -129,7 +129,7 @@ Your team uses the `faker` library to generate synthetic patient datasets for pi
     | **Library source** | PyPI            |
     | **Package**        | `faker==40.8.0` |
 
-    > **Why pin a version?** In a healthcare data engineering context, reproducibility is critical. Pinning the exact version of `faker` ensures that every team member and every pipeline run uses the same library, preventing unexpected behavior from upstream version changes.
+    > **Why pin a version?** In a healthcare data engineering context, reproducibility is critical. Pinning the exact version of *faker* ensures that every team member and every pipeline run uses the same library, preventing unexpected behavior from upstream version changes.
 
 5. Select **Install**.
 
@@ -141,10 +141,10 @@ Your team uses the `faker` library to generate synthetic patient datasets for pi
 
 ## Stop or delete the cluster
 
-Now that you have explored cluster configuration and library installation, the `healthbridge-dev` cluster is no longer needed for the remaining exercises. To avoid unnecessary compute costs, stop or delete it before continuing.
+Now that you have explored cluster configuration and library installation, the **healthbridge-dev** cluster is no longer needed for the remaining exercises. To avoid unnecessary compute costs, stop or delete it before continuing.
 
 1. In the left sidebar, select **Compute**.
-2. Select the `healthbridge-dev` cluster.
+2. Select the **healthbridge-dev** cluster.
 3. Select **Terminate** to stop the cluster, or select the **⋮** menu and select **Delete** to remove it entirely.
 
     > **Note:** Since the remaining exercises run on **Serverless** compute, you can safely delete the cluster. Deleting it prevents it from being accidentally restarted and incurring further costs.
@@ -157,7 +157,7 @@ Now that the cluster is configured, switch to the notebook to complete the remai
 
 ### Attach the notebook to Serverless compute
 
-1. Open the `02-select-and-configure-compute` notebook you imported earlier.
+1. Open the **02-select-and-configure-compute** notebook you imported earlier.
 2. In the compute selector at the top of the notebook, choose **Serverless** compute.
 
     > **Note:** Exercises 3 and 4 in the notebook use **Serverless** compute. The cluster you created in Exercise 1 is relevant to understanding compute configuration — the notebook itself runs on Serverless to demonstrate notebook-scoped library installation, which works independently of cluster-scoped libraries.
