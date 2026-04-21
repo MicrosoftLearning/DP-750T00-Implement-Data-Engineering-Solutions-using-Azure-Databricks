@@ -88,14 +88,7 @@ In this part, you create a bundle for the order processing job using the **Datab
 
 ### Install and configure the Databricks CLI
 
-1. Install the Databricks CLI. On macOS, use Homebrew:
-
-   ```bash
-   brew tap databricks/tap
-   brew install databricks
-   ```
-
-   On Windows (PowerShell):
+1. Install the Databricks CLI using PowerShell:
 
    ```powershell
    winget install Databricks.DatabricksCLI
@@ -103,13 +96,13 @@ In this part, you create a bundle for the order processing job using the **Datab
 
    Verify the installation:
 
-   ```bash
+   ```powershell
    databricks --version
    ```
 
 2. Authenticate the CLI against your Azure Databricks workspace:
 
-   ```bash
+   ```powershell
    databricks auth login --host https://<your-workspace-url>
    ```
 
@@ -117,9 +110,9 @@ In this part, you create a bundle for the order processing job using the **Datab
 
 3. Create a new project directory and navigate into it:
 
-   ```bash
-   mkdir ~/order-pipeline-bundle && cd ~/order-pipeline-bundle
-   mkdir notebooks resources
+   ```powershell
+   mkdir ~/order-pipeline-bundle; cd ~/order-pipeline-bundle
+   mkdir notebooks, resources
    ```
 
 ### Create the bundle configuration file
@@ -139,10 +132,10 @@ Your task is to create a databricks.yml file with the following requirements:
   - A dev target (default, development mode, environment = development)
   - A prod target (production mode, with its own workspace host and environment = production)
 
-Use the heredoc below as a **starting point** and fill in the sections marked with `# TODO`:
+Use the PowerShell snippet below as a **starting point** and fill in the sections marked with `# TODO`:
 
-```bash
-cat > databricks.yml << 'EOF'
+```powershell
+@'
 bundle:
   name: order-pipeline-bundle
 
@@ -175,7 +168,7 @@ targets:
   # - sets mode to production
   # - sets a workspace host (use a placeholder URL for now)
   # - overrides the environment variable to 'production'
-EOF
+'@ | Set-Content databricks.yml
 ```
 
 > 🤖 **Databricks Assistant tip:** Ask *"Show me a complete Databricks Asset Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
@@ -184,9 +177,9 @@ EOF
 
 Bundle validation checks that referenced notebooks exist. Create two placeholder notebook files:
 
-```bash
-echo "# validate" > notebooks/validate.py
-echo "# transform" > notebooks/transform.py
+```powershell
+"# validate" | Set-Content notebooks/validate.py
+"# transform" | Set-Content notebooks/transform.py
 ```
 
 ---
@@ -199,7 +192,7 @@ With your bundle configured, you use the **Databricks CLI** to validate, preview
 
 Run the following command from inside the order-pipeline-bundle directory. This checks that your databricks.yml is syntactically correct and references valid resources.
 
-```bash
+```powershell
 databricks bundle validate
 ```
 
@@ -211,13 +204,13 @@ If validation succeeds, you will see a summary showing the bundle name, target e
 
 Before making any changes to your workspace, preview what the deployment would create or update:
 
-```bash
+```powershell
 databricks bundle plan
 ```
 
 Review the output. You should see that the order-pipeline-job would be **created** (since it doesn't exist yet). For a non-default target, specify it explicitly:
 
-```bash
+```powershell
 databricks bundle plan -t dev
 ```
 
@@ -225,7 +218,7 @@ databricks bundle plan -t dev
 
 Deploy the bundle to the `dev` target:
 
-```bash
+```powershell
 databricks bundle deploy -t dev
 ```
 
@@ -237,7 +230,7 @@ During deployment, the CLI:
 
 Confirm the deployment succeeded:
 
-```bash
+```powershell
 databricks bundle summary
 ```
 
@@ -249,7 +242,7 @@ The output includes direct URLs to the created job. Open the URL in your browser
 
 To remove the deployed resources from your workspace:
 
-```bash
+```powershell
 databricks bundle destroy -t dev
 ```
 
