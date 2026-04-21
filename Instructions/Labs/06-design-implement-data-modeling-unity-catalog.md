@@ -90,7 +90,7 @@ When you have completed **Exercise 1** in the notebook (which creates your catal
 1. In your Databricks workspace, click **Catalog** in the left sidebar to open **Catalog Explorer**.
 2. Expand the **banking_lab** catalog and then the **silver** schema.
 3. Click on the **dim_customer** table to open its details panel.
-4. Under the **Overview** tab, locate the **Storage location** field.
+4. Under the **Details** tab, locate the **Storage location** field.
    - Notice that the storage path is managed by Unity Catalog — you did not specify a `LOCATION` when creating the table.
    - This is a **managed table**: Unity Catalog controls both the metadata and the underlying data files.
 5. Repeat the same inspection for the **fact_transactions** table.
