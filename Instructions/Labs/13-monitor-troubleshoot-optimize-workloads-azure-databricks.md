@@ -31,11 +31,11 @@ In this lab you deliberately reproduce both problems so you can observe exactly 
 
 ---
 
-## 🤖 Use the Databricks Assistant throughout this lab
+## 🤖 Use Genie Code throughout this lab
 
-You are **expected and encouraged** to use the **Databricks Assistant** for every task in the notebook. 
+You are **expected and encouraged** to use the **Genie Code** for every task in the notebook. 
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 Use it to:
 - Understand Spark configuration options (AQE, shuffle partitions, broadcast threshold)

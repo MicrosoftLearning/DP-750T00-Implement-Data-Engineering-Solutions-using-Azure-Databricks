@@ -35,11 +35,11 @@ This lab is structured in three parts:
 
 ---
 
-## 🤖 Use the Databricks Assistant throughout this lab
+## 🤖 Use Genie Code throughout this lab
 
-You are expected and **encouraged** to use the **Databricks Assistant** for every exercise. 
+You are expected and **encouraged** to use the **Genie Code** for every exercise. 
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 Use it to:
 - Generate pytest fixtures and test functions
@@ -171,7 +171,7 @@ targets:
 '@ | Set-Content databricks.yml
 ```
 
-> 🤖 **Databricks Assistant tip:** Ask *"Show me a complete Databricks Asset Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
+> 🤖 **Genie Code tip:** Ask *"Show me a complete Databricks Asset Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
 
 ### Create placeholder notebooks (required for validation)
 
@@ -198,7 +198,7 @@ databricks bundle validate
 
 If validation succeeds, you will see a summary showing the bundle name, target environment, and workspace path. If there are errors, review the output and fix the YAML before continuing.
 
-> 🤖 **Tip:** Copy any validation error messages and paste them into the Databricks Assistant to get an explanation and suggested fix.
+> 🤖 **Tip:** Copy any validation error messages and paste them into Genie Code to get an explanation and suggested fix.
 
 ### Step 2 — Preview the deployment plan
 

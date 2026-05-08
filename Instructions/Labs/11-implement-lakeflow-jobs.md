@@ -32,11 +32,11 @@ Today's task is to automate that pipeline using **Lakeflow Jobs**. You will:
 
 ---
 
-## 🤖 Use the Databricks Assistant throughout this lab
+## 🤖 Use Genie Code throughout this lab
 
-You are expected and encouraged to use the **Databricks Assistant** for every coding exercise. Use it for suggestions, error explanations, boilerplate generation, and API exploration.
+You are expected and encouraged to use the **Genie Code** for every coding exercise. Use it for suggestions, error explanations, boilerplate generation, and API exploration.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 ---
 
@@ -75,7 +75,7 @@ The notebook contains five exercises that build the Bronze → Silver → Gold p
 
 These exercises are the core of this lab. Using the Azure Databricks **Jobs & Pipelines** UI, you wire the notebook you just ran into a production-grade automated job with triggers, schedules, notifications, and retry policies.
 
-> 🤖 **Databricks Assistant reminder:** Open the Databricks Assistant in the notebook or workspace sidebar. For UI-only steps, ask it questions like *"How do I add a file arrival trigger to a Lakeflow Job?"* to get contextual guidance fast.
+> 🤖 **Genie Code reminder:** Open Genie Code in the notebook or workspace sidebar. For UI-only steps, ask it questions like *"How do I add a file arrival trigger to a Lakeflow Job?"* to get contextual guidance fast.
 
 ---
 

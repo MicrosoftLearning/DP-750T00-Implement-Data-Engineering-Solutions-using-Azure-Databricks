@@ -5,7 +5,7 @@ lab:
   module: Explore Azure Databricks
   module-url: https://learn.microsoft.com/training/modules/explore-azure-databricks/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/01-explore-azure-databricks.ipynb
-  description: In this lab, you explore the Azure Databricks workspace UI, upload a sample dataset to a Unity Catalog volume, and work with notebook features including Python, SQL magic commands, and Markdown. You use the Databricks Assistant throughout to generate and refine code in the context of CityMoves Transit, a fictional public transportation authority.
+  description: In this lab, you explore the Azure Databricks workspace UI, upload a sample dataset to a Unity Catalog volume, and work with notebook features including Python, SQL magic commands, and Markdown. You use Genie Code throughout to generate and refine code in the context of CityMoves Transit, a fictional public transportation authority.
   duration: 30 minutes
   level: 200
   islab: true
@@ -55,11 +55,11 @@ Before writing any code, let's explore the Azure Databricks environment. Getting
 
 3. Use the **Search** bar at the top to search for `routes`. Nothing will appear yet, but you will use this later to locate data assets after ingestion.
 
-### Task 2: Explore the Databricks Assistant
+### Task 2: Explore Genie Code
 
-The **Databricks Assistant** is an AI-powered pair programmer built directly into Azure Databricks. It can generate code, explain errors, suggest improvements, and answer questions — all without leaving the user interface. You are expected and encouraged to use it throughout this lab and all future labs.
+The **Genie Code** is an AI-powered pair programmer built directly into Azure Databricks. It can generate code, explain errors, suggest improvements, and answer questions — all without leaving the user interface. You are expected and encouraged to use it throughout this lab and all future labs.
 
-1. From the Azure Databricks home page, click the **Databricks Assistant** icon (![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg)) in the top-right corner of the page to open the Assistant panel.
+1. From the Azure Databricks home page, click the **Genie Code** icon (![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg)) in the top-right corner of the page to open Genie Code panel.
 
 2. Type the following prompt and observe the response:
 
@@ -67,9 +67,9 @@ The **Databricks Assistant** is an AI-powered pair programmer built directly int
     What can I do with Azure Databricks as a data engineer?
     ```
 
-3. Review the answer. Notice how the Assistant provides contextual, workspace-aware guidance.
+3. Review the answer. Notice how Genie Code provides contextual, workspace-aware guidance.
 
-> 💡 **From this point on, whenever you are asked to write code or SQL, use the Databricks Assistant. Describe what you want in plain language, then adapt and run the suggestion.**
+> 💡 **From this point on, whenever you are asked to write code or SQL, use Genie Code. Describe what you want in plain language, then adapt and run the suggestion.**
 
 ### Task 3: Upload a sample transportation dataset
 
