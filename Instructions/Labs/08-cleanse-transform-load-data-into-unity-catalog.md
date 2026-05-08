@@ -34,11 +34,11 @@ You work through the following exercises:
 
 ---
 
-## 🤖 Databricks Assistant — Use it always
+## 🤖 Genie Code — Use it always
 
-Throughout every exercise in this lab, you are **expected and encouraged to use the Databricks Assistant**. Every notebook cell includes a suggested prompt to get you started. The Assistant is your pair programmer — use it to generate code, explain error messages, explore alternatives, and validate your approach.
+Throughout every exercise in this lab, you are **expected and encouraged to use Genie Code**. Every notebook cell includes a suggested prompt to get you started. Genie Code is your pair programmer — use it to generate code, explain error messages, explore alternatives, and validate your approach.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
 ---
 

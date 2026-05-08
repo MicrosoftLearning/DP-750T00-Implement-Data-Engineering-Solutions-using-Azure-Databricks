@@ -27,7 +27,7 @@ from pyspark.sql.functions import col, count, sum as spark_sum
 #   @dp.expect(name, condition)           — warns, keeps all rows
 #   @dp.expect_or_fail(name, condition)   — fails the pipeline
 #
-# 🤖 Ask the Databricks Assistant:
+# 🤖 Ask Genie Code:
 #   "Show me how to add expect_or_drop, expect, and expect_or_fail
 #    decorators to a Lakeflow Spark Declarative Pipelines Python
 #    function to enforce nullability and status constraints"
@@ -61,7 +61,7 @@ def claims_validated():
 # will be NULL. Any unexpected new columns are captured as JSON
 # in that column instead of crashing the pipeline.
 #
-# 🤖 Ask the Databricks Assistant:
+# 🤖 Ask Genie Code:
 #   "Write a PySpark Auto Loader readStream using cloudFiles format
 #    csv with schemaEvolutionMode rescue and a _rescued_data column
 #    to capture unexpected new columns from schema drift"

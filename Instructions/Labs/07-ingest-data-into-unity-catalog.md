@@ -31,18 +31,18 @@ By the end of this lab, you will be able to:
 
 ---
 
-## 🤖 Databricks Assistant — use it throughout this lab!
+## 🤖 Genie Code — use it throughout this lab!
 
-You are expected and encouraged to use the **Databricks Assistant** for all exercises. The Assistant is available directly in the notebook cell toolbar. Use it to:
+You are expected and encouraged to use the **Genie Code** for all exercises. Genie Code is available directly in the notebook cell toolbar. Use it to:
 
 - Look up syntax for SQL and PySpark operations
 - Explain error messages
 - Generate boilerplate code that you then adapt
 - Ask follow-up questions about how things work
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 
-💡 **Each exercise cell includes a suggested prompt you can copy directly into the Databricks Assistant to get started.**
+💡 **Each exercise cell includes a suggested prompt you can copy directly into Genie Code to get started.**
 
 ---
 

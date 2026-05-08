@@ -30,13 +30,13 @@ This lab should take approximately **30 minutes** to complete.
 
 ---
 
-## 🤖 Use the Databricks Assistant throughout this lab
+## 🤖 Use Genie Code throughout this lab
 
-You are expected and encouraged to use the **Databricks Assistant** for every exercise. The Assistant can help you write code, explain concepts, suggest fixes, and answer questions directly within the Databricks workspace.
+You are expected and encouraged to use the **Genie Code** for every exercise. Genie Code can help you write code, explain concepts, suggest fixes, and answer questions directly within the Databricks workspace.
 
-> **How to open the Assistant:** Select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Databricks Assistant".
+> **How to open Genie Code:** Select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) icon in the top-right toolbar of any notebook, or press `Ctrl+Shift+P` and search for "Genie Code".
 
-Every task in the notebook includes a suggested prompt you can paste directly into the Assistant. Use it — that is the point!
+Every task in the notebook includes a suggested prompt you can paste directly into Genie Code. Use it — that is the point!
 
 ---
 

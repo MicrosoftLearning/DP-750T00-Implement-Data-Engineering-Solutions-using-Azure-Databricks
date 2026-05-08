@@ -34,11 +34,11 @@ You work through the following exercises:
 
 ---
 
-## 🤖 Databricks Assistant — Use it always
+## 🤖 Genie Code — Use it always
 
-Throughout every exercise in this lab, you are **expected and encouraged to use the Databricks Assistant**. Every exercise includes a suggested prompt to get you started. The Assistant is your pair programmer — use it to generate code, understand errors, and explore alternatives.
+Throughout every exercise in this lab, you are **expected and encouraged to use Genie Code**. Every exercise includes a suggested prompt to get you started. Genie Code is your pair programmer — use it to generate code, understand errors, and explore alternatives.
 
-To open the Databricks Assistant, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/databricks-assistant.svg) on the right side of any notebook cell, or use the keyboard shortcut.
+To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/media/genie-code.svg) on the right side of any notebook cell, or use the keyboard shortcut.
 ---
 
 ## Prerequisites
@@ -161,7 +161,7 @@ Open 09-implement-manage-data-quality-constraints-unity-catalog.py and add the f
 
 Use `@dp.expect_or_drop` to drop violating rows, `@dp.expect` to warn without dropping, and `@dp.expect_or_fail` to stop the pipeline on a violation.
 
-> 🤖 **Ask the Databricks Assistant:**
+> 🤖 **Ask Genie Code:**
 > *"Show me how to use expect_or_drop, expect, and expect_or_fail decorators in a Lakeflow Spark Declarative Pipelines Python function"*
 
 ---
@@ -179,7 +179,7 @@ Inside the claims_validated() function body, **before the return statement**, ad
 
 The transformed columns replace the originals, so downstream expectations and consumers see typed values.
 
-> 🤖 **Ask the Databricks Assistant:**
+> 🤖 **Ask Genie Code:**
 > *"In PySpark, use withColumn and col().cast() to convert a streaming dataframe column from STRING to DATE type, and another column from STRING to DECIMAL(12,2). Show me the full withColumn syntax."*
 
 ### Task 4.2: Drop records with unparseable dates
@@ -211,7 +211,7 @@ condition:        claim_amount >= 0
 
 > 💡 **Hint:** Place all expectation decorators between @dp.table(...) and def claims_validated():. Their order does not affect the result — all expectations are evaluated on each row.
 
-> 🤖 **Ask the Databricks Assistant:**
+> 🤖 **Ask Genie Code:**
 > *"I'm using Lakeflow Spark Declarative Pipelines in Python. After applying col().cast() to convert a column from STRING to DATE, which expectation condition do I use to drop rows where the cast failed?"*
 
 ---
@@ -243,7 +243,7 @@ Configure it with the following options:
 
 Remove the **pass** statement and return the configured readStream.
 
-> 🤖 **Ask the Databricks Assistant:**
+> 🤖 **Ask Genie Code:**
 > *"Write a complete PySpark Auto Loader readStream block using cloudFiles format CSV with schemaEvolutionMode rescue and a _rescued_data column. Explain what each option does."*
 
 > 💡 **Hint:** When the source file matches the expected schema, _rescued_data will be NULL for every row. If a future file adds new columns (like fraud_score), their values are captured as JSON in _rescued_data instead of breaking the pipeline.
@@ -304,7 +304,7 @@ FROM insurance_lab.silver.claims_rescued
 WHERE _rescued_data IS NOT NULL;
 ```
 
-> 🤖 **Ask the Databricks Assistant:**
+> 🤖 **Ask Genie Code:**
 > *"Looking at the counts in insurance_lab.bronze.claims_raw vs insurance_lab.silver.claims_validated, explain what each row reduction tells me about the data quality issues in the bronze data."*
 
 ---
