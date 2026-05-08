@@ -57,7 +57,7 @@ To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.c
 
 Before starting this lab, ensure you have:
 
-- Access to an **Azure Databricks Premium workspace** (already provisioned for you).
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - An active **Unity Catalog metastore** attached to the workspace.
 - The **CREATE CATALOG** privilege on the metastore.
 - Familiarity with basic SQL (CREATE TABLE, SELECT, ALTER TABLE).

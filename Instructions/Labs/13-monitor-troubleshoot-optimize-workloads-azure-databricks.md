@@ -47,7 +47,7 @@ Use it to:
 
 ## Prerequisites
 
-- An **Azure Databricks Premium** workspace is already provisioned and you have access to it.
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - You have permission to create catalogs and schemas in Unity Catalog.
 - Basic familiarity with PySpark DataFrames is helpful.
 

@@ -43,7 +43,7 @@ To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.c
 
 ## Prerequisites
 
-- An **Azure Databricks Premium workspace** is already provisioned and available.
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - You are familiar with basic Python and PySpark concepts.
 - You have completed the earlier labs in this learning path (or are comfortable with Unity Catalog basics).
 

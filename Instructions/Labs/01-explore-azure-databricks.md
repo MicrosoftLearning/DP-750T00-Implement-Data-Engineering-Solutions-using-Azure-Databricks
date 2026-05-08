@@ -31,7 +31,7 @@ This lab should take approximately **45 minutes** to complete.
 
 Before starting this lab, ensure you have:
 
-- Access to an **Azure Databricks Premium workspace** (already provisioned for you).
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - Familiarity with basic Azure portal navigation.
 - No prior Databricks experience is required.
 

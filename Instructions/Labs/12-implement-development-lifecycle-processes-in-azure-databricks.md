@@ -51,7 +51,7 @@ Use it to:
 
 ## Prerequisites
 
-- An **Azure Databricks Premium** workspace is already provisioned and you have access to it.
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - You have permission to create jobs in the workspace (required for Part 3).
 - Basic familiarity with Python and pytest.
 
