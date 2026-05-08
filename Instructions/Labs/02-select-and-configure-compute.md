@@ -44,7 +44,7 @@ Every task in the notebook includes a suggested prompt you can paste directly in
 
 Before starting this lab, ensure you have:
 
-- Access to an **Azure Databricks Premium workspace** (already provisioned for you).
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - **Metastore admin** or **workspace admin** permissions, or a user account with cluster creation rights.
 - Basic familiarity with the Azure Databricks workspace UI.
 

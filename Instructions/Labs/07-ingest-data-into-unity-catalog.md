@@ -48,7 +48,7 @@ To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.c
 
 ## Prerequisites
 
-- An Azure Databricks workspace (Premium tier) has been provisioned and you have access to it
+- An **Azure Databricks Premium workspace** provisioned using [Lab 00: Set up your Azure Databricks environment](00-setup.md).
 - You have the **Data Engineer** or equivalent role in the workspace, with permission to create catalogs and volumes
 - Basic familiarity with SQL and Python
 
