@@ -5,7 +5,7 @@ lab:
   module: Implement Development Lifecycle Processes in Azure Databricks
   module-url: https://learn.microsoft.com/training/wwl-databricks/implement-development-lifecycle-processes-in-azure-databricks/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/12-implement-development-lifecycle-processes-in-azure-databricks.ipynb
-  description: In this lab, you implement a testing strategy for a data transformation pipeline using pytest, then package and deploy the pipeline as a Databricks Asset Bundle using the Databricks CLI.
+  description: In this lab, you implement a testing strategy for a data transformation pipeline using pytest, then package and deploy the pipeline as a Declarative Automation Bundle using the Databricks CLI.
   duration: 45 minutes
   level: 300
   islab: true
@@ -22,7 +22,7 @@ You are a data engineer responsible for maintaining an **order processing pipeli
 As the pipeline moves toward production, your team has decided to adopt proper **software development lifecycle (SDLC) practices**. That means:
 
 - Implementing a **testing strategy** so bugs are caught before deployment
-- Packaging the pipeline as a **Databricks Asset Bundle (DAB)** so it can be deployed consistently across environments
+- Packaging the pipeline as a **Declarative Automation Bundle (DAB)** so it can be deployed consistently across environments
 - Using the **Databricks CLI** to validate, preview, and deploy the bundle
 
 This lab is structured in three parts:
@@ -30,7 +30,7 @@ This lab is structured in three parts:
 | Part | Topic | Where |
 |------|-------|--------|
 | **Part 1** | Implement unit tests with pytest | Notebook |
-| **Part 2** | Configure a Databricks Asset Bundle | Workspace terminal |
+| **Part 2** | Configure a Declarative Automation Bundle | Workspace terminal |
 | **Part 3** | Deploy and verify the bundle with the Databricks CLI | Workspace terminal |
 
 ---
@@ -80,9 +80,9 @@ Complete all exercises before continuing to Part 2.
 
 ---
 
-## Part 2: Configure a Databricks Asset Bundle
+## Part 2: Configure a Declarative Automation Bundle
 
-Databricks Asset Bundles (DABs) let you define your Databricks resources — jobs, pipelines, notebooks — as **infrastructure-as-code** in YAML configuration files. This makes deployments repeatable and auditable.
+Declarative Automation Bundles (DABs) let you define your Databricks resources — jobs, pipelines, notebooks — as **infrastructure-as-code** in YAML configuration files. This makes deployments repeatable and auditable.
 
 In this part, you create a bundle for the order processing job using the **Databricks CLI** on your local machine.
 
@@ -156,7 +156,7 @@ resources:
             notebook_path: ./notebooks/validate.py
         # TODO: Add a second task named 'transform-data'
         # It should depend on 'validate-data' and run ./notebooks/transform.py
-        # Refer to the 'depends_on' key in the Databricks Asset Bundle schema.
+        # Refer to the 'depends_on' key in the Declarative Automation Bundle schema.
 
 targets:
   dev:
@@ -171,7 +171,7 @@ targets:
 '@ | Set-Content databricks.yml
 ```
 
-> 🤖 **Genie Code tip:** Ask *"Show me a complete Databricks Asset Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
+> 🤖 **Genie Code tip:** Ask *"Show me a complete Declarative Automation Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
 
 ### Create placeholder notebooks (required for validation)
 
@@ -236,7 +236,7 @@ databricks bundle summary
 
 The output includes direct URLs to the created job. Open the URL in your browser to verify that the job appears in your workspace with both tasks (validate-data and transform-data) correctly configured.
 
-> 🤖 **Tip:** Ask *"What does Databricks Asset Bundle development mode do to job names and schedules?"* to understand why the job is prefixed with your username.
+> 🤖 **Tip:** Ask *"What does Declarative Automation Bundle development mode do to job names and schedules?"* to understand why the job is prefixed with your username.
 
 ### Step 5 — Clean up (optional)
 
@@ -255,5 +255,5 @@ Confirm when prompted to delete the job that was created.
 In this lab you:
 
 - Implemented **unit tests** using pytest fixtures to verify individual transformation functions
-- Configured a **Databricks Asset Bundle** with variables, job resources, and multi-environment targets
+- Configured a **Declarative Automation Bundle** with variables, job resources, and multi-environment targets
 - Used the **Databricks CLI** to validate, plan, deploy, and verify a bundle deployment
