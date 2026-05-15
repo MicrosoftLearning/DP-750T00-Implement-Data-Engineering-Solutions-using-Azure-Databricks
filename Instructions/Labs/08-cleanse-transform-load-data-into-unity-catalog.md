@@ -74,7 +74,7 @@ After completing Exercise 1 (the environment setup), you can create a data profi
 4. Select **Enable** and then select **Configure** to enable data profiling.
 5. Choose **Snapshot** as the profile type — this is suitable for a general-purpose table like listings.
 6. Click **Save and run** to generate the first profile.
-7. After the profile completes, explore the generated metrics. Look at:
+7. After the profile completes, select **View dashboard** to open the listings monitoring dashboard and explore the generated metrics. Look at:
    - **Null counts** — which columns have the most missing values?
    - **Distinct counts** — are there any columns where unexpected values appear?
    - **Value distributions** — what is the spread of *list_price* values?
