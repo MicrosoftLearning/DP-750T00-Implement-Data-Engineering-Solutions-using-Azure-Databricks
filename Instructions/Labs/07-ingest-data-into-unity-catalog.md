@@ -60,12 +60,10 @@ To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.c
 
 To explore the pipeline editor:
 
-1. In the sidebar, click **Jobs & Pipelines** → **Pipelines**.
-2. Click **Create** and then select **ETL pipeline**.
+1. In the sidebar, select **Jobs & Pipelines**.
+2. Select **Create** and then **ETL pipeline**.
 3. Review the options for specifying a source notebook or SQL file, naming the pipeline catalog and schema, and choosing a cluster type.
 4. Click **Cancel** — you do not need to create or run a pipeline.
-
-> 💡 The **Auto CDC API** (create_auto_cdc_flow / AUTO CDC INTO) is the recommended way to process change data capture (CDC) feeds inside a Lakeflow Declarative Pipeline. It handles deduplication, out-of-order events, and SCD Type 1 or Type 2 patterns automatically. You would define it in a pipeline notebook or SQL file, then run it from the Pipelines UI.
 
 ---
 

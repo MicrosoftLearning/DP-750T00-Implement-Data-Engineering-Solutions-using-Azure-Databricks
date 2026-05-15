@@ -71,7 +71,7 @@ After completing Exercise 1 (the environment setup), you can create a data profi
 1. Open **Catalog Explorer** from the left navigation pane.
 2. Navigate to the **realestate_lab** catalog → **bronze** schema → **listings** table.
 3. Select the **Quality** tab.
-4. Click **Configure** to enable data profiling.
+4. Select **Enable** and then select **Configure** to enable data profiling.
 5. Choose **Snapshot** as the profile type — this is suitable for a general-purpose table like listings.
 6. Click **Save and run** to generate the first profile.
 7. After the profile completes, explore the generated metrics. Look at:
