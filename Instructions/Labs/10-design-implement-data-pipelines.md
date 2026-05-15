@@ -113,9 +113,9 @@ These exercises use the Azure Databricks UI. You have already built the notebook
 
 #### Add failure notifications
 
-20. At the top of the job editor, click the **Notifications** tab (or scroll to the Notifications section).
-21. Click **Add notification**.
-22. Choose **On failure** and enter your email address.
+20. In the **right-hand job details panel**, scroll to the **Job notifications** section.
+21. Click **Edit notifications**.
+22. Click **Add notification**, choose **On failure**, and enter your email address.
 23. Optionally enable **Mute notifications until the last retry** to avoid alert fatigue during retries.
 24. Click **Save**.
 
