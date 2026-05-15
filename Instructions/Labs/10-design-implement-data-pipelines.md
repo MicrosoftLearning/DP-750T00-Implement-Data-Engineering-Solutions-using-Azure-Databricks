@@ -135,15 +135,18 @@ In a real pipeline, you might want to route execution differently based on wheth
 2. Click **+ Add task** alongside Task 3 (deselect Task 3 first to avoid a dependency).
 3. Name the task `check_quality`, type **Notebook**, same notebook path.
 4. Set this task to depend on **clean_silver**.
-
 5. Click **+ Add task**.
 6. In the **Type** dropdown, select **If/else condition**.
 7. Name it `quality_gate`.
 8. Set this task to depend on **check_quality**.
-9. In the **Condition** field, enter:
-   ```
-   {{tasks.check_quality.values.invalid_count}} > 5
-   ```
+9. In the **Condition** section, fill in the three fields separately:
+
+   | Field      | Value                                              |
+   | ---------- | -------------------------------------------------- |
+   | Condition  | `{{tasks.check_quality.values.invalid_count}}`     |
+   | Operator   | `>`                                                |
+   | Value      | `5`                                                |
+
 10. For the **If true** path, add a task named `alert_data_issues` (Notebook, same path).
 11. For the **If false** path, add a task named `proceed_gold` (Notebook, same path).
 
