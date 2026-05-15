@@ -100,7 +100,7 @@ After running the cells in **Exercise 2** of the notebook, return here and follo
 
 ### Open the Spark UI
 
-1. In your Databricks workspace, click **Compute** in the left sidebar, then click the **perf-lab** cluster. On the cluster detail page, click the **Spark UI** tab. The Spark UI opens in a new browser tab.
+1. In your Databricks workspace, click **Compute** in the left sidebar, then click the **perf-lab** cluster. On the cluster detail page, click the **Spark UI** tab. The Spark UI loads inline on the page — if you prefer a separate tab, use the **Open in new tab** link at the top of the Spark UI panel.
 2. You land on the **Jobs** page, which lists all Spark jobs triggered during this session.
 
 ### Identify the skewed aggregation job
