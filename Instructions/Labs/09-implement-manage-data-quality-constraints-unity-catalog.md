@@ -134,17 +134,16 @@ Before writing any pipeline code, import the starter pipeline file and create th
 
 1. In the Databricks workspace left sidebar, click **Jobs & Pipelines**.
 2. Click **Create ETL pipeline** (Python).
-3. Configure the pipeline with the following settings:
+3. Click the **gear (⚙️) icon** to open the pipeline settings dialog, then configure the pipeline with the following settings:
 
-   | Setting        | Value                                                                                              |
-   | -------------- | -------------------------------------------------------------------------------------------------- |
-   | Pipeline name  | **ClearCover Claims Quality Pipeline**                                                             |
-   | Pipeline mode  | **Triggered**                                                                                      |
-   | Source code    | Browse to your imported `09-implement-manage-data-quality-constraints.py` file      |
-   | Target catalog | **insurance_lab**, schema **silver**                                                               |
-   | Compute        | **Serverless**                                                                                     |
+   | Setting        | Value                                  |
+   | -------------- | -------------------------------------- |
+   | Pipeline name  | **ClearCover Claims Quality Pipeline** |
+   | Pipeline mode  | **Triggered**                          |
+   | Target catalog | **insurance_lab**, schema **silver**   |
+   | Compute        | **Serverless**                         |
 
-4. Click **Create**.
+4. In the pipeline editor, locate the **left pane** (asset browser). Open its menu and select **Import**, then browse to your imported `09-implement-manage-data-quality-constraints.py` file to add it as the pipeline source code.
 
 Open the imported pipeline file and keep it open throughout exercises 3–5. You will now edit it to add data quality constraints.
 
