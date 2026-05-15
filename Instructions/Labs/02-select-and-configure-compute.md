@@ -67,7 +67,7 @@ Before starting this lab, ensure you have:
 
 ## Exercise 1: Create and Configure an All-Purpose Cluster
 
-HealthBridge's data engineering team needs a shared cluster for interactive development. Your job is to create and configure this cluster with appropriate settings for a collaborative healthcare analytics workload.
+HealthBridge's data engineering team needs a standard (shared) cluster for interactive development. Your job is to create and configure this cluster with appropriate settings for a collaborative healthcare analytics workload.
 
 ### Task 1.1: Create a new all-purpose cluster
 
@@ -76,12 +76,12 @@ HealthBridge's data engineering team needs a shared cluster for interactive deve
 3. Set the **Simple form** dropdown to **OFF**.
 4. In the cluster creation form, set the following:
 
-    | Setting          | Value              |
-    | ---------------- | ------------------ |
-    | **Cluster name** | `healthbridge-dev` |
-    | **Policy**       | Unrestricted       |
-    | **Cluster mode** | Multi node         |
-    | **Access mode**  | Shared             |
+    | Setting          | Value                       |
+    | ---------------- | --------------------------- |
+    | **Cluster name** | `healthbridge-dev`          |
+    | **Policy**       | Unrestricted                |
+    | **Cluster mode** | Multi node                  |
+    | **Access mode**  | Standard (formerly: Shared) |
 
 5. Do **not** select Create yet — continue with the settings below.
 

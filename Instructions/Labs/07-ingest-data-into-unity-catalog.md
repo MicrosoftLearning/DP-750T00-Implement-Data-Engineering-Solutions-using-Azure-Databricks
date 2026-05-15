@@ -54,33 +54,16 @@ To open Genie Code, select the ![assistant-icon](https://raw.githubusercontent.c
 
 ---
 
-## Non-notebook exploration: Lakeflow Connect (optional)
-
-**Lakeflow Connect** provides a graphical, low-code approach for ingesting data from external sources such as SQL Server, Salesforce, and SharePoint directly into Unity Catalog tables — without writing custom code.
-
-To explore Lakeflow Connect in your workspace:
-
-1. In the Databricks workspace sidebar, click **Data Engineering** → **Data Ingestion**.
-2. Browse the available connectors. Note the categories: Database connectors, SaaS connectors, and File-based ingestion.
-3. Click on **SQL Server** to see how you would configure a connection, choose tables to ingest, and set a destination catalog and schema.
-4. Observe the options for **SCD Type 1** (overwrite) vs **SCD Type 2** (history tracking) and **full refresh** vs **incremental** extraction.
-
-> 💡 You do not need to complete the Lakeflow Connect setup as part of this lab — a configured SQL Server source is not provided. The exploration above is for familiarisation only.
-
----
-
 ## Non-notebook exploration: Lakeflow Spark Declarative Pipelines (optional)
 
 **Lakeflow Spark Declarative Pipelines** (formerly Delta Live Tables) is the recommended way to build production-grade ingestion pipelines with automatic orchestration, schema management, and exactly-once guarantees.
 
 To explore the pipeline editor:
 
-1. In the sidebar, click **Data Engineering** → **Pipelines**.
-2. Click **Create Pipeline** and select **ETL pipeline**.
+1. In the sidebar, select **Jobs & Pipelines**.
+2. Select **Create** and then **ETL pipeline**.
 3. Review the options for specifying a source notebook or SQL file, naming the pipeline catalog and schema, and choosing a cluster type.
 4. Click **Cancel** — you do not need to create or run a pipeline.
-
-> 💡 The **Auto CDC API** (create_auto_cdc_flow / AUTO CDC INTO) is the recommended way to process change data capture (CDC) feeds inside a Lakeflow Declarative Pipeline. It handles deduplication, out-of-order events, and SCD Type 1 or Type 2 patterns automatically. You would define it in a pipeline notebook or SQL file, then run it from the Pipelines UI.
 
 ---
 

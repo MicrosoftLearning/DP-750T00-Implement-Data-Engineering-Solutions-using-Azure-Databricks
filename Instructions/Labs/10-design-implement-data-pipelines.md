@@ -113,9 +113,9 @@ These exercises use the Azure Databricks UI. You have already built the notebook
 
 #### Add failure notifications
 
-20. At the top of the job editor, click the **Notifications** tab (or scroll to the Notifications section).
-21. Click **Add notification**.
-22. Choose **On failure** and enter your email address.
+20. In the **right-hand job details panel**, scroll to the **Job notifications** section.
+21. Click **Edit notifications**.
+22. Click **Add notification**, choose **On failure**, and enter your email address.
 23. Optionally enable **Mute notifications until the last retry** to avoid alert fatigue during retries.
 24. Click **Save**.
 
@@ -135,15 +135,18 @@ In a real pipeline, you might want to route execution differently based on wheth
 2. Click **+ Add task** alongside Task 3 (deselect Task 3 first to avoid a dependency).
 3. Name the task `check_quality`, type **Notebook**, same notebook path.
 4. Set this task to depend on **clean_silver**.
-
 5. Click **+ Add task**.
 6. In the **Type** dropdown, select **If/else condition**.
 7. Name it `quality_gate`.
 8. Set this task to depend on **check_quality**.
-9. In the **Condition** field, enter:
-   ```
-   {{tasks.check_quality.values.invalid_count}} > 5
-   ```
+9. In the **Condition** section, fill in the three fields separately:
+
+   | Field      | Value                                              |
+   | ---------- | -------------------------------------------------- |
+   | Condition  | `{{tasks.check_quality.values.invalid_count}}`     |
+   | Operator   | `>`                                                |
+   | Value      | `5`                                                |
+
 10. For the **If true** path, add a task named `alert_data_issues` (Notebook, same path).
 11. For the **If false** path, add a task named `proceed_gold` (Notebook, same path).
 

@@ -116,10 +116,13 @@ These exercises are the core of this lab. Using the Azure Databricks **Jobs & Pi
 
 In a real pipeline, you might want a second task to send a summary report after the CDR processing task completes. Here you simulate that with a short SQL task that reads from the Gold table.
 
-1. In the **TelConnect CDR Pipeline** job editor, click **+ Add task** below **process_cdrs**.
-2. Name the task `summarize_gold`.
-3. In the **Type** dropdown, select **SQL**.
-4. In the **SQL** field, enter:
+The **SQL query** task type doesn't accept inline SQL — it can only reference a query that has already been saved in the SQL editor. So you first create and save the query, then add it to the job.
+
+#### Create and save the SQL query
+
+1. In the left sidebar, click **SQL Editor**.
+2. Create a new SQL Query and choose an available **Serverless SQL warehouse**.
+3. Paste the following query into the editor:
 
    ```sql
    SELECT region, network_type, total_calls, drop_rate_pct
@@ -127,8 +130,18 @@ In a real pipeline, you might want a second task to send a summary report after 
    ORDER BY drop_rate_pct DESC;
    ```
 
+4. Click **Run** to confirm the query works.
+5. Click the query name at the top (for example, *New Query 2026-...*) and rename it to `summarize_gold_query`.
+6. Click **Save**.
+
+#### Add the SQL query task to the job
+
+1. Return to the **TelConnect CDR Pipeline** job editor and click **+ Add task** below **process_cdrs**.
+2. Name the task `summarize_gold`.
+3. In the **Type** dropdown, select **SQL query**.
+4. In the **SQL query** dropdown, search for and select **summarize_gold_query**.
 5. In the **SQL warehouse** selector, choose an available Serverless SQL warehouse.
-6. Confirm that **Depends on** is already set to **process_cdrs** and the **Run if** condition is **All succeeded**.
+6. Confirm that **Depends on** is already set to **process_cdrs** and the **Run if dependencies** condition is **All succeeded**.
 7. Click **Save task**.
 
 #### Verify the DAG

@@ -127,30 +127,29 @@ Before writing any pipeline code, import the starter pipeline file and create th
 2. Navigate to the folder where you stored the lab notebook.
 3. Click the **⋮** (kebab) menu or right-click the folder, then select **Import**.
 4. Choose **URL**, enter the following URL, and click **Import**:
-   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints-unity-catalog.py`
+   `https://raw.githubusercontent.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/refs/heads/main/Allfiles/09-implement-manage-data-quality-constraints.py`
 5. The file appears in your workspace as a Python source file — note its path for the next step.
 
 **Create the pipeline:**
 
 1. In the Databricks workspace left sidebar, click **Jobs & Pipelines**.
 2. Click **Create ETL pipeline** (Python).
-3. Configure the pipeline with the following settings:
+3. Click the **gear (⚙️) icon** to open the pipeline settings dialog, then configure the pipeline with the following settings:
 
-   | Setting        | Value                                                                                              |
-   | -------------- | -------------------------------------------------------------------------------------------------- |
-   | Pipeline name  | **ClearCover Claims Quality Pipeline**                                                             |
-   | Pipeline mode  | **Triggered**                                                                                      |
-   | Source code    | Browse to your imported `09-implement-manage-data-quality-constraints-unity-catalog.py` file      |
-   | Target catalog | **insurance_lab**, schema **silver**                                                               |
-   | Compute        | **Serverless**                                                                                     |
+   | Setting        | Value                                  |
+   | -------------- | -------------------------------------- |
+   | Pipeline name  | **ClearCover Claims Quality Pipeline** |
+   | Pipeline mode  | **Triggered**                          |
+   | Target catalog | **insurance_lab**, schema **silver**   |
+   | Compute        | **Serverless**                         |
 
-4. Click **Create**.
+4. In the pipeline editor, locate the **left pane** (asset browser). Open its menu and select **Import**, then browse to your imported `09-implement-manage-data-quality-constraints.py` file to add it as the pipeline source code.
 
 Open the imported pipeline file and keep it open throughout exercises 3–5. You will now edit it to add data quality constraints.
 
 ### Task 3.1: Add nullability and status expectations to claims_validated()
 
-Open 09-implement-manage-data-quality-constraints-unity-catalog.py and add the following expectations to the *claims_validated()* function. Place all decorators between `@dp.table(...)` and `def claims_validated():`.
+Open 09-implement-manage-data-quality-constraints.py and add the following expectations to the *claims_validated()* function. Place all decorators between `@dp.table(...)` and `def claims_validated():`.
 
 | Expectation name  | Condition                                 | Action        |
 | ----------------- | ----------------------------------------- | ------------- |
@@ -222,7 +221,7 @@ ClearCover receives claims files from several partner brokers. Occasionally a br
 
 ### Task 5.1: Implement Auto Loader with rescue schema evolution mode
 
-Complete the claims_rescued() function in 09-implement-manage-data-quality-constraints-unity-catalog.py.
+Complete the claims_rescued() function in 09-implement-manage-data-quality-constraints.py.
 
 Use spark.readStream with Auto Loader (cloudFiles format) to read CSV files from:
 
@@ -256,7 +255,7 @@ With the pipeline code complete, run the pipeline you created in Exercise 3.
 
 ### Task 6.1: Save your pipeline file
 
-Make sure you have saved all changes to 09-implement-manage-data-quality-constraints-unity-catalog.py in the workspace editor before continuing.
+Make sure you have saved all changes to 09-implement-manage-data-quality-constraints.py in the workspace editor before continuing.
 
 ### Task 6.2: Run the pipeline
 
