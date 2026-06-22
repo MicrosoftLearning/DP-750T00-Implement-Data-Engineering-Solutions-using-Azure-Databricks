@@ -1,0 +1,36 @@
+bundle:
+  name: order-pipeline-bundle
+
+variables:
+  environment:
+    description: The deployment environment name
+    default: development
+  cluster_policy_id:
+    description: The cluster policy ID used for job clusters
+
+resources:
+  jobs:
+    order-pipeline-job:
+      name: ${var.environment}-order-pipeline
+      tasks:
+        - task_key: validate-data
+          notebook_task:
+            notebook_path: ./notebooks/validate.py
+        - task_key: transform-data
+          depends_on:
+            - task_key: validate-data
+          notebook_task:
+            notebook_path: ./notebooks/transform.py
+
+targets:
+  dev:
+    default: true
+    mode: development
+    variables:
+      environment: development
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-0000000000000000.0.azuredatabricks.net
+    variables:
+      environment: production

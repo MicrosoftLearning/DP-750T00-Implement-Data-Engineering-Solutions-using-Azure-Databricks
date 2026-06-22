@@ -27,11 +27,13 @@ As the pipeline moves toward production, your team has decided to adopt proper *
 
 This lab is structured in three parts:
 
-| Part | Topic | Where |
+| Part | Topic | Where you work |
 |------|-------|--------|
-| **Part 1** | Implement unit tests with pytest | Notebook |
-| **Part 2** | Configure a Declarative Automation Bundle | Workspace terminal |
-| **Part 3** | Deploy and verify the bundle with the Databricks CLI | Workspace terminal |
+| **Part 1** | Implement unit tests with pytest | In a notebook running on Serverless compute in your Azure Databricks workspace |
+| **Part 2** | Configure a Declarative Automation Bundle | In a **PowerShell terminal on your local machine** (the Databricks CLI runs locally) |
+| **Part 3** | Deploy and verify the bundle with the Databricks CLI | In the same **local PowerShell terminal**, then verify in the Databricks workspace UI |
+
+> **Important:** Parts 2 and 3 use the **Databricks CLI installed on your computer/lab virtual machine**, not a terminal inside the Databricks workspace. Open a local PowerShell window for those parts and keep it open throughout.
 
 ---
 
@@ -86,19 +88,23 @@ Declarative Automation Bundles (DABs) let you define your Databricks resources �
 
 In this part, you create a bundle for the order processing job using the **Databricks CLI** on your local machine.
 
+> **Where you work:** All commands in Parts 2 and 3 run in a **PowerShell terminal on your own computer or Lab Virtual Machine**. Open **Windows Terminal** or **PowerShell** now and keep it open for the rest of the lab. The Databricks CLI talks to your workspace over the network — you do **not** run these commands inside the Databricks web UI.
+
 ### Install and configure the Databricks CLI
 
-1. Install the Databricks CLI using PowerShell:
+1. In your local PowerShell window, install the Databricks CLI:
 
    ```powershell
    winget install Databricks.DatabricksCLI
    ```
 
-   Verify the installation:
+   Then **close and reopen** PowerShell so the new `databricks` command is on your PATH, and verify the installation:
 
    ```powershell
    databricks --version
    ```
+
+   *Expected outcome:* the command prints a version number (for example, `Databricks CLI v0.x.x`). If it reports that the command is not recognized, reopen PowerShell and try again.
 
 2. Authenticate the CLI against your Azure Databricks workspace:
 
@@ -106,18 +112,22 @@ In this part, you create a bundle for the order processing job using the **Datab
    databricks auth login --host https://<your-workspace-url>
    ```
 
-   Replace **<your-workspace-url>** with the URL of your workspace (for example, https://adb-1234567890123456.7.azuredatabricks.net). Follow the browser prompts to complete authentication.
+   Replace **<your-workspace-url>** with the URL of your workspace (for example, https://adb-1234567890123456.7.azuredatabricks.net). You can copy this from the address bar of your browser when the workspace is open. When prompted for a **profile name**, press Enter to accept the default. A browser window opens — sign in and approve the request.
 
-3. Create a new project directory and navigate into it:
+   *Expected outcome:* PowerShell displays `Profile DEFAULT was successfully saved`, confirming the CLI is now authenticated to your workspace.
+
+3. Create a new project directory and the two subfolders the bundle needs, then move into the project directory:
 
    ```powershell
    mkdir ~/order-pipeline-bundle; cd ~/order-pipeline-bundle
    mkdir notebooks, resources
    ```
 
+   *Expected outcome:* your PowerShell prompt now ends in `order-pipeline-bundle`, and the folder contains empty `notebooks` and `resources` subfolders. Run `ls` to confirm.
+
 ### Create the bundle configuration file
 
-Your task is to create a databricks.yml file with the following requirements:
+The **databricks.yml** file is the heart of a Declarative Automation Bundle — it describes the resources to deploy. In this step you create that file in the root of your `order-pipeline-bundle` folder. Your task is to produce a databricks.yml file that meets the following requirements:
 
 - Bundle name: `order-pipeline-bundle`
 - A variables section with:
@@ -132,61 +142,80 @@ Your task is to create a databricks.yml file with the following requirements:
   - A dev target (default, development mode, environment = development)
   - A prod target (production mode, with its own workspace host and environment = production)
 
-Use the PowerShell snippet below as a **starting point** and fill in the sections marked with `# TODO`:
+You create this file with a plain-text editor rather than from the command line, so it's easier to read and edit the YAML.
 
-```powershell
-@'
-bundle:
-  name: order-pipeline-bundle
+1. Open the `order-pipeline-bundle` folder in a text editor:
 
-variables:
-  environment:
-    description: The deployment environment name
-    default: development
-  # TODO: Add a variable named 'cluster_policy_id'
-  # It should have a description and no default value.
+   - **VS Code** (recommended): in your PowerShell window, run `code .` to open the current folder. If the `code` command isn't available, open VS Code manually and select **File** > **Open Folder**, then choose your `order-pipeline-bundle` folder.
+   - **Notepad**: run `notepad databricks.yml`. Notepad asks whether to create the file because it doesn't exist yet — select **Yes**.
 
-resources:
-  jobs:
-    order-pipeline-job:
-      name: ${var.environment}-order-pipeline
-      tasks:
-        - task_key: validate-data
-          notebook_task:
-            notebook_path: ./notebooks/validate.py
-        # TODO: Add a second task named 'transform-data'
-        # It should depend on 'validate-data' and run ./notebooks/transform.py
-        # Refer to the 'depends_on' key in the Declarative Automation Bundle schema.
+2. Create a new file named **databricks.yml** in the root of the `order-pipeline-bundle` folder (in VS Code, select **New File** and name it `databricks.yml`).
 
-targets:
-  dev:
-    default: true
-    mode: development
-    variables:
-      environment: development
-  # TODO: Add a 'prod' target that:
-  # - sets mode to production
-  # - sets a workspace host (use a placeholder URL for now)
-  # - overrides the environment variable to 'production'
-'@ | Set-Content databricks.yml
-```
+3. Copy the starter configuration below into the file. It already includes the bundle name, the `environment` variable, the first task, and the `dev` target. Complete the three sections marked with `# TODO`:
+
+   ```yaml
+   bundle:
+     name: order-pipeline-bundle
+
+   variables:
+     environment:
+       description: The deployment environment name
+       default: development
+     # TODO: Add a variable named 'cluster_policy_id'
+     # It should have a description and no default value.
+
+   resources:
+     jobs:
+       order-pipeline-job:
+         name: ${var.environment}-order-pipeline
+         tasks:
+           - task_key: validate-data
+             notebook_task:
+               notebook_path: ./notebooks/validate.py
+           # TODO: Add a second task named 'transform-data'
+           # It should depend on 'validate-data' and run ./notebooks/transform.py
+           # Refer to the 'depends_on' key in the Declarative Automation Bundle schema.
+
+   targets:
+     dev:
+       default: true
+       mode: development
+       variables:
+         environment: development
+     # TODO: Add a 'prod' target that:
+     # - sets mode to production
+     # - sets a workspace host (use a placeholder URL for now)
+     # - overrides the environment variable to 'production'
+   ```
+
+   > **Tip:** YAML is indentation-sensitive — use **two spaces** per level and never use tabs. Keep each `# TODO` block aligned with the example lines around it.
+
+4. **Save** the file (in VS Code, press **Ctrl+S**; in Notepad, select **File** > **Save**). Make sure it's saved as `databricks.yml` directly inside the `order-pipeline-bundle` folder, not inside `notebooks` or `resources`.
 
 > 🤖 **Genie Code tip:** Ask *"Show me a complete Declarative Automation Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
 
+> **Need the solution?** A completed reference file with all `# TODO` sections filled in is available at [Allfiles/answers/12-databricks-bundle-with-answers.yml](https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/answers/12-databricks-bundle-with-answers.yml). Try to complete the `# TODO` sections yourself first, then compare your work against the solution.
+
+*Expected outcome:* a `databricks.yml` file exists in the root of `order-pipeline-bundle`, containing the `cluster_policy_id` variable, the second `transform-data` task with its `depends_on`, and the `prod` target you added. You can confirm it from PowerShell with `Get-Content databricks.yml`.
+
 ### Create placeholder notebooks (required for validation)
 
-Bundle validation checks that referenced notebooks exist. Create two placeholder notebook files:
+Bundle validation checks that every notebook referenced in `databricks.yml` actually exists on disk. Run these commands in your local PowerShell window (still inside the `order-pipeline-bundle` folder) to create two placeholder notebook files in the `notebooks` subfolder:
 
 ```powershell
 "# validate" | Set-Content notebooks/validate.py
 "# transform" | Set-Content notebooks/transform.py
 ```
 
+*Expected outcome:* the `notebooks` folder now contains `validate.py` and `transform.py`. Run `ls notebooks` to confirm both files are present.
+
 ---
 
 ## Part 3: Deploy and Verify the Bundle with the Databricks CLI
 
 With your bundle configured, you use the **Databricks CLI** to validate, preview, and deploy it to your workspace.
+
+> **Where you work:** Run every command in this part in your **local PowerShell window**, from inside the `order-pipeline-bundle` folder. If you closed PowerShell, reopen it and run `cd ~/order-pipeline-bundle` first.
 
 ### Step 1 — Validate the bundle
 
@@ -196,7 +225,7 @@ Run the following command from inside the order-pipeline-bundle directory. This 
 databricks bundle validate
 ```
 
-If validation succeeds, you will see a summary showing the bundle name, target environment, and workspace path. If there are errors, review the output and fix the YAML before continuing.
+*Expected outcome:* the command prints a summary showing the bundle **Name** (`order-pipeline-bundle`), the **Target** (`dev`), and the **Workspace** path, followed by `Validation OK!`. If you see errors instead, read the message (it usually names the line or key at fault), fix the YAML, and run the command again.
 
 > 🤖 **Tip:** Copy any validation error messages and paste them into Genie Code to get an explanation and suggested fix.
 
@@ -208,7 +237,7 @@ Before making any changes to your workspace, preview what the deployment would c
 databricks bundle plan
 ```
 
-Review the output. You should see that the order-pipeline-job would be **created** (since it doesn't exist yet). For a non-default target, specify it explicitly:
+Review the output. *Expected outcome:* the plan reports that the order-pipeline-job would be **created** (since it doesn't exist yet) — no resources are changed at this stage. To run the plan against a specific target, name it explicitly:
 
 ```powershell
 databricks bundle plan -t dev
@@ -226,6 +255,8 @@ During deployment, the CLI:
 - Uploads your notebook files to the workspace
 - Creates the order-pipeline-job in the **Jobs & Pipelines** section of your workspace (prefixed with `[dev <username>]` because development mode is active)
 
+*Expected outcome:* the command finishes with a message such as `Deployment complete!` and no errors.
+
 ### Step 4 — Verify the deployed resources
 
 Confirm the deployment succeeded:
@@ -234,19 +265,21 @@ Confirm the deployment succeeded:
 databricks bundle summary
 ```
 
-The output includes direct URLs to the created job. Open the URL in your browser to verify that the job appears in your workspace with both tasks (validate-data and transform-data) correctly configured.
+*Expected outcome:* the output lists the deployed **order-pipeline-job** along with a direct **URL** to it. Open that URL in your browser (or go to **Jobs & Pipelines** in the workspace) and confirm that:
+- The job appears with a name prefixed by `[dev <your-username>]`.
+- Opening the job shows both tasks — **validate-data** and **transform-data** — with **transform-data** depending on **validate-data** in the task graph.
 
 > 🤖 **Tip:** Ask *"What does Declarative Automation Bundle development mode do to job names and schedules?"* to understand why the job is prefixed with your username.
 
 ### Step 5 — Clean up (optional)
 
-To remove the deployed resources from your workspace:
+To remove the deployed resources from your workspace, run the following from the `order-pipeline-bundle` folder:
 
 ```powershell
 databricks bundle destroy -t dev
 ```
 
-Confirm when prompted to delete the job that was created.
+When prompted, confirm that you want to delete the job that was created. *Expected outcome:* the CLI reports the resources were destroyed, and the job no longer appears in **Jobs & Pipelines**.
 
 ---
 
