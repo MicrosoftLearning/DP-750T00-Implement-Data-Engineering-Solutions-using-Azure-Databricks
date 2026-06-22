@@ -131,8 +131,8 @@ The **databricks.yml** file is the heart of a Declarative Automation Bundle — 
 
 - Bundle name: `order-pipeline-bundle`
 - A variables section with:
-  - An environment variable (default: `development`)
-  - A cluster_policy_id variable with a description and no default value
+  - An `environment` variable (default: `development`)
+  - A `cluster_policy_id` variable with a description and a **default value of an empty string (`""`)**. A cluster policy ID enforces configuration rules on job clusters, and in a production bundle you'd reference this value on those clusters. To keep this lab simple — the job uses Serverless compute — the empty-string default makes the variable **optional**, so you don't have to supply it at deploy time. If you'd rather use a real value, copy a policy ID from your workspace under **Compute** > **Policies**: open a policy and use the ID shown in its details or URL.
 - A resources section defining a job named order-pipeline-job that:
   - Has a display name using the environment variable: ${var.environment}-order-pipeline
   - Has two notebook tasks:
@@ -161,8 +161,11 @@ You create this file with a plain-text editor rather than from the command line,
      environment:
        description: The deployment environment name
        default: development
-     # TODO: Add a variable named 'cluster_policy_id'
-     # It should have a description and no default value.
+     # TODO: Add a variable named 'cluster_policy_id'.
+     # Give it a 'description' and a 'default' value of "" (an empty string),
+     # which makes the variable optional so you don't have to supply it at deploy time.
+     # (A real cluster policy ID comes from Compute > Policies in your workspace,
+     # but you don't need one for this lab.)
 
    resources:
      jobs:
@@ -190,24 +193,28 @@ You create this file with a plain-text editor rather than from the command line,
 
    > **Tip:** YAML is indentation-sensitive — use **two spaces** per level and never use tabs. Keep each `# TODO` block aligned with the example lines around it.
 
-4. **Save** the file (in VS Code, press **Ctrl+S**; in Notepad, select **File** > **Save**). Make sure it's saved as `databricks.yml` directly inside the `order-pipeline-bundle` folder, not inside `notebooks` or `resources`.
+4. **Save** the file (in VS Code, press **Ctrl+S**; in Notepad, select **File** > **Save**). Make sure it's saved as `databricks.yml` directly inside the order-pipeline-bundle folder, not inside notebooks or resources.
 
 > 🤖 **Genie Code tip:** Ask *"Show me a complete Declarative Automation Bundle databricks.yml example with two targets, job tasks, and custom variables"* to get a full reference configuration you can adapt.
 
 > **Need the solution?** A completed reference file with all `# TODO` sections filled in is available at [Allfiles/answers/12-databricks-bundle-with-answers.yml](https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/answers/12-databricks-bundle-with-answers.yml). Try to complete the `# TODO` sections yourself first, then compare your work against the solution.
 
-*Expected outcome:* a `databricks.yml` file exists in the root of `order-pipeline-bundle`, containing the `cluster_policy_id` variable, the second `transform-data` task with its `depends_on`, and the `prod` target you added. You can confirm it from PowerShell with `Get-Content databricks.yml`.
+*Expected outcome:* a databricks.yml file exists in the root of order-pipeline-bundle, containing the cluster_policy_id variable, the second transform-data task with its depends_on, and the prod target you added. You can confirm it from PowerShell with `Get-Content databricks.yml`.
 
 ### Create placeholder notebooks (required for validation)
 
-Bundle validation checks that every notebook referenced in `databricks.yml` actually exists on disk. Run these commands in your local PowerShell window (still inside the `order-pipeline-bundle` folder) to create two placeholder notebook files in the `notebooks` subfolder:
+Bundle validation checks that every notebook referenced in `databricks.yml` actually exists on disk **and is a Databricks notebook**. A plain `.py` file isn't enough — a Databricks source-format notebook must begin with the special first line `# Databricks notebook source`, and the file must be saved as **UTF-8 without a byte-order mark (BOM)**. If the file has a BOM or uses a different encoding, the Databricks CLI can't detect the header and validation fails with *"... is not a notebook"* — even though the text looks correct in an editor.
+
+Run these commands in your local PowerShell window (still inside the `order-pipeline-bundle` folder) to create both placeholder notebooks as BOM-free UTF-8:
 
 ```powershell
-"# validate" | Set-Content notebooks/validate.py
-"# transform" | Set-Content notebooks/transform.py
+[System.IO.File]::WriteAllLines("$PWD\notebooks\validate.py",  @("# Databricks notebook source", "# validate"))
+[System.IO.File]::WriteAllLines("$PWD\notebooks\transform.py", @("# Databricks notebook source", "# transform"))
 ```
 
-*Expected outcome:* the `notebooks` folder now contains `validate.py` and `transform.py`. Run `ls notebooks` to confirm both files are present.
+> **Why not `Set-Content`?** `Set-Content` (and `Out-File`) can prepend a BOM or use UTF-16 depending on your PowerShell version, which is exactly what triggers the *"is not a notebook"* error. `[System.IO.File]::WriteAllLines` always writes UTF-8 **without** a BOM, so the magic header is the very first thing in the file.
+
+*Expected outcome:* the `notebooks` folder contains `validate.py` and `transform.py`, each starting with `# Databricks notebook source`. Run `Get-Content notebooks/validate.py` to confirm the header is on line 1. When you rerun `databricks bundle validate`, the *"is not a notebook"* error is gone.
 
 ---
 

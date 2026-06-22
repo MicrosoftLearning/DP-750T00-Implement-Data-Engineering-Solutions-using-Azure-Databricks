@@ -7,6 +7,7 @@ variables:
     default: development
   cluster_policy_id:
     description: The cluster policy ID used for job clusters
+    default: ""
 
 resources:
   jobs:
