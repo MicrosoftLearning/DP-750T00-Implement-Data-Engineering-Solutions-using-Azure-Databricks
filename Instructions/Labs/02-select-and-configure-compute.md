@@ -3,7 +3,7 @@ lab:
   index: 02
   title: Select and Configure Compute in Azure Databricks
   module: Select and Configure Compute in Azure Databricks
-  module-url: https://learn.microsoft.com/training/wwl-databricks/select-and-configure-compute/
+  module-url: https://learn.microsoft.com/training/modules/select-and-configure-compute/
   notebook: https://github.com/MicrosoftLearning/DP-750T00-Implement-Data-Engineering-Solutions-using-Azure-Databricks/blob/main/Allfiles/02-select-and-configure-compute.ipynb
   description: In this lab, you create and configure an all-purpose cluster in Azure Databricks, install libraries both cluster-scoped and notebook-scoped, and use the faker library to generate and analyze synthetic patient admission records with PySpark. 
   duration: 30 minutes
