@@ -18,6 +18,11 @@ az config set core.display_warnings=no 2>/dev/null
 az config set extension.dynamic_install_allow_preview=true 2>/dev/null
 az extension add --upgrade -n databricks
 
+echo "Registering Microsoft.Databricks resource provider..."
+az provider register \
+  --namespace Microsoft.Databricks \
+  --wait
+
 echo "Creating resource group $RESOURCE_GROUP in region $REGION..."
 az group create \
   --name $RESOURCE_GROUP \
