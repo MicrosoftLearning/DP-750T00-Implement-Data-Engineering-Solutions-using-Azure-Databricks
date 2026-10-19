@@ -26,7 +26,7 @@ Today's task is to automate that pipeline using **Lakeflow Jobs**. You will:
 - Pass a `processing_date` **job parameter** to the notebook using a dynamic trigger value
 - Add a second downstream task with a **task dependency**
 - Configure an **event-based file arrival trigger** that fires when new CDR files land in the volume
-- Add a **nightly cron schedule** so the job also runs automatically each night
+- Replace the file arrival trigger with a **nightly cron schedule** so the job runs automatically each night
 - Set up **failure notifications** so the network operations team is alerted immediately
 - Configure **automatic retry policies** to handle transient cloud-storage errors
 
@@ -171,24 +171,19 @@ TelConnect drops fresh CDR files into the volume at irregular intervals througho
 
 5. Click **Save**.
 
-#### Pause the trigger
-
-Since you will also add a schedule in the next exercise, pause the file arrival trigger to avoid duplicate runs during the lab:
-
-6. Under **Schedules & Triggers**, locate the file arrival trigger and click **Pause**.
-
-> **Note:** In production, you would keep both active — the file arrival trigger handles intraday updates while the schedule provides a reliable nightly catch-all run.
+> **Note:** This lab uses one trigger at a time and doesn't require the **Multiple Triggers** Beta preview. In the next exercise, you remove the file arrival trigger and replace it with a nightly schedule. Pausing a trigger doesn't remove its configuration.
 
 ---
 
-### Exercise 4: Add a nightly schedule
+### Exercise 4: Replace the file arrival trigger with a nightly schedule
 
-TelConnect's operations team expects the Gold summary table to be refreshed every night at 02:00 CET so dashboards are current before the morning shift begins.
+TelConnect's operations team expects the Gold summary table to be refreshed every night at 02:00 Amsterdam time so dashboards are current before the morning shift begins. Switch the job from event-based triggering to a scheduled trigger.
 
-1. In the **Job details** panel, click **Add trigger** again.
-2. Set **Trigger type** to **Scheduled**.
-3. Set **Schedule type** to **Advanced**.
-4. In the **Cron expression** field, enter:
+1. In the **Job details** panel, under **Schedules & Triggers**, locate the file arrival trigger and select **Delete**. Confirm the deletion if prompted.
+2. Select **Add trigger**.
+3. Confirm that **Trigger Status** is **Active** and set **Trigger type** to **Scheduled**.
+4. Under **Schedule type**, select **Schedule**, not **Interval**.
+5. Select **Show cron syntax**, then enter the following cron expression:
 
    ```
    0 0 2 * * ?
@@ -196,12 +191,12 @@ TelConnect's operations team expects the Gold summary table to be refreshed ever
 
    > This expression means: at second 0, minute 0, hour 2, every day of the month, every month, any day of the week.
 
-5. Set the **Time zone** to **Europe/Amsterdam**.
-6. Click **Save**.
+6. In the time zone dropdown next to the schedule, select **Europe/Amsterdam**. The displayed UTC offset varies with daylight saving time.
+7. Select **Save**.
 
 #### Verify the cron expression
 
-7. After saving, review the human-readable schedule preview. It should read: *"Every day at 2:00 AM Amsterdam time."*
+8. After you save, confirm that **Schedules & Triggers** shows only the scheduled trigger. Verify that the schedule runs every day at **02:00** in the **Europe/Amsterdam** time zone.
 
 ---
 
@@ -275,6 +270,6 @@ In this lab you:
 - Created a **Lakeflow Job** with two tasks and a sequential task dependency
 - Passed processing_date as a **dynamic job parameter** tied to the trigger time
 - Configured a **file arrival trigger** that fires when new CDR files land in the volume
-- Added a **nightly cron schedule** at 02:00 CET to ensure daily refresh
+- Replaced the file arrival trigger with a **nightly cron schedule** at 02:00 Amsterdam time to ensure daily refresh
 - Set up **failure notifications** with muted retry alerts to reduce alert noise
 - Configured **task-level retries** (2 attempts, 60-second interval) and a 30-minute timeout threshold
